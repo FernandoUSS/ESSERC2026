@@ -1,32 +1,163 @@
 {
-    "Lua.workspace.preloadFileSize": 2000,
-    "Lua.workspace.ignoreDir": [],
-    "Lua.diagnostics.libraryFiles": "Disable",
-    "Lua.runtime.version": "Lua 5.1",
-    "Lua.runtime.builtin": {
-        "basic": "enable",
-        "builtin": "enable",
-        "table": "enable",
-        "bit": "disable",
-        "bit32": "disable",
-        "coroutine": "disable",
-        "debug": "disable",
-        "ffi": "disable",
-        "io": "disable",
-        "jit": "disable",
-        "jit.profile": "disable",
-        "jit.util": "disable",
-        "math": "disable",
-        "os": "disable",
-        "package": "disable",
-        "string": "disable",
-        "string.buffer": "disable",
-        "table.clear": "disable",
-        "table.new": "disable",
-        "utf8": "disable"
+  "[latex]": {
+    "editor.wordWrap": "on"
+  },
+  "[csv]": {
+    "editor.wordWrap": "off"
+  },
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.wordWrap": "on"
+  },
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.outline.sync.viewer": true,
+
+  "latex-workshop.latex.recipes": [
+        {
+      "name": "latexmk → biber → latexmk (2×)",
+      "tools": [
+        "latexmk",
+        "biber",
+        "latexmk",
+        "latexmk"
+      ]
     },
-    "Lua.workspace.library": [
-        "/home/delossa/.vscode/extensions/tektronix.tsp-toolkit-1.4.1-linux-x64/node_modules/@tektronix/keithley_instrument_libraries/keithley_instrument_libraries/tsp-lua-5.0",
-        "/home/delossa/.vscode/extensions/tektronix.tsp-toolkit-1.4.1-linux-x64/node_modules/@tektronix/keithley_instrument_libraries/keithley_instrument_libraries/nodes_definitions"
+    {
+      "name": "pdflatex → makeglossaries → pdflatex (2×)",
+      "tools": [
+        "pdflatex",
+        "makeglossaries",
+        "pdflatex",
+        "pdflatex"
+      ]
+    },
+    {
+      "name": "pdflatex → bibtex → pdflatex (2×)",
+      "tools": [
+        "pdflatex",
+        "bibtex",
+        "pdflatex",
+        "pdflatex"
+      ]
+    },
+    {
+      "name": "latexmk → biber → makeglossaries → latexmk (2×)",
+      "tools": [
+        "latexmk",
+        "biber",
+        "makeglossaries",
+        "latexmk",
+        "latexmk"
+      ]
+    },
+    {
+      "name": "pdflatex only",
+      "tools": ["pdflatex"]
+    },
+    {
+      "name": "latexmk only",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "latex → dvisvgm",
+      "tools": ["latex2svg"]
+    },
+    {
+      "name": "latex only",
+      "tools": ["latex"]
+    }
+  ],
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": ["%DOC%"]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"]
+    },
+    {
+    "name": "latex",
+    "command": "latex",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "%DOC%"
     ]
+    },
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "latex2svg",
+      "command": "bash",
+      "args": ["./latex2svg.sh", "%DOCFILE%"]
+    },
+    {
+      "name": "makeglossaries",
+      "command": "makeglossaries",
+      "args": ["%DOCFILE%"]
+    }
+  ],
+
+  //"latex-workshop.latex.recipe.default": "latexmk → biber → makeglossaries → latexmk (2×)",
+  "latex-workshop.latex.recipe.default": "pdflatex only",
+  "latex-workshop.latex.build.enableMagicComments": true,
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "Lua.workspace.preloadFileSize": 2000,
+  "Lua.workspace.ignoreDir": [],
+  "Lua.diagnostics.libraryFiles": "Disable",
+  "Lua.runtime.version": "Lua 5.1",
+  "Lua.runtime.builtin": {
+    "basic": "enable",
+    "builtin": "enable",
+    "table": "enable",
+    "bit": "disable",
+    "bit32": "disable",
+    "coroutine": "disable",
+    "debug": "disable",
+    "ffi": "disable",
+    "io": "disable",
+    "jit": "disable",
+    "jit.profile": "disable",
+    "jit.util": "disable",
+    "math": "disable",
+    "os": "disable",
+    "package": "disable",
+    "string": "disable",
+    "string.buffer": "disable",
+    "table.clear": "disable",
+    "table.new": "disable",
+    "utf8": "disable"
+  },
+  "Lua.workspace.library": [
+    "/home/delossa/.vscode/extensions/tektronix.tsp-toolkit-1.4.1-linux-x64/node_modules/@tektronix/keithley_instrument_libraries/keithley_instrument_libraries/tsp-lua-5.0",
+    "/home/delossa/.vscode/extensions/tektronix.tsp-toolkit-1.4.1-linux-x64/node_modules/@tektronix/keithley_instrument_libraries/keithley_instrument_libraries/nodes_definitions"
+  ],
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda",
+  "python-envs.pythonProjects": []
 }
