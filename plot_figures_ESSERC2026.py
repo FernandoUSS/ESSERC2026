@@ -4,6 +4,7 @@ from matplotlib.cm import plasma, viridis
 from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter, LogLocator
+from matplotlib.colors import to_rgb
 import numpy as np
 import os
 import sys
@@ -59,7 +60,7 @@ def set_matplotlibstyle_Fernando(textSize, textSizeLegend):
         "axes.titlesize": 9,
 
         "legend.fontsize": 7,
-        "legend.framealpha": 1,
+        "legend.framealpha": 0,
         "axes.linewidth": 1,
 
         "lines.linewidth": 1,
@@ -83,6 +84,11 @@ def log_fmt(val, pos):
     if (exp + 12) % 2 == 0:
         return rf"$10^{{{exp}}}$"
     return ""
+
+def opaque_equivalent(color, alpha, bg=(1,1,1)):
+    c = np.array(to_rgb(color))
+    bg = np.array(bg)
+    return alpha * c + (1 - alpha) * bg
 
 def Vd_color(Vd, min_Vd=0.1,max_Vd=1.5):
     normalized_vd = (Vd - min_Vd) / (max_Vd - min_Vd)
@@ -113,6 +119,7 @@ if __name__ == "__main__":
 
     color_up = "#AA3939"
     color_down = "#887CAF"
+
     # Figures
     if 0: # IdVg curves for encapsulated devices
 
@@ -446,12 +453,9 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/SS_vs_area.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 1: # IdVgs Hysteresis
-        ###########################################################################################
-        # IdVgs Hysteresis
-        ###########################################################################################
+    if 0: # IdVgs Hysteresis
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
-        df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['nom_freq'] == 0.01) & (df['precondition'] == False)]
+        df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['nom_freq'] == 0.001) & (df['precondition'] == False)]
         for c in ['Id','Vg']:
             if c in df.columns:
                 df[c] = df[c].map(json5.loads)
@@ -460,7 +464,7 @@ if __name__ == "__main__":
         Vmax = df['Vmax'].iloc[0]
         Vmin = df['Vmin'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.2, 2.5))
+        fig, ax = plt.subplots(figsize=(2.2, 2.5),constrained_layout=True)
 
         # Get unique sweep frequencies
         freqs = df['nom_freq'].unique()
@@ -468,7 +472,7 @@ if __name__ == "__main__":
         freq_to_color = {freq: colors[idx] for idx, freq in enumerate(sorted(freqs))}
 
         # Inset
-        axins = ax.inset_axes([0.6, 0.25, 0.3, 0.3])
+        axins = ax.inset_axes([0.35, 0.15, 0.6, 0.3])
         axins.tick_params(axis='both',
             which='both',
             bottom=False,
@@ -486,20 +490,25 @@ if __name__ == "__main__":
                 np.flip(Id[UpDownSplit:LenSweepData])])
         Vg_UpDown=np.array([Vg[0:UpDownSplit+1],
                             np.flip(Vg[UpDownSplit:LenSweepData])])
+        Vth_up = df['Vth_up'].iloc[0]
+        Vth_down = df['Vth_down'].iloc[0]
         ax.plot(Vg_UpDown[0], Id_UpDown[0]/width*1e6, '-', 
                 label=f'up sweep', color = color_up)
         ax.plot(Vg_UpDown[1], Id_UpDown[1]/width*1e6, '-', 
                 label=f'down sweep', color = color_down)
+        ax.scatter([Vth_up], [df['Ith'].iloc[0]/width*1e6], color=color_up, marker='+')
+        ax.scatter([Vth_down], [df['Ith'].iloc[0]/width*1e6], color=color_down, marker='+')
         axins.plot(Vg_UpDown[0], Id_UpDown[0]/width*1e6, '-', color = color_up)
         axins.plot(Vg_UpDown[1], Id_UpDown[1]/width*1e6, '-', color = color_down)
 
         ax.set_yscale("log")
+        ax.set_ylim(8e-7, 2e-1)
         ax.set_xlabel(r'Gate Voltage, $V_\mathsf{G}$ [V]')
         ax.set_ylabel(r'Drain Current, $I_\mathsf{D}$ [$\mu$A/$\mu$m]')
         axins.set_yscale("log")
         axins.set_xticks([])
         axins.set_yticks([])
-        x1, x2 = 2.55, 2.8
+        x1, x2 = 2.85, 3.3
         y1, y2 = 4e-3, 7e-3
         axins.set_xlim(x1, x2)
         axins.set_ylim(y1, y2)
@@ -507,28 +516,33 @@ if __name__ == "__main__":
 
         # Add device info
         device_text = r'$T$ = 300 K' +'\n' + rf'$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$'+ '\n' + rf'$V_\mathsf{{D}}$ = {df["Vd"].iloc[0]} V' + '\n' + rf'$r_\mathsf{{sweep}}$ = {df["nom_freq"].iloc[0]*(Vmax - Vmin):.2f} V/s'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-               fontsize=6, verticalalignment='top',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
+        #        fontsize=6, verticalalignment='top',
+        #        bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
 
         # Legend with min and max frequencies
         sorted_freqs = sorted(freqs)
-        ax.legend(fontsize=6, loc='lower right', framealpha=0.9,
+        ax.legend(fontsize=6, loc='upper left',
              handlelength=1.5)
 
         #ax.set_title(r'Hysteresis $I_\mathsf{D}-V_\mathsf{G}$ curve')
-        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
-        axins.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
+        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k', alpha=0.5,zorder=0)
+        ax.text(-0.5,df['Ith'].iloc[0]/width*0.9e6, r'$I_\mathsf{th}$-criterion', fontsize=6, va='top', ha='left')
+        axins.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k', alpha=0.5,zorder=0)
         current_max = np.max(np.array(Id)/width*1e6)
         current_decade = current_max / 10
         vg_max = Vg[np.argmax(np.array(Id)/width*1e6)]
         axins.annotate('', xy=(df['Vth_down'].iloc[0], df['Ith'].iloc[0]/width*1e6), xytext=(df['Vth_up'].iloc[0], df['Ith'].iloc[0]/width*1e6),
-               arrowprops=dict(arrowstyle='<->', color='black'))
-        axins.text(0.5*(df['Vth_down'].iloc[0] + df['Vth_up'].iloc[0]), df['Ith'].iloc[0]/width*1.05e6, r'$V_\mathsf{H}$', fontsize=8, va='bottom',ha='center')
-        plt.savefig(script_dir+"/figures/hysteresis_IdVg_example.pdf", bbox_inches="tight", transparent=True)
+               arrowprops=dict(arrowstyle='<|-|>', color='black'))
+        axins.text(0.5*(df['Vth_down'].iloc[0] + df['Vth_up'].iloc[0]), df['Ith'].iloc[0]/width*1e6, r'$V_\mathsf{H}$', fontsize=6, va='bottom',ha='center')
+        axins.scatter([Vth_up], [df['Ith'].iloc[0]/width*1e6], color=color_up, marker='+')
+        axins.scatter([Vth_down], [df['Ith'].iloc[0]/width*1e6], color=color_down, marker='+')
+        axins.text(df['Vth_up'].iloc[0], df['Ith'].iloc[0]/width*1e6, r'$V_\mathsf{th,up}$', fontsize=6, va='bottom', ha='right', color=color_up)
+        axins.text(df['Vth_down'].iloc[0]-0.02, df['Ith'].iloc[0]/width*0.97e6, r'$V_\mathsf{th,down}$', fontsize=6, va='top', ha='left', color=color_down)
+        plt.savefig(script_dir+"/figures/hysteresis_IdVg_example.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Id vs t Hysteresis
+    if 0: # Id vs t Hysteresis
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['precondition'] == False)]
         for c in ['Id','Vg','time']:
@@ -537,7 +551,7 @@ if __name__ == "__main__":
                 
         # width = df['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.2, 2.5))
+        fig, ax = plt.subplots(figsize=(2.3, 2.5), constrained_layout=True)
 
         # Get unique sweep frequencies
         freqs = [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
@@ -546,17 +560,20 @@ if __name__ == "__main__":
         colors = plasma(np.linspace(0, 1, len(freqs)))
         freq_to_color = {freq: colors[idx] for idx, freq in enumerate(sorted(freqs))}
         
+        # Add rectangles to indicate sweep direction
+        ax.add_patch(Rectangle((0, 8e-7), 0.5, 1e-0-8e-7, facecolor=color_up, alpha=0.1))
+        ax.add_patch(Rectangle((0.5, 8e-7), 0.5, 1e-0-8e-7, facecolor=color_down, alpha=0.1))
+        ax.text(0.25, 0.975, r'Up sweep', fontsize=6, va='top', ha='center', color=color_up, transform=ax.transAxes)
+        ax.text(0.75, 0.975, r'Down sweep', fontsize=6, va='top', ha='center', color=color_down, transform=ax.transAxes)
+
         # Inset
-        axins = ax.inset_axes([0.35, 0.35, 0.4, 0.3])
-        axins.tick_params(axis='both',
-            which='both',
-            bottom=False,
-            top=False,
-            left=False,
-            right=False,
-            labelbottom=False,
-            labelleft=False
-        )
+        axins = ax.inset_axes([0.30, 0.35, 0.4, 0.3])
+        axins.tick_params(axis='both', which='both', bottom=False, top=False, left=False, right=False, labelbottom=False,labelleft=False)
+        ax.patch.set_zorder(0)
+        axins.set_zorder(100)
+        axins.set_facecolor(opaque_equivalent(color=color_down, alpha=0.1))
+        axins.patch.set_alpha(1)
+        axins.patch.set_visible(True)
 
         ax2 = ax.twinx()
         for freq in sorted(freqs):
@@ -567,25 +584,31 @@ if __name__ == "__main__":
             sweep_time = np.max(time) - np.min(time)
             ax.plot((time-np.min(time))/sweep_time, Id/width*1e6, '-', color =freq_to_color[freq], label=f'f = {freq} Hz')
             axins.plot((time-np.min(time))/sweep_time, Id/width*1e6, '-', color =freq_to_color[freq])
+
+        # Sweep of the gate voltage
         idx_max = np.argmax(Vg)
         x = (time - np.min(time)) / sweep_time
-        # up sweep
         ax2.step(x[:idx_max+1], Vg[:idx_max+1], where='mid', color=color_up)
-        # down sweep
         ax2.step(x[idx_max:], Vg[idx_max:], where='mid', color=color_down)
 
         ax.set_yscale("log")
-        ax.set_ylim(8e-7, 1e-1)
+        ax.set_ylim(8e-7, 2e-1)
+        ax.set_xlim(0, 1)
         ax.set_xlabel(r'Normalized time, $t/t_\mathsf{sw}$')
         #ax.set_ylabel(r'Drain current, $I_\mathsf{D}$ [$\mu$A/$\mu$m]')
-        ax.tick_params(axis='y', which='both', left=False, labelleft=False)
+        # ax.tick_params(axis='y', which='both', left=False, labelleft=False)
+        ax.tick_params(axis='y', which='minor', left=False)
+        ax.set_yticks([df['Ith'].iloc[0]/width*1e6])
+        ax.set_yticklabels([r'$I_\mathsf{th}$'], fontsize=6)
         ax2.set_ylim(df['Vmin'].iloc[0]-0.1, df['Vmax'].iloc[0]*4)
         #ax2.set_ylabel(r'Gate voltage, $V_\mathsf{G}$ [V]')
-        ax2.tick_params(axis='y', which='both', right=False, labelright=False)
+        # ax2.tick_params(axis='y', which='both', right=False, labelright=False)
+        ax2.set_yticks([Vmin, Vmax])
+        ax2.set_yticklabels([r'$V_\mathsf{min}$', r'$V_\mathsf{max}$'], fontsize=6)
         axins.set_yscale("log")
         axins.set_xticks([])
         axins.set_yticks([])
-        x1, x2 = 0.68, 0.82
+        x1, x2 = 0.67, 0.835
         y1, y2 = 3e-3, 7e-3
         axins.set_xlim(x1, x2)
         axins.set_ylim(y1, y2)
@@ -600,26 +623,28 @@ if __name__ == "__main__":
         # Legend with min and max frequencies
         # ax.legend(fontsize=6, loc='lower right', framealpha=0.9,
         #     handlelength=1.5)
-
         #ax.set_title(r'Hysteresis $I_\mathsf{D}-V_\mathsf{G}$ curve')
-        ax.text(0.2, df['Ith'].iloc[0]/width*1e6*1.1, r'$V_\mathsf{th,up}$', fontsize=6, va='bottom', ha='center')
-        ax.text(0.835, df['Ith'].iloc[0]/width*1e6*1.1, r'$V_\mathsf{th,down}$', fontsize=6, va='bottom', ha='center')
-        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
-        axins.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
+        # ax.text(0.2, df['Ith'].iloc[0]/width*1e6*1.1, r'$V_\mathsf{th,up}$', fontsize=5, va='bottom', ha='center')
+        # ax.text(0.835, df['Ith'].iloc[0]/width*1e6*1.1, r'$V_\mathsf{th,down}$', fontsize=5, va='bottom', ha='center')
+        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k', alpha=0.5)
+        axins.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k', alpha=0.5)
+        ax2.axhline(Vmax, linestyle='--',xmin=0.5, xmax=1, color = 'k', alpha=0.5)
         current_max = np.max(np.array(Id)/width*1e6)
         current_decade = current_max / 10
         vg_max = Vg[np.argmax(np.array(Id)/width*1e6)]
         axins.annotate('', xy=(0.715, 4.5e-3), xytext=(0.79, 4.5e-3), arrowprops=dict(arrowstyle='->', color='black'))
         # axins.text(0.755, 4.5e-3, r'$r_\mathsf{sweep}$', fontsize=7, va='bottom',ha='center')
         # Text sweep rate limits
-        axins.text(0.72, 4.5e-3, r'$r_\mathsf{sweep}^{\min}$', fontsize=6, va='center', ha='right')
-        axins.text(0.79, 4.5e-3, r'$r_\mathsf{sweep}^{\max}$', fontsize=6, va='center', ha='left')
+        axins.text(0.72, 4.5e-3, r'$r_\mathsf{sweep}^{\min}$', fontsize=5, va='center', ha='right')
+        axins.text(0.79, 4.5e-3, r'$r_\mathsf{sweep}^{\max}$', fontsize=5, va='center', ha='left')
         # Axis 2 texts
-        ax2.text(0.1, 3.5, r'$V_\mathsf{G}$- up sweep', fontsize=6, va='top', ha='left', color=color_up,rotation=30)
-        ax2.text(0.9, 3.5, r'$V_\mathsf{G}$- down sweep', fontsize=6, va='top', ha='right', color=color_down,rotation=-30)
-        ax2.text(0.5, 6, r'$V_\mathsf{max}$', fontsize=6, va='bottom', ha='center')
-        ax2.text(1, 0, r'$V_\mathsf{min}$', fontsize=6, va='bottom', ha='center')
-        plt.savefig(script_dir+"/figures/hysteresis_time_example.pdf", bbox_inches="tight", transparent=True)
+        # ax2.text(0.1, 3.5, r'$V_\mathsf{G}$- up sweep', fontsize=6, va='top', ha='left', color=color_up,rotation=30)
+        # ax2.text(0.9, 3.5, r'$V_\mathsf{G}$- down sweep', fontsize=6, va='top', ha='right', color=color_down,rotation=-30)
+        ax2.text(0.35, 4.25, r'$V_\mathsf{G}$', fontsize=6, va='bottom', ha='right')
+        ax.text(0.35, 2e-2, r'$\log(I_\mathsf{D})$', fontsize=6, va='bottom', ha='right')
+        # ax2.text(0.5, 6, r'$V_\mathsf{max}$', fontsize=6, va='bottom', ha='center')
+        # ax2.text(1, 0, r'$V_\mathsf{min}$', fontsize=6, va='bottom', ha='center')
+        plt.savefig(script_dir+"/figures/hysteresis_time_example.pdf", bbox_inches=None)
         plt.close()
 
     if 0: # IdVgs Hysteresis
@@ -856,7 +881,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 1: # Hysteresis Vth and DeltaVth vs sweep rate (one figure version)
+    if 0: # Hysteresis Vth and DeltaVth vs sweep rate (one figure version)
         ###############################################################################################
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
@@ -865,7 +890,7 @@ if __name__ == "__main__":
         Vmin = df['Vmin'].iloc[0]
 
         # Create figure with two stacked axes
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.2, 2.5), sharex=True)
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.2, 2.5), sharex=True, constrained_layout=True)
 
         # =========================
         # Top plot: Vth
@@ -918,6 +943,91 @@ if __name__ == "__main__":
         script_dir = os.path.dirname(os.path.abspath(__file__))
         plt.savefig(os.path.join(script_dir, "figures", "hysteresis_Vth_DeltaVth_vs_freq.pdf"), bbox_inches="tight", transparent=True)
 
+        plt.close()
+
+    if 1: # Plot BTI DeltaVth vs total time
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
+        df = df[(df['dut'] == '2A13t1') & (df['T'] == '300K') & (df['sample'] == 1)]
+        for c in ['Id','Vg']:
+            df[c] = df[c].map(json5.loads)
+        # df.loc[~df['tMeas'].isin(['initial', 'extra','end']), 'tMeas'] = df.loc[~df['tMeas'].isin(['initial', 'extra','end']),'tMeas'].astype(float)
+        width = df['width'].iloc[0]
+
+        fig, ax = plt.subplots(figsize=(3.3, 3.3), constrained_layout = False)
+        
+        # Get unique stress times and assign colors
+        stress_times = df['tMeas'].unique()
+        colors = plasma(np.linspace(0, 1, len(stress_times)))
+        
+        for idx, stress_time in enumerate(sorted(stress_times)):
+            df_stress = df[df['tMeas'] == stress_time]
+            vg = df_stress['Vg'].values[0]
+            id_vals = df_stress['Id'].values[0]
+            ax.semilogy(vg, np.array(id_vals)/width*1e6, '-', linewidth=2.5, 
+               label=f'$t_{{stress}}$ = {stress_time} s', color=colors[len(colors) - 1 - idx])
+        
+        # Set axis labels
+        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
+        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
+        
+        #ax.grid(True, which='both', alpha=0.3)
+        
+        # Add device info
+        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = {df["T"].iloc[0]}\n$V_D$={df["Vd"].iloc[0]:.2f}\n$V_{{stress}}$ = {df["VgStress"].iloc[0]:.2f} V'
+        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
+               fontsize=22, verticalalignment='top',
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        
+        sorted_times = sorted(stress_times)
+        ax.legend([plt.gca().get_lines()[0], plt.gca().get_lines()[-1]], 
+             [f'$t_{{stress}}$ = {sorted_times[0]} s', f'$t_{{stress}}$ = {sorted_times[-1]} s'],
+             fontsize=textSizeLegend, loc='lower right', framealpha=0.9, handlelength=1.5)
+        
+        plt.title(r'$I_\mathsf{D}-V_\mathsf{G}$ curves during stress')
+        plt.savefig(script_dir+"/figures/OTF_IdVg_stress.pdf", bbox_inches="tight")
+        plt.close()
+
+        # Plot BTI IdVg Recovery
+        df = pd.read_csv("data/OTF_raw_data_TUWien_planar_hbn-encapsulated.csv")
+        df = df[(df['dut'] == '2A13t1') & (df['T'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 6) 
+                & ~(df['tMeas'].isin(['initial']))]
+        for c in ['Id','Vg']:
+            df[c] = df[c].map(json5.loads)
+        df.loc[~df['tMeas'].isin(['initial', 'extra','end']), 'tMeas'] = df.loc[~df['tMeas'].isin(['initial', 'extra','end']),'tMeas'].astype(float)
+        width = 39 #um
+
+        fig, ax = plt.subplots(figsize=(10, 10))
+        
+        # Get unique stress times and assign colors
+        stress_times = df['tMeas'].unique()
+        colors = plasma(np.linspace(0, 1, len(stress_times)))
+        
+        for idx, stress_time in enumerate(sorted(stress_times)):
+            df_stress = df[df['tMeas'] == stress_time]
+            vg = df_stress['Vg'].values[0]
+            id_vals = df_stress['Id'].values[0]
+            ax.semilogy(vg, np.array(id_vals)/width*1e6, '-', linewidth=2.5, 
+               label=f'$t_{{stress}}$ = {stress_time} s', color=colors[len(colors) - 1 - idx])
+        
+        # Set axis labels
+        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
+        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
+        
+        #ax.grid(True, which='both', alpha=0.3)
+        
+        # Add device info
+        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = {df["T"].iloc[0]}\n$V_D$={df["Vd"].iloc[0]:.2f}\n$V_{{rec}}$ = {df["VgStress"].iloc[0]:.2f} V'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
+        #        fontsize=22, verticalalignment='top',
+        #        bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+        
+        sorted_times = sorted(stress_times)
+        ax.legend([plt.gca().get_lines()[0], plt.gca().get_lines()[-1]], 
+             [f'$t_{{rec}}$ = {sorted_times[0]} s', f'$t_{{rec}}$ = {sorted_times[-1]} s'],
+             fontsize=textSizeLegend, loc='lower right', framealpha=0.9, handlelength=1.5)
+        
+        plt.title(r'$I_\mathsf{D}-V_\mathsf{G}$ curves during recovery')
+        plt.savefig(script_dir+"/figures/OTF_IdVg_recovery.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
     if 0: # Plot BTI IdVg Stress

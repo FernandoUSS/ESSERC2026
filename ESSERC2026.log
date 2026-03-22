@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  21 MAR 2026 18:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  22 MAR 2026 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -342,21 +342,21 @@ File: figures/IdVg_encapsulated_1.pdf Graphic file (type pdf)
 <use figures/IdVg_encapsulated_1.pdf>
 Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 60.
 (pdftex.def)             Requested size: 241.4414pt x 228.61963pt.
-<figures/hysteresis_time_example.pdf, id=3, 144.36748pt x 180.42406pt>
-File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
-<use figures/hysteresis_time_example.pdf>
-Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 67.
-(pdftex.def)             Requested size: 144.36711pt x 180.42361pt.
-<figures/hysteresis_IdVg_example.pdf, id=4, 175.81685pt x 180.42406pt>
+<figures/hysteresis_IdVg_example.pdf, id=3, 158.99399pt x 180.675pt>
 File: figures/hysteresis_IdVg_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_IdVg_example.pdf>
-Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 68.
-(pdftex.def)             Requested size: 175.8164pt x 180.42361pt.
-<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=5, 182.56177pt x 185.00534pt>
+Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 67.
+(pdftex.def)             Requested size: 158.99359pt x 180.67455pt.
+<figures/hysteresis_time_example.pdf, id=4, 166.22101pt x 180.675pt>
+File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
+<use figures/hysteresis_time_example.pdf>
+Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 68.
+(pdftex.def)             Requested size: 166.22058pt x 180.67455pt.
+<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=5, 167.49258pt x 189.11858pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
 Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 69.
-(pdftex.def)             Requested size: 182.56131pt x 185.00487pt.
+(pdftex.def)             Requested size: 167.49217pt x 189.1181pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
@@ -374,7 +374,7 @@ Before submitting the final camera ready copy, remember to:
 
 [2
 
- <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>] (./ESSERC2026.aux)
+ <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>] (./ESSERC2026.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -393,9 +393,9 @@ Here is how much of TeX's memory you used:
  309 hyphenation exceptions out of 8191
  57i,14n,65p,374b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on ESSERC2026.pdf (2 pages, 190779 bytes).
+Output written on ESSERC2026.pdf (2 pages, 191498 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
+ 252 PDF objects out of 1000 (max. 8388607)
  66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
