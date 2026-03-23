@@ -149,10 +149,9 @@ if __name__ == "__main__":
     norm = LogNorm(vmin=1, vmax=1e5)
 
     # Figures
-    if 0: # IdVg curves for encapsulated devices
+    if 1: # IdVg curves for encapsulated devices
 
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',
-                                      "IdVg_TUWien_planar_hbn-encapsulated.csv"))
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         for c in ['Id','Vg','Ig']:
             df[c] = df[c].map(json5.loads)
@@ -165,7 +164,8 @@ if __name__ == "__main__":
         Igate_A = df[(df['Vd'] == 1.5)]['gate_leakage'].iloc[0]
         width = df[(df['Vd'] == 1.5)]['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(3.3, 2.5), constrained_layout=True)
+        fig, ax = plt.subplots(figsize=(3.3, 2.5), constrained_layout=False)
+        plt.subplots_adjust(left=0.2, right=0.95, top=0.95, bottom=0.15)
         
         # Plot IdVg curves for different Vds values
         vds_values = df['Vd'].unique()
@@ -214,7 +214,7 @@ if __name__ == "__main__":
                rf'$V_\mathsf{{D}}$ = {np.min(vds_values):.1f} V',
                 fontsize=7,
                verticalalignment='top', ha='center')
-        ax.text(arrow_x, arrow_y_max-8e-2, 
+        ax.text(arrow_x, arrow_y_max-1.5e-1, 
                rf'$V_\mathsf{{D}}$ = {np.max(vds_values):.1f} V',
                fontsize=7,
                verticalalignment='bottom', ha='center')
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         ax.set_ylabel(r'$I_\mathsf{D}/W$ [$\mu$A/$\mu$m]')
         
         # Add device info text
-        device_text = rf'$T$ = {df["temp"].iloc[0].replace("K", " K")}' + '\n' + rf'$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$'
+        device_text = rf'$T$ = {df["temp"].iloc[0].replace("K", " K")}' + '\n' + rf'$W/L$ = {df['width'].iloc[0]:.0f}/{df['length'].iloc[0]:.0f}'
         ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
                 verticalalignment='top')
                #bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
@@ -242,11 +242,9 @@ if __name__ == "__main__":
             verticalalignment='bottom', horizontalalignment='right',
             fontsize=6,
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        ax.text(0.77, 0.07, rf'@ V$_\mathsf{{D}}$ = {vds} V', transform=ax.transAxes,
-            verticalalignment='bottom', horizontalalignment='left',
-            fontsize=6)
+        ax.text(0.77, 0.07, rf'@ V$_\mathsf{{D}}$ = {vds} V', transform=ax.transAxes, verticalalignment='bottom', horizontalalignment='left', fontsize=6)
 
-        plt.savefig(os.path.join(inputdir,'figures','IdVg_encapsulated_1.pdf'), bbox_inches="tight", transparent=True)
+        plt.savefig(os.path.join(inputdir,'figures','IdVg_encapsulated_1.pdf'), bbox_inches=None)
         plt.close()
     
     if 0: # IdVg curves for non-encapsulated devices
@@ -1589,7 +1587,7 @@ if __name__ == "__main__":
         # fontsize=22, verticalalignment='top',
         # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
         ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
         ax.set_xscale('log')
         ax.set_ylim(-0.2, 0.3)
         #ax.set_xlim(1e-3,200)
@@ -1599,15 +1597,17 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot hysteresis DeltaVth vs freq comparisons
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
+    if 1: # Plot hysteresis DeltaVth vs freq duts
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS_Eod.csv'))
         df = df[(df['Vd']==1) & (df['precondition'] == False)]
+
         fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
         plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
         
-        # Plot DeltaVth vs frequency for different devices and samples
-        # Prepare groups and style lists
-        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        df_groups = {
+            k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
+            if np.isclose(g['nom_freq'].min(), 1e-3)
+        }
         all_keys = sorted(set(list(df_groups.keys())))
 
         n_keys = len(all_keys)
@@ -1617,21 +1617,26 @@ if __name__ == "__main__":
         # Plot each unique (batch, dut, sample) with distinct color & marker
         dut_labels = []
         dut_handles = []
+        all_keys = sorted(all_keys, key=lambda x: df_groups[x]['width'].iloc[0] / df_groups[x]['length'].iloc[0])
         for idx, key in enumerate(all_keys):
             # Determine vacuum condition from sample number
             marker = markers[idx % len(markers)]
             if key in df_groups:
                 subset = df_groups[key]
                 Vd = subset['Vd'].iloc[0]
+                width = subset['width'].iloc[0]
+                length = subset['length'].iloc[0]
+                Vmax = subset['Vmax'].iloc[0]
+                Vmin = subset['Vmin'].iloc[0]
                 dut = key[1]
-                line_dut, = ax.plot(subset['freq'], subset['DeltaVth'],
+                line_dut, = ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth'],
                     marker=marker, linestyle=' ',
                     markeredgecolor="#13073A",
-                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
+                    markerfacecolor=WL_color(width/length), label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};' +f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
                 dut_handles.append(line_dut)
                 dut_labels.append(dut + rf'$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
 
-                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth_fit'], linestyle='-', markersize=8,color=Vd_color(Vd))
+                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth_fit'], linestyle='-', markersize=8,color=WL_color(width/length))
         
         ax.axhline(0, linestyle='--', color = 'k')
         # Remove duplicate legend entries
@@ -1640,24 +1645,24 @@ if __name__ == "__main__":
 
         # First legend for Vd
         legend1 = ax.legend(
-            handles=[Line2D([0], [0], color=h.get_markerfacecolor(),  linewidth=3) for h in by_label.values()],
+            handles=handles,
             labels=by_label.keys(),
             fontsize=6,
             loc='best',
-            framealpha=0.9,
+            framealpha=0,
             handlelength=1.0
         )
         ax.add_artist(legend1)
         
         # Second legend for DUTs
-        ax.legend(dut_handles, dut_labels, fontsize=textSizeLegend, 
+        ax.legend(dut_handles, dut_labels, fontsize=5, 
               loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
                 
-        ax.set_xlabel(r'$f$ [Hz]', fontsize=8)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_xlabel(r'Sweep rate, $r_{\mathsf{sw}}$ [V/s]', fontsize=8)
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
         ax.set_xscale('log')
         #ax.set_xlim(1e-3,200)
-        ax.set_ylim(-0.2, 0.3)
+        ax.set_ylim(-0.2, 0.4)
         #ax.grid(True, which='both', alpha=0.3)
         
         device_text = r'$T$ = 300 K'
@@ -1728,7 +1733,7 @@ if __name__ == "__main__":
               loc='upper left', framealpha=0,bbox_to_anchor=(0.2, 1))
                 
         ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
         ax.set_xscale('log')
         ax.set_ylim(-0.2, 0.3)
         #ax.set_xlim(1e-3,200)

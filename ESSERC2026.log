@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  23 MAR 2026 10:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  23 MAR 2026 14:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -298,6 +298,15 @@ LaTeX Warning: Label `fig:ROstages_assymetric' multiply defined.
 LaTeX Warning: Label `sub@fig:ROstages_assymetric' multiply defined.
 
 
+LaTeX Warning: Label `fig:hysteresis' multiply defined.
+
+
+LaTeX Warning: Label `fig:ROstages_assymetric' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:ROstages_assymetric' multiply defined.
+
+
 LaTeX Warning: Label `fig:modes' multiply defined.
 
 
@@ -347,12 +356,12 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 38.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -361,51 +370,56 @@ pdfTeX warning: pdflatex (file ./figures/hBNencapsulatedMoS2.pdf): PDF inclusion
 <figures/hBNencapsulatedMoS2.pdf, id=1, 313.17pt x 174.6525pt>
 File: figures/hBNencapsulatedMoS2.pdf Graphic file (type pdf)
 <use figures/hBNencapsulatedMoS2.pdf>
-Package pdftex.def Info: figures/hBNencapsulatedMoS2.pdf  used on input line 56.
+Package pdftex.def Info: figures/hBNencapsulatedMoS2.pdf  used on input line 60.
 (pdftex.def)             Requested size: 201.60077pt x 112.43546pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 56.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 60.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
-<figures/IdVg_encapsulated_1.pdf, id=2, 246.92203pt x 189.10602pt>
+<figures/IdVg_encapsulated_1.pdf, id=2, 238.49101pt x 180.675pt>
 File: figures/IdVg_encapsulated_1.pdf Graphic file (type pdf)
 <use figures/IdVg_encapsulated_1.pdf>
-Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 60.
-(pdftex.def)             Requested size: 246.92142pt x 189.10555pt.
+Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 64.
+(pdftex.def)             Requested size: 238.49042pt x 180.67455pt.
 <figures/hysteresis_IdVg_example.pdf, id=3, 158.99399pt x 180.675pt>
 File: figures/hysteresis_IdVg_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_IdVg_example.pdf>
-Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 67.
+Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 71.
 (pdftex.def)             Requested size: 158.99359pt x 180.67455pt.
 <figures/hysteresis_time_example.pdf, id=4, 166.22101pt x 180.675pt>
 File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_time_example.pdf>
-Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 68.
+Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 72.
 (pdftex.def)             Requested size: 166.22058pt x 180.67455pt.
 <figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=5, 167.49258pt x 189.11858pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
-Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 69.
+Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 73.
 (pdftex.def)             Requested size: 167.49217pt x 189.1181pt.
 <figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=6, 238.49101pt x 162.6075pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 76.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 80.
 (pdftex.def)             Requested size: 238.49042pt x 162.6071pt.
 <figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf, id=7, 238.49101pt x 162.6075pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf  used on input line 77.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf  used on input line 81.
 (pdftex.def)             Requested size: 238.49042pt x 162.6071pt.
-<figures/OTF_stress_time.pdf, id=8, 310.761pt x 180.675pt>
+<figures/hysteresis_DeltaVth_vs_freq_duts.pdf, id=8, 238.49101pt x 162.6075pt>
+File: figures/hysteresis_DeltaVth_vs_freq_duts.pdf Graphic file (type pdf)
+<use figures/hysteresis_DeltaVth_vs_freq_duts.pdf>
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_duts.pdf  used on input line 88.
+(pdftex.def)             Requested size: 238.49042pt x 162.6071pt.
+<figures/OTF_stress_time.pdf, id=9, 310.761pt x 180.675pt>
 File: figures/OTF_stress_time.pdf Graphic file (type pdf)
 <use figures/OTF_stress_time.pdf>
-Package pdftex.def Info: figures/OTF_stress_time.pdf  used on input line 84.
+Package pdftex.def Info: figures/OTF_stress_time.pdf  used on input line 95.
 (pdftex.def)             Requested size: 310.76024pt x 180.67455pt.
-<figures/OTF_IdVg_stressrelax.pdf, id=9, 195.129pt x 180.675pt>
+<figures/OTF_IdVg_stressrelax.pdf, id=10, 195.129pt x 180.675pt>
 File: figures/OTF_IdVg_stressrelax.pdf Graphic file (type pdf)
 <use figures/OTF_IdVg_stressrelax.pdf>
-Package pdftex.def Info: figures/OTF_IdVg_stressrelax.pdf  used on input line 86.
+Package pdftex.def Info: figures/OTF_IdVg_stressrelax.pdf  used on input line 97.
 (pdftex.def)             Requested size: 195.12851pt x 180.67455pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
@@ -422,7 +436,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf>] [3 <./figures/OTF_stress_time.pdf> <./figures/OTF_IdVg_stressrelax.pdf>] (./ESSERC2026.aux)
+[2 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf> <./figures/hysteresis_DeltaVth_vs_freq_duts.pdf>] [3 <./figures/OTF_stress_time.pdf> <./figures/OTF_IdVg_stressrelax.pdf>] (./ESSERC2026.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -433,18 +447,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5402 strings out of 475597
- 90119 string characters out of 5783338
- 1940975 words of memory out of 5000000
- 27508 multiletter control sequences out of 15000+600000
+ 5410 strings out of 475597
+ 90507 string characters out of 5783338
+ 1942975 words of memory out of 5000000
+ 27516 multiletter control sequences out of 15000+600000
  599296 words of font info for 126 fonts, out of 8000000 for 9000
  309 hyphenation exceptions out of 8191
  57i,14n,65p,374b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on ESSERC2026.pdf (3 pages, 266134 bytes).
+Output written on ESSERC2026.pdf (3 pages, 283315 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
+ 495 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
