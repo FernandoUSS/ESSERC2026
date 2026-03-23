@@ -104,6 +104,25 @@ def make_log_formatter(exponents_to_show):
     
     return log_fmt
 
+def custom_log_formatter(exponents_to_show, number):
+    def log_fmt(val, pos):
+        if val <= 0:
+            return ""
+        
+        exp = np.log10(val)
+        
+        if not np.isclose(exp, np.round(exp)):
+            return ""
+        
+        exp = int(np.round(exp))
+        
+        if exp in exponents_to_show:
+            return rf"${number}0^{{{exp}}}$"
+        
+        return ""
+    
+    return log_fmt
+
 def opaque_equivalent(color, alpha, bg=(1,1,1)):
     c = np.array(to_rgb(color))
     bg = np.array(bg)
@@ -127,6 +146,16 @@ def truncate_colormap(cmap, minval=0.3, maxval=1.0, n=100):
         cmap(np.linspace(minval, maxval, n))
     )
 
+def safe_json_load(x):
+    if isinstance(x, str):
+        try:
+            x = x.replace('nan', 'null')  # JSON-safe
+            out = json5.loads(x)
+            return [np.nan if v is None else v for v in out]
+        except Exception:
+            return x   # or return None
+    return x
+
 if __name__ == "__main__":
     # Plot settings
     flength = 6.0
@@ -142,14 +171,16 @@ if __name__ == "__main__":
 
     color_stress = "#8C2D04"   # dark burnt orange
     color_relax  = "#3F007D"   # deep purple
+    color_precondition = "#006400"   # dark green
 
     # Background (lighter + transparent)
     cmap_stress = truncate_colormap(plt.cm.Oranges, 0.4, 1)
     cmap_relax  = truncate_colormap(plt.cm.Purples, 0.4, 1)
+    cmap_precondition = truncate_colormap(plt.cm.Greens, 0.4, 1)
     norm = LogNorm(vmin=1, vmax=1e5)
 
     # Figures
-    if 1: # IdVg curves for encapsulated devices
+    if 0: # IdVg curves for encapsulated devices
 
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
@@ -972,59 +1003,120 @@ if __name__ == "__main__":
 
         plt.close()
 
-    if 0: # Plot BTI DeltaVth vs total time
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
-        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & ~(df['cycle']==0)]
+    if 1: # Plot BTI DeltaVth vs total time
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
+        # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         for c in ['Id','Vg']:
-            df[c] = df[c].map(json5.loads)
+            df[c] = df[c].map(safe_json_load)
         width = df['width'].iloc[0]
 
-        cycles = df['cycle'].unique()
-        n_cycles = len(cycles)
+        groups = df.groupby(['batch', 'dut', 'sample','meas_type'])
+        selected_keys = [
+            ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'OTF'),
+            ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'MSM')
+        ]
+        markers = ['o', 's']
+        df_list = []
 
-        fig, ax = plt.subplots(1,n_cycles, figsize=(4.3, 2.5), sharey=True, constrained_layout=False)
+        for k in selected_keys:
+            g = groups.get_group(k).copy()
+
+            if k == ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'MSM'):
+                g = g[~g['cycle'].isin([5])]
+
+            df_list.append(g)
+
+        df_selected = pd.concat(df_list)
+
+        max_cycles = df_selected['cycle'].max()
+
+        fig, ax = plt.subplots(1,max_cycles + 1, figsize=(4.3, 2.5), sharey=True, constrained_layout=False)
         plt.subplots_adjust(wspace=0.00, bottom=0.15, top=0.95, left=0.12, right=0.98)
 
-        for i, cycle in enumerate(sorted(cycles)):
+        for key in selected_keys:
+            df_dut = df_selected[(df_selected['batch'] == key[0]) & (df_selected['dut'] == key[1]) & (df_selected['sample'] == key[2]) & (df_selected['meas_type'] == key[3])]
+            marker = markers[selected_keys.index(key)]
+            cycles = sorted(df_dut['cycle'].unique())
+            for cycle in cycles:
 
-            df_cycle = df[df['cycle'] == cycle]
+                df_cycle = df_dut[df_dut['cycle'] == cycle]
+                df_initial = df_cycle[df_cycle['initial'] == True]
 
-            df_cycle_stress = df_cycle[
-                (df_cycle['initial'] != True) &
-                (df_cycle['extra'] != True) &
-                (df_cycle['end'] != True)
-            ].copy()
+                df_cycle_stress = df_cycle[
+                    (df_cycle['initial'] != True) &
+                    (df_cycle['extra'] != True) &
+                    (df_cycle['end'] != True)
+                ].copy()
+                
+                meas_type = df_cycle['meas_type'].iloc[0]
+                if meas_type == 'OTF':
+                    i = cycle
+                    tvar = 'tStress'
+                elif meas_type == 'MSM':
+                    i = cycle*2
+                    tvar = 'tRec'
+                if cycle == 0:
+                    ax[i].text(0.5, df_initial['Vth'].values[0], f'{df_cycle["meas_type"].iloc[0]} meas', transform=ax[i].transAxes, fontsize=6, verticalalignment='bottom',horizontalalignment='center', rotation=90)
+                    ax[i].axhline(df_initial['Vth'].values[0], linestyle='--', color=color_precondition, alpha=0.7)
 
-            df_cycle_stress = df_cycle_stress.sort_values(by='tStress')
+                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
 
-            t = df_cycle_stress['tStress'].values
-            Vth = df_cycle_stress['Vth'].values
+                    t = df_cycle_stress[tvar].values
+                    Vth = df_cycle_stress['Vth'].values
 
-            sc = ax[i].scatter(t, Vth, c=t, cmap=cmap_stress if i % 2 == 0 else cmap_relax, norm=norm)
+                    ax[i].scatter(t, Vth, c=t, cmap=cmap_precondition, norm=norm, marker=marker)
+                
+                else:
+                    ax[i].axhline(df_initial['Vth'].values[0], linestyle='--', color=color_stress if i % 2 == 1 else color_relax, alpha=0.7)
 
-            if i % 2 == 0:
-                ax[i].text(0.5, 0.95, f'Stress', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                    df_cycle_stress = df_cycle[
+                        (df_cycle['initial'] != True) &
+                        (df_cycle['extra'] != True) &
+                        (df_cycle['end'] != True)
+                    ].copy()
+
+                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
+
+                    t = df_cycle_stress[tvar].values
+                    Vth = df_cycle_stress['Vth'].values
+
+                    ax[i].scatter(t, Vth, c=t, cmap=cmap_stress if i % 2 == 1 else cmap_relax, norm=norm, marker=marker)
+
+        stress_ind = 1
+        relax_ind = 1
+        for i in range(max_cycles + 1):
+            if i == 0:
+                ax[i].text(0.5, 0.95, f'Pre-conditioning', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center', rotation=90)
+
+                # --- background rectangle ---
+                ax[i].axvspan(t.min(), t.max(), color=color_precondition, alpha=0.05)
             else:
-                ax[i].text(0.5, 0.9, f'Relax', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                if i % 2 == 1:
+                    ax[i].text(0.5, 0.95, f'Stress \n #{stress_ind}', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                    stress_ind += 1
+                else:
+                    ax[i].text(0.5, 0.9, f'Relax \n #{relax_ind}', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                    relax_ind += 1
+
+                # --- background rectangle ---
+                ax[i].axvspan(t.min(), t.max(), color=color_stress if i % 2 == 1 else color_relax, alpha=0.05)
 
             # Optional: log scale
             ax[i].set_xscale('log')
             ax[i].set_ylim(-0.25, 3)
 
-            # --- background rectangle ---
-            ax[i].axvspan(t.min(), t.max(), color=color_stress if i % 2 == 0 else color_relax, alpha=0.05)
-
             # Hide right spine except last plot
-            if i != n_cycles - 1:
+            if i != max_cycles:
                 ax[i].spines['right'].set_visible(False)
                 ax[i].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([0,4])))
             # Hide left spine except first plot
             if i != 0:
                 #ax[i].spines['left'].set_visible(False)
-                ax[i].spines['left'].set_linestyle('--')
+                ax[i].spines['left'].set_linestyle('-')
                 ax[i].spines['left'].set_alpha(0.5)
                 ax[i].tick_params(left=False,labelleft=False)  # remove duplicate y labels
-                ax[i].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([4])))
+                ax[i].xaxis.set_major_formatter(FuncFormatter(custom_log_formatter([4], i+1)))
+
 
             # Optional: cleaner ticks
             #ax[i].tick_params(direction='in')
@@ -1543,7 +1635,7 @@ if __name__ == "__main__":
 
         ##### Plot hysteresis DeltaVth vs freq different Vd
 
-    if 1: # Plot hysteresis DeltaVth vs freq different Vd
+    if 0: # Plot hysteresis DeltaVth vs freq different Vd
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
 
@@ -1597,7 +1689,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot hysteresis DeltaVth vs freq duts
+    if 0: # Plot hysteresis DeltaVth vs freq duts
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS_Eod.csv'))
         df = df[(df['Vd']==1) & (df['precondition'] == False)]
 
@@ -1674,7 +1766,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot hysteresis DeltaVth different Vd ranges
+    if 0: # Plot hysteresis DeltaVth different Vd ranges
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut']=='1A15t1') & (df['precondition'] == False) & (df['sample'].isin([5,6,7,8,9]))]
 
@@ -1747,81 +1839,61 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf", bbox_inches=None, transparent=True)
         plt.close()
     
-    if 0: # Plot BTI OTF DeltaVth vs different VgStress
-        df = pd.read_csv("data/OTF_Vth_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)
-                & ~(df['tStress'].isin(['initial','extra','end']))]
-        df.loc[~df['tStress'].isin(['initial', 'extra','end']), 'tStress'] = df.loc[~df['tStress'].isin(['initial', 'extra','end']),'tStress'].astype(float)
+    if 1: # Plot BTI OTF DeltaVth vs different VgStress
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
+        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
-        df_fit = pd.read_csv("data/OTF_Vthfit_tStress_TUWien_planar_hbn-encapsulated.csv")
-        df_fit = df_fit[(df_fit['dut'] == '2A13t1') & (df_fit['temp'] == '300K') & (df_fit['sample'] == 1)
-                & ~(df_fit['tStress'].isin(['initial','extra','end']))]
-        df_fit.loc[~df_fit['tStress'].isin(['initial', 'extra','end']), 'tStress'] = df_fit.loc[~df_fit['tStress'].isin(['initial', 'extra','end']),'tStress'].astype(float)
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
+        fig, ax = plt.subplots(1,2,figsize=(3.3, 2.25), constrained_layout=False)
+        plt.subplots_adjust(wspace=0.0,left=0.18, right=0.95, top=0.98, bottom=0.18)
         
         VgStress_array = [3.0, 4.0, 5.0, 6.0]
         colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
 
         for i,VgStress in enumerate(VgStress_array):
-            subset = df[df['VgStress']==VgStress]
-            subset_fit = df_fit[df_fit['VgStress']==VgStress]
-            ax.plot(subset['tStress'], subset['Vth_t'] - subset['Vth_initial'], 'o', markersize=10,
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor=colors[i], label=f'{VgStress:.1f} V' )
-            ax.plot(subset_fit['tStress'], subset_fit['Vth_fit'] - subset['Vth_initial'].iloc[0], '-', linewidth=2.5,
-                color=colors[i], alpha=0.7)
+            subset = df[df['VgStress']==VgStress].sort_values(by='tStress')
+            ax[0].plot(subset['tStress'], subset['Vth'] - subset['Vth_initial'], 'o', markeredgecolor="#13073A",markerfacecolor=colors[i], label=f'{VgStress:.1f} V' )
+            ax[0].plot(subset['tStress'], subset['Vth_fit'] - subset['Vth_initial'].iloc[0], '-',color=colors[i], alpha=0.7)
         
-        ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9, title=r'$V_{G,str}$')
-        
-        # Set axis labels
-        ax.axhline(0, linestyle='--', color = 'k')
+        ax[0].legend(fontsize=7, loc='best', framealpha=0.0, title=r'$V_\mathsf{G,stress}$')
+        ax[0].axhline(0, linestyle='--', color = 'k')
+        xlim = ax[0].get_xlim()
+        ylim = ax[0].get_ylim()
 
-        xlim = ax.get_xlim()
-        ylim = ax.get_ylim()
+        ax[0].set_xlabel(r'$t_{\mathsf{stress}}$ [s]', fontsize=8)
+        ax[0].set_ylabel(r'$\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
+        ax[0].set_xscale('log')
+        ax[0].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax[0].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([1,3])))
+        ax[0].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
 
-        ax.set_xlabel(r'$t_{\mathsf{stress}}$ [s]', fontsize=textSize)
-        ax.set_ylabel(r'$\Delta V_{\mathsf{th}}$ [V]', fontsize=textSize)
-        ax.set_xscale('log')
-        
-        #ax.grid(True, which='both', alpha=0.3)
         
         # Add device info
         device_text = f'Device {df["dut"].iloc[0]}\n$T$ = {df["temp"].iloc[0]}\n$V_{{G,rec}}$ = 0.0 V'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-               fontsize=22, verticalalignment='top',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-        
-        plt.title(r'Stress')
-        plt.savefig(script_dir+"/figures/OTF_DeltaVth_str_differentVstr.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
+        # ax[0].text(0.05, 0.95, device_text, transform=ax[0].transAxes, 
+        #        fontsize=5, verticalalignment='top',
+        #        bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
 
-        fig, ax = plt.subplots(figsize=(10, 10))
-
+        # Recovery plot
         cycle_array = [2,4,6,8]
-        df[(df['VgStress']==0.0)]
         for i,cycle in enumerate(cycle_array):
-            subset = df[df['cycle']==cycle]
-            subset_fit = df_fit[df_fit['cycle']==cycle]
-            ax.plot(subset['tStress'], subset['Vth_t'] - df[df['cycle']==cycle-1]['Vth_initial'].iloc[0], 'o', markersize=10,
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor=colors[i], label=f'{VgStress:.1f} V')
-            ax.plot(subset_fit['tStress'], subset_fit['Vth_fit'] - df[df['cycle']==cycle-1]['Vth_initial'].iloc[0], '-', linewidth=2.5,
+            subset = df[df['cycle']==cycle].sort_values(by='tStress')
+            ax[1].plot(subset['tStress'], subset['Vth'] - df[df['cycle']==cycle-1]['Vth_initial'].iloc[0], 'o',markeredgecolor="#13073A", markerfacecolor=colors[i], label=f'{VgStress:.1f} V')
+            ax[1].plot(subset['tStress'], subset['Vth_fit'] - df[df['cycle']==cycle-1]['Vth_initial'].iloc[0], '-',
                 color=colors[i], alpha=0.7)
         
-        #ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9, title=r'$V_{G,str}$')
-        
+
         # Set axis labels
-        ax.axhline(0, linestyle='--', color = 'k')
-        ax.set_ylim(ylim)
-        ax.set_xlabel(r'$t_{\mathsf{rec}}$ [s]', fontsize=textSize)
-        ax.set_ylabel(r'$\Delta V_{\mathsf{th}}$ [V]', fontsize=textSize)
-        ax.set_xscale('log')
+        ax[1].tick_params(axis='both', which='major', left=False, labelleft=False)
+        ax[1].axhline(0, linestyle='--', color = 'k')
+        ax[1].set_ylim(ylim)
+        ax[1].set_xlabel(r'$t_{\mathsf{relax}}$ [s]', fontsize=8)
+        ax[1].set_xscale('log')
+        ax[1].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax[1].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([1,3])))
+        ax[1].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
         
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        plt.title(r'Recovery')
-        plt.savefig(script_dir+"/figures/OTF_DeltaVth_rec_differentVstr.pdf", bbox_inches="tight", transparent=True)
+
+        plt.savefig(script_dir+"/figures/OTF_DeltaVth_strrec_differentVstr.pdf", bbox_inches=None)
         plt.close()
 
         ##### Plot BTI MSM DeltaVth all duts vs different VgStress
