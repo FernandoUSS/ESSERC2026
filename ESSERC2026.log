@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  24 MAR 2026 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  24 MAR 2026 18:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -315,6 +315,24 @@ LaTeX Warning: Label `sub@fig:modes' multiply defined.
 
 LaTeX Warning: Label `fig:hysteresis' multiply defined.
 
+
+LaTeX Warning: Label `fig:ROstages_assymetric' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:ROstages_assymetric' multiply defined.
+
+
+LaTeX Warning: Label `fig:hysteresis' multiply defined.
+
+
+LaTeX Warning: Label `fig:ROstages_assymetric' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:ROstages_assymetric' multiply defined.
+
+
+LaTeX Warning: Label `fig:hysteresis' multiply defined.
+
 )
 \openout1 = `ESSERC2026.aux'.
 
@@ -391,11 +409,11 @@ File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_time_example.pdf>
 Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 73.
 (pdftex.def)             Requested size: 166.22058pt x 180.67455pt.
-<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=5, 167.49258pt x 189.11858pt>
+<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=5, 167.49258pt x 189.11855pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
 Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 74.
-(pdftex.def)             Requested size: 167.49217pt x 189.1181pt.
+(pdftex.def)             Requested size: 167.49217pt x 189.11807pt.
 <figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=6, 238.49101pt x 162.6075pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf>
@@ -421,6 +439,16 @@ File: figures/OTF_IdVg_stressrelax.pdf Graphic file (type pdf)
 <use figures/OTF_IdVg_stressrelax.pdf>
 Package pdftex.def Info: figures/OTF_IdVg_stressrelax.pdf  used on input line 98.
 (pdftex.def)             Requested size: 195.12851pt x 180.67455pt.
+<figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=11, 238.49101pt x 162.6075pt>
+File: figures/OTF_DeltaVth_strrec_differentVstr.pdf Graphic file (type pdf)
+<use figures/OTF_DeltaVth_strrec_differentVstr.pdf>
+Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 105.
+(pdftex.def)             Requested size: 238.49042pt x 162.6071pt.
+<figures/MSM_DeltaVth_duts.pdf, id=12, 361.35pt x 162.6075pt>
+File: figures/MSM_DeltaVth_duts.pdf Graphic file (type pdf)
+<use figures/MSM_DeltaVth_duts.pdf>
+Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 112.
+(pdftex.def)             Requested size: 361.34912pt x 162.6071pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
@@ -436,7 +464,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf> <./figures/hysteresis_DeltaVth_vs_freq_duts.pdf>] [3 <./figures/OTF_stress_time.pdf> <./figures/OTF_IdVg_stressrelax.pdf>] (./ESSERC2026.aux)
+[2 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf> <./figures/hysteresis_DeltaVth_vs_freq_duts.pdf>] [3
+
+ <./figures/OTF_stress_time.pdf> <./figures/OTF_IdVg_stressrelax.pdf> <./figures/OTF_DeltaVth_strrec_differentVstr.pdf>] [4 <./figures/MSM_DeltaVth_duts.pdf>] (./ESSERC2026.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -447,18 +477,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5410 strings out of 475597
- 90507 string characters out of 5783338
- 1942975 words of memory out of 5000000
- 27516 multiletter control sequences out of 15000+600000
+ 5424 strings out of 475597
+ 91169 string characters out of 5783338
+ 1943975 words of memory out of 5000000
+ 27530 multiletter control sequences out of 15000+600000
  599296 words of font info for 126 fonts, out of 8000000 for 9000
  309 hyphenation exceptions out of 8191
  57i,14n,65p,374b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on ESSERC2026.pdf (3 pages, 295022 bytes).
+Output written on ESSERC2026.pdf (4 pages, 339653 bytes).
 PDF statistics:
- 529 PDF objects out of 1000 (max. 8388607)
- 113 compressed objects within 2 object streams
+ 670 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
