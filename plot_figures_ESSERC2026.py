@@ -67,6 +67,7 @@ def set_matplotlibstyle_Fernando(textSize, textSizeLegend):
         "lines.linewidth": 1,
         "lines.markersize": 4,
         "lines.markeredgewidth": 0.8,
+        "lines.markeredgecolor": "#13073A",
     })
 
     plt.rcParams["text.usetex"] = False
@@ -1003,7 +1004,7 @@ if __name__ == "__main__":
 
         plt.close()
 
-    if 1: # Plot BTI DeltaVth vs total time
+    if 0: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         for c in ['Id','Vg']:
@@ -1013,15 +1014,15 @@ if __name__ == "__main__":
         groups = df.groupby(['batch', 'dut', 'sample','meas_type'])
         selected_keys = [
             ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'OTF'),
-            ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'MSM')
+            ('TUWien_planar_hbn-encapsulated', '2A1t1', 1, 'MSM')
         ]
-        markers = ['o', 's']
+        markers = ['o', '^']
         df_list = []
 
         for k in selected_keys:
             g = groups.get_group(k).copy()
 
-            if k == ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'MSM'):
+            if k == ('TUWien_planar_hbn-encapsulated', '2A1t1', 1, 'MSM'):
                 g = g[~g['cycle'].isin([5])]
 
             df_list.append(g)
@@ -1031,7 +1032,7 @@ if __name__ == "__main__":
         max_cycles = df_selected['cycle'].max()
 
         fig, ax = plt.subplots(1,max_cycles + 1, figsize=(4.3, 2.5), sharey=True, constrained_layout=False)
-        plt.subplots_adjust(wspace=0.00, bottom=0.15, top=0.95, left=0.12, right=0.98)
+        plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.95, left=0.12, right=0.98)
 
         for key in selected_keys:
             df_dut = df_selected[(df_selected['batch'] == key[0]) & (df_selected['dut'] == key[1]) & (df_selected['sample'] == key[2]) & (df_selected['meas_type'] == key[3])]
@@ -1052,35 +1053,36 @@ if __name__ == "__main__":
                 if meas_type == 'OTF':
                     i = cycle
                     tvar = 'tStress'
+                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
+                    t = df_cycle_stress[tvar].values
+                    Vth = df_cycle_stress['Vth'].values
+                    Vth_initial = df_initial['Vth'].values[0]
+
                 elif meas_type == 'MSM':
                     i = cycle*2
                     tvar = 'tRec'
+                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
+                    t = df_cycle_stress[tvar].values
+                    Vth = df_cycle_stress['Vth'].values + 1 # shift up for better visibility
+                    Vth_initial = df_initial['Vth'].values[0] + 1
+
                 if cycle == 0:
-                    ax[i].text(0.5, df_initial['Vth'].values[0], f'{df_cycle["meas_type"].iloc[0]} meas', transform=ax[i].transAxes, fontsize=6, verticalalignment='bottom',horizontalalignment='center', rotation=90)
-                    ax[i].axhline(df_initial['Vth'].values[0], linestyle='--', color=color_precondition, alpha=0.7)
+
+                    ax[i].axhline(Vth_initial, linestyle='--', color=color_precondition, alpha=0.7)
 
                     df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
 
-                    t = df_cycle_stress[tvar].values
-                    Vth = df_cycle_stress['Vth'].values
+                    ax[i].scatter(t, Vth, c=t, cmap=cmap_precondition, norm=norm, marker=marker, edgecolors='#13073A', linewidths=0.8)
 
-                    ax[i].scatter(t, Vth, c=t, cmap=cmap_precondition, norm=norm, marker=marker)
-                
+                    if meas_type == 'OTF':
+                        ax[i].text(t[0], np.max(Vth)+0.1, f'{df_cycle["meas_type"].iloc[0]} meas', fontsize=6, verticalalignment='bottom',horizontalalignment='left')
+                    else:
+                        ax[i].text(t[0], np.min(Vth)-0.15, f'{df_cycle["meas_type"].iloc[0]} meas', fontsize=6, verticalalignment='top',horizontalalignment='left')
+
                 else:
-                    ax[i].axhline(df_initial['Vth'].values[0], linestyle='--', color=color_stress if i % 2 == 1 else color_relax, alpha=0.7)
+                    ax[i].axhline(Vth_initial, linestyle='--', color=color_stress if i % 2 == 1 else color_relax, alpha=0.7)
 
-                    df_cycle_stress = df_cycle[
-                        (df_cycle['initial'] != True) &
-                        (df_cycle['extra'] != True) &
-                        (df_cycle['end'] != True)
-                    ].copy()
-
-                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
-
-                    t = df_cycle_stress[tvar].values
-                    Vth = df_cycle_stress['Vth'].values
-
-                    ax[i].scatter(t, Vth, c=t, cmap=cmap_stress if i % 2 == 1 else cmap_relax, norm=norm, marker=marker)
+                    ax[i].scatter(t, Vth, c=t, cmap=cmap_stress if i % 2 == 1 else cmap_relax, norm=norm, marker=marker,edgecolors='#13073A', linewidths=0.8)
 
         stress_ind = 1
         relax_ind = 1
@@ -1090,33 +1092,83 @@ if __name__ == "__main__":
 
                 # --- background rectangle ---
                 ax[i].axvspan(t.min(), t.max(), color=color_precondition, alpha=0.05)
+                ax[i].annotate(
+                        '',
+                        xy=(1, -0.05),
+                        xytext=(1e4, -0.05),
+                        xycoords=('data', 'axes fraction'),
+                        arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
+                    )
+                ax[i].text(
+                    1e2,
+                    -0.06,
+                    rf'$t_\mathsf{{precond}}$',
+                    transform=ax[i].get_xaxis_transform(),
+                    ha='center',
+                    va='top',
+                    fontsize=7
+                )
             else:
-                if i % 2 == 1:
+                if i % 2 == 1: # Stress
                     ax[i].text(0.5, 0.95, f'Stress \n #{stress_ind}', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                    ax[i].annotate(
+                        '',
+                        xy=(1, -0.1),
+                        xytext=(1e4, -0.1),
+                        xycoords=('data', 'axes fraction'),
+                        arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
+                    )
+                    ax[i].text(
+                        1e2,
+                        -0.11,
+                        rf'$t_\mathsf{{str,{stress_ind}}}$',
+                        transform=ax[i].get_xaxis_transform(),
+                        ha='center',
+                        va='top',
+                        fontsize=7
+                    )
                     stress_ind += 1
-                else:
+                else: # Relax
                     ax[i].text(0.5, 0.9, f'Relax \n #{relax_ind}', transform=ax[i].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='center')
+                    ax[i].annotate(
+                        '',
+                        xy=(1, -0.05),
+                        xytext=(1e4, -0.05),
+                        xycoords=('data', 'axes fraction'),
+                        arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
+                    )
+                    ax[i].text(
+                        1e2,
+                        -0.06,
+                        rf'$t_\mathsf{{relax,{relax_ind}}}$',
+                        transform=ax[i].get_xaxis_transform(),
+                        ha='center',
+                        va='top',
+                        fontsize=7
+                    )
                     relax_ind += 1
+
 
                 # --- background rectangle ---
                 ax[i].axvspan(t.min(), t.max(), color=color_stress if i % 2 == 1 else color_relax, alpha=0.05)
 
-            # Optional: log scale
             ax[i].set_xscale('log')
-            ax[i].set_ylim(-0.25, 3)
+            ax[i].set_ylim(-0.25, 4.5)
 
             # Hide right spine except last plot
             if i != max_cycles:
                 ax[i].spines['right'].set_visible(False)
-                ax[i].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([0,4])))
+                #ax[i].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([0,4])))
+                ax[i].tick_params(axis='x', which='both', labelbottom=False)
+
             # Hide left spine except first plot
             if i != 0:
                 #ax[i].spines['left'].set_visible(False)
                 ax[i].spines['left'].set_linestyle('-')
                 ax[i].spines['left'].set_alpha(0.5)
-                ax[i].tick_params(left=False,labelleft=False)  # remove duplicate y labels
-                ax[i].xaxis.set_major_formatter(FuncFormatter(custom_log_formatter([4], i+1)))
-
+                ax[i].tick_params(axis='y',left=False,labelleft=False)
+                ax[i].tick_params(axis='x', which='both', labelbottom=False)
+                #ax[i].xaxis.set_major_formatter(FuncFormatter(custom_log_formatter([4], i+1)))
 
             # Optional: cleaner ticks
             #ax[i].tick_params(direction='in')
@@ -1185,7 +1237,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/OTF_IdVg_recovery.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 0: # Plot BTI IdVg Stress
+    if 1: # Plot BTI IdVg Stress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 5)]
         for c in ['Id','Vg']:
@@ -1208,15 +1260,17 @@ if __name__ == "__main__":
             id_vals = df_stress['Id'].values[0]
             ax[0].plot(vg, np.array(id_vals)/width*1e6, '-',label=f'$t_{{stress}}$ = {stress_time} s', color=cmap_stress(idx / len(stress_times)))
             
-        
+        ax[0].axhline(df_stress['Ith'].iloc[0]/width*1e6, linestyle='--', color='k', alpha=0.5)
+        ax[0].text(-0.95, df_stress['Ith'].iloc[0]/width*1e6 - 0.5*1e-4, r'$I_\mathsf{th}$-criterion', fontsize=5, verticalalignment='top', horizontalalignment='left')
+
         # Set axis labels
-        ax[0].spines['right'].set_linestyle('--')
+        ax[0].spines['right'].set_linestyle('-')
         ax[0].spines['right'].set_alpha(0.5)
         ax[0].set_yscale('log')
         ax[0].set_ylim(4e-9, 1e-2)
         ax[0].set_xlim(-1.15, 2.7)
         ax[0].axvspan(-1.15, 2.7, color=color_stress, alpha=0.05)
-        # ax[0].set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=8)
+        ax[0].text(0.05, 0.95, 'Stress #3', transform=ax[0].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
         ax[0].set_ylabel(r'Drain Current, $I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=8)
         
        # annotate with the time of the first and last stress points
@@ -1246,15 +1300,17 @@ if __name__ == "__main__":
             id_vals = df_stress['Id'].values[0]
             ax[1].plot(vg, np.array(id_vals)/width*1e6, '-',label=f'$t_{{stress}}$ = {stress_time} s', color=cmap_relax(idx / len(stress_times)))
             
-        
+        ax[1].axhline(df_stress['Ith'].iloc[0]/width*1e6, linestyle='--', color='k', alpha=0.5)
+
         # Set axis labels
-        ax[1].spines['left'].set_linestyle('--')
+        ax[1].spines['left'].set_linestyle('-')
         ax[1].spines['left'].set_alpha(0.5)
         ax[1].tick_params(axis='y', which='both', labelleft=False, left=False)
         ax[1].set_yscale('log')
         ax[1].set_ylim(4e-9, 1e-2)
         ax[1].set_xlim(-1.15, 2.7)
         ax[1].axvspan(-1.15, 2.7, color=color_relax, alpha=0.05)
+        ax[1].text(0.05, 0.95, 'Relax #3', transform=ax[1].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
         fig.text(0.6, 0.03, r'Gate Voltage, $V_\mathsf{G}$ [V]', ha='center', fontsize=8)
         # ax[1].set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=8)
         
