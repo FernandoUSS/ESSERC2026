@@ -270,7 +270,7 @@ if __name__ == "__main__":
         # ax.set_ylim(ylim)
         
         # Create text with the metrics (Ion/Ioff,SS,Imax)
-        metrics_text = rf'$I_\mathsf{{on}}/I_\mathsf{{off}}$ $>$ $10^{int(np.floor(np.log10(IonIoff)))}$; ' + rf'$SS$ = {SS*1000:.0f} mV/dec' + '\n' + rf'$I_{{max}}$ = {Imax/width*1e6:.2f} $\mu$A/$\mu$m; ' + rf'$I_\mathsf{{G}}/A$ $<$ $10^{{{int(np.ceil(np.log10(Igate_A)))}}}$ A/cm$^2$'
+        metrics_text = rf'$I_\mathsf{{on}}/I_\mathsf{{off}}$ $>$ $10^{int(np.floor(np.log10(IonIoff)))}$; ' + rf'$SS$ = {SS:.0f} mV/dec' + '\n' + rf'$I_{{max}}$ = {Imax/width*1e6:.2f} $\mu$A/$\mu$m; ' + rf'$I_\mathsf{{G}}/A$ $<$ $10^{{{int(np.ceil(np.log10(Igate_A)))}}}$ A/cm$^2$'
         ax.text(0.75, 0.05, metrics_text, transform=ax.transAxes, 
             verticalalignment='bottom', horizontalalignment='right',
             fontsize=6,
@@ -1981,15 +1981,17 @@ if __name__ == "__main__":
     
     if 1: # Plot BTI MSM DeltaVth all duts vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
-        df = df[(df['VgRemain'] == 0.0) & ~(df['tRec'].isin(['initial','extra','end'])) & (df['tStress']==100)]
+        df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
-        fig, ax = plt.subplots(figsize=(5, 2.25), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.7, 2.25), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        plt.subplots_adjust(left=0.65/fig_width, right=1 - 1.7/fig_width, top=1 - 0.1/fig_height, bottom=0.4/fig_height)
+        plt.subplots_adjust(left=0.65/fig_width, right=1 - 0.04/fig_width, top=1 - 0.1/fig_height, bottom=0.4/fig_height)
 
         VgStress_array = [3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
         colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
         str_colors = {Vg: colors[i] for i, Vg in enumerate(VgStress_array)}
+        color_legend = [Line2D([0], [0], color=str_colors[Vg],lw=2,
+           label=rf'{Vg:.1f} V') for Vg in VgStress_array]
 
         df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
         all_keys = sorted(set(list(df_groups.keys())))
@@ -1997,7 +1999,7 @@ if __name__ == "__main__":
         markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
 
         used_labels = set()
-        legend_elements = []
+        legend_meas = []
         for i,VgStress in enumerate(VgStress_array[::-1]):
             df_Vstr = df[(df['VgStress']==VgStress)]
             df_groups_Vstr = dict(tuple(df_Vstr.groupby(['batch','dut','sample'])))
@@ -2011,7 +2013,7 @@ if __name__ == "__main__":
                     if key not in used_labels:
                         label = rf'$W/L$ = {subset["width"].iloc[0]}/{subset["length"].iloc[0]}; ' \
                         rf'Array {subset["array"].iloc[0]}; Meas {subset["sample"].iloc[0]}; '
-                        legend_elements.append(
+                        legend_meas.append(
                             Line2D([0], [0],
                                 marker=marker,
                                 linestyle='None',
@@ -2042,8 +2044,99 @@ if __name__ == "__main__":
         ax.set_xlabel(r'$t_{\mathsf{rec}}$ [s]', fontsize=8)
         ax.set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
         ax.set_xscale('log')
-        ax.legend(handles=legend_elements, fontsize=6, loc='upper left', bbox_to_anchor=(0.95, 1), framealpha=1)
+        leg1 =ax.legend(handles=legend_meas, fontsize=6, loc='upper left', bbox_to_anchor=(1, 1), framealpha=1)
+        leg2 = ax.legend(
+            handles=color_legend,
+            fontsize=6,
+            loc='upper right',
+            framealpha=0.0,
+            title=r'$V_\mathsf{G,stress}$',
+            title_fontsize=7
+        )
+        #ax.add_artist(leg1)
         plt.savefig(script_dir+f"/figures/MSM_DeltaVth_duts.pdf", bbox_inches=None)
+        plt.close()
+
+    if 1: # Plot BTI MSM DeltaVth all duts vs Eod,str
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
+        df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
+        
+        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        plt.subplots_adjust(left=0.65/fig_width, right=1 - 0.2/fig_width, top=1 - 0.1/fig_height, bottom=0.4/fig_height)
+
+        VgStress_array = [3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
+        colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
+        str_colors = {Vg: colors[i] for i, Vg in enumerate(VgStress_array)}
+
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+        n_keys = len(all_keys)
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
+
+        # Extract unique DUTs
+        unique_duts = sorted(df['dut'].unique())
+
+        # Map each DUT to a marker
+        dut_marker_map = {
+            dut: markers[i % len(markers)]
+            for i, dut in enumerate(unique_duts)
+        }
+
+        used_labels = set()
+        legend_elements = []
+        for i,VgStress in enumerate(VgStress_array[::-1]):
+            df_Vstr = df[(df['VgStress']==VgStress)]
+            df_groups_Vstr = dict(tuple(df_Vstr.groupby(['batch','dut','sample'])))
+            for idx, key in enumerate(all_keys):
+                marker = dut_marker_map[key[1]]
+                if key in df_groups_Vstr:
+                    subset = df_groups_Vstr[key]
+                    subset = subset.sort_values(by='tRec')
+                    subset_begin = subset[subset['tRec']==0.5]
+                    subset_max = subset.loc[[subset['DeltaVth'].idxmax()]]
+
+                    if key not in used_labels:
+                        label = rf'$W/L$ = {subset["width"].iloc[0]}/{subset["length"].iloc[0]}; ' \
+                        rf'Array {subset["array"].iloc[0]}; Meas {subset["sample"].iloc[0]}; '
+                        legend_elements.append(
+                            Line2D([0], [0],
+                                marker=marker,
+                                linestyle='None',
+                                markerfacecolor='none',
+                                markeredgecolor='#13073A',
+                                label=label)
+                        )
+                        used_labels.add(key)
+                    else:
+                        label = None
+                    
+
+                    ax.plot(subset_max['Eod_str'], subset_max['Vth'] - subset_max['Vth_initial'],
+                        marker = marker, linestyle=' ',
+                        markeredgecolor="#13073A",
+                        markerfacecolor=str_colors[VgStress],label=label)
+                    
+                    ax.plot(subset_begin['Eod_str'], subset_begin['Vth'] - subset_begin['Vth_initial'],
+                        marker = marker, linestyle=' ',
+                        markeredgecolor="#13073A",
+                        markerfacecolor=str_colors[VgStress],label=label)
+
+                    # ax.plot(subset['tRec'], subset['Vth_fit'] - subset['Vth_initial'], linestyle='-', markersize=8,color=str_colors[VgStress])
+
+        # if i == 0:
+        #     ylim = ax.get_ylim()
+        # else:
+        #     ax.set_ylim(ylim)
+        ax.axhline(0, linestyle='--', color = 'k')
+        device_text = f'$T$ = {df["temp"].iloc[0]}\n$V_{{G,str}}$ = {VgStress:.1f} V\n $t_{{str}}$ = {df["tStress"].iloc[0]} s\n$V_{{G,rec}}$ = {df["VgRemain"].iloc[0]} V'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
+        #     fontsize=22, verticalalignment='top',
+        #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        ax.set_xlabel(r'Overdrive electric field, $E_{\mathsf{od,str}}$ [MV/cm]', fontsize=8)
+        ax.set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
+        ax.legend(handles=legend_elements, fontsize=5, loc='upper left', bbox_to_anchor=(0, 1), framealpha=0)
+        plt.savefig(script_dir+f"/figures/MSM_DeltaVth_vs_Eod_duts.pdf", bbox_inches=None)
         plt.close()
 
     if 0: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
