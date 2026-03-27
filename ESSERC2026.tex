@@ -59,29 +59,35 @@ component, formatting, style, styling, insert
 
 \begin{figure}[ht]
     \centering
-    \subfloat[]{\includegraphics[width=0.8\linewidth]{figures/hBNencapsulatedMoS2.pdf}\label{fig:ROstage}} \\
+    \subfloat[]{\includegraphics[width=0.47\linewidth]{figures/exposedMoS2.pdf}\label{fig:crosssection_exposed}} 
+    \subfloat[]{\includegraphics[width=0.47\linewidth]{figures/hBNencapsulatedMoS2.pdf}\label{fig:crosssection_hbn}} \\
     %%\hfill
     % \subfloat[]{\includegraphics[width=0.35\linewidth]{figures/layout.png}\label{fig:modes}}
     % \hfill
-    \subfloat[]{\includegraphics[]{figures/IdVg_encapsulated_1.pdf}\label{fig:ROstages_assymetric}}
-    \caption{(a) Cross-section schematic of the hBN-encapsulated 2D FETs. (b) Layout of the fabricated devices. (c) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
-    \label{fig:stage}
+    \subfloat[]{\includegraphics[]{figures/IdVg_encapsulated_1.pdf}\label{fig:performance_hbn}}
+    \caption{\textbf{Cross-section schematics}: (a) exposed and (b) hBN-encapsulated MoS$_2$ FETs. (c) \textbf{Performance of the fabricated devices}: $I_\mathsf{D(G)}$-$V_\mathsf{G}$ curves for different drain voltages and main device metrics.}
+    \label{fig:devices_performance}
 \end{figure}
 
 \begin{figure*}[ht]
     \centering
-    \subfloat[]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:ROstages_assymetric}}
-    \subfloat[]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_time_example}}
-    \subfloat[]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:modes}}
-    \caption{(a) Example of a hysteresis curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
+    \subfloat[]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:example_hyst_IdVg}}
+    \hfill
+    \subfloat[]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_vs_time}}
+    \hfill
+    \subfloat[]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:hysteresis_vs_freq}} \\[-1em]
+    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_const_range}}
+    \hfill
+    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_duts.pdf}\label{fig:ROstages_assymetric}} 
+    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep rates, $r_\mathsf{sw}$. (c) \textbf{Hysteresis-$r_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep rate, $r_\mathsf{sw}$.}
     \label{fig:hysteresis}
 \end{figure*}
 
 \begin{figure}
     \centering
-    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:ROstages_assymetric}} \\
-    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf}\label{fig:hysteresis_time_example}}
-    \caption{(a) Example of a hysteresis curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
+    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd_constant_range.pdf}\label{fig:ROstages_assymetric}} \\
+    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd_adjusted_range.pdf}\label{fig:hysteresis_time_example}}
+    \caption{(a) Fixed gate voltage range: hysteresis measurements for different drain voltages with a fixed gate voltage range, $V_\mathsf{G,range}$ = [-2,5] V.~(b) Adjusted gate voltage range for constant overdrive electric field: hysteresis measurements for different drain voltages with $V_\mathsf{G,range}$ adjusted to maintain a constant overdrive electric field, $E_\mathsf{od}$ = 3 MV/cm.}
     \label{fig:hysteresis}
 \end{figure}
 

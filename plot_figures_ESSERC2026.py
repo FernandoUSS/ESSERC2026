@@ -182,6 +182,7 @@ if __name__ == "__main__":
 
     # Figures
 
+    ########## Performance and variability ##########
     if 0: # IdVg curves for encapsulated devices
 
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
@@ -197,8 +198,18 @@ if __name__ == "__main__":
         Igate_A = df[(df['Vd'] == 1.5)]['gate_leakage'].iloc[0]
         width = df[(df['Vd'] == 1.5)]['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(3.3, 2.5), constrained_layout=False)
-        plt.subplots_adjust(left=0.2, right=0.95, top=0.95, bottom=0.15)
+        fig, ax = plt.subplots(figsize=(3.3, 2), constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.6
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height
+        )
         
         # Plot IdVg curves for different Vds values
         vds_values = df['Vd'].unique()
@@ -241,11 +252,9 @@ if __name__ == "__main__":
         arrow_x = 4
         arrow_y_min = 30e-5
         arrow_y_max = 30e-2
-        ax.annotate('', xy=(arrow_x, arrow_y_min), xytext=(arrow_x, arrow_y_max),
-                arrowprops=dict(arrowstyle='<|-', color='black'))
+        ax.annotate('', xy=(arrow_x, arrow_y_min), xytext=(arrow_x, arrow_y_max), arrowprops=dict(arrowstyle='<|-', color='black'))
         ax.text(arrow_x, arrow_y_min, 
-               rf'$V_\mathsf{{D}}$ = {np.min(vds_values):.1f} V',
-                fontsize=7,
+               rf'$V_\mathsf{{D}}$ = {np.min(vds_values):.1f} V', fontsize=7,
                verticalalignment='top', ha='center')
         ax.text(arrow_x, arrow_y_max-1.5e-1, 
                rf'$V_\mathsf{{D}}$ = {np.max(vds_values):.1f} V',
@@ -259,8 +268,7 @@ if __name__ == "__main__":
         
         # Add device info text
         device_text = rf'$T$ = {df["temp"].iloc[0].replace("K", " K")}' + '\n' + rf'$W/L$ = {df['width'].iloc[0]:.0f}/{df['length'].iloc[0]:.0f}'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-                verticalalignment='top')
+        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, verticalalignment='top')
                #bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
 
         # Id_SS = 10**(1/SS*(vg - Vzero_current))
@@ -279,74 +287,9 @@ if __name__ == "__main__":
 
         plt.savefig(os.path.join(inputdir,'figures','IdVg_encapsulated_1.pdf'), bbox_inches=None)
         plt.close()
-    
-    if 0: # IdVg curves for non-encapsulated devices
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-non-encapsulated',
-                                      "IdVg_TUWien_planar_20nm.csv"))
-        df = df[(df['dut'] == 'M11') & (df['temp'] == '380K') & (df['sample'] == 1)]
-        SS = df[(df['Vd'] == 0.5)]['SS'].iloc[0]
-        Vzero_current = df[(df['Vd'] == 0.5)]['Vzero_current'].iloc[0]
-        IonIoff = df[(df['Vd'] == 0.5)]['Ion/Ioff'].iloc[0]
-        Imax = df[(df['Vd'] == 0.5)]['Imax'].iloc[0]
-
-        for c in ['Id','Vg']:
-            df[c] = df[c].map(json5.loads)
-
-        fig, ax = plt.subplots(figsize=(10, 10))
-        
-        # Plot IdVg curves for different Vds values
-        vds_values = df['Vd'].unique()
-        #colors = viridis(np.linspace(0, 1, len(vds_values)))
-        
-        for idx, vds in enumerate(sorted(vds_values)):
-            df_vds = df[df['Vd'] == vds]
-            vg = df_vds['Vg'].values[0]
-            id_vals = df_vds['Id'].values[0]
-            width = df_vds['width'].values[0]
-            ax.plot(vg, id_vals/width*1e6, '-', linewidth=2.5, 
-                   markersize=6, label=rf'$V_{{D}}$ = {vds} V', color=Vd_color(vds))
-            
-        ax.set_yscale("log")
-        xlim = ax.get_xlim()
-        ylim = ax.get_ylim()
-
-        # Add legend with smaller font size
-        ax.legend([plt.gca().get_lines()[0], plt.gca().get_lines()[-2]], 
-             [rf'$V_{{D}}$ = {sorted(vds_values)[0]} V', rf'$V_{{D}}$ = {sorted(vds_values)[-1]} V'],
-             fontsize=22, loc='lower right', framealpha=0.0)
-        
-        # Set axis labels with units
-        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
-        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
-        
-        # Add device info text
-        device_text = rf'Device {df["dut"].iloc[0]}' + '\n' + rf'$T$ = {df["temp"].iloc[0]}'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-               fontsize=22, verticalalignment='top')
-               #bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-
-        plt.savefig(script_dir+"/figures/IdVg_non-encapsulated_0.pdf", bbox_inches="tight", transparent=True)
-
-        Id_SS = 10**(1/SS*(vg - Vzero_current))
-        ax.plot(vg,Id_SS/width*1e6,'--')
-
-        ax.set_xlim(xlim)
-        ax.set_ylim(ylim)
-        # Set axis labels with units
-        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
-        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
-        
-        # Create text with the metrics (Ion/Ioff,SS,Imax)
-        metrics_text = rf'$I_\mathsf{{on}}/I_\mathsf{{off}}$ $\approx$ $10^{int(np.log10(IonIoff))}$' + '\n' f'$SS$ = {SS*1000:.0f} mV/dec\n$I_{{max}}$ = {Imax/width*1e6:.2f} µA/µm'
-        ax.text(0.75, 0.45, metrics_text, transform=ax.transAxes, 
-               fontsize=20, verticalalignment='bottom', horizontalalignment='right',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-
-        plt.savefig(script_dir+"/figures/IdVg_non-encapsulated_1.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
 
     if 0: # IdVg curves for different devices with W/L normalization
-        ########################################################################################
+
         df = pd.read_csv("data/IdVg_TUWien_planar_hbn-encapsulated.csv")
         df = df[(df['Vd'] == 1.0) & (df['sample']==1)]
         for c in ['Id','Vg']:
@@ -424,95 +367,8 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/IdVg_duts.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 0: # Vth vs area scatter plot and SS vs area scatter plot for different devices
-        ########################################################################################
-        df = pd.read_csv("data/IdVg_Vth_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['Vd'] == 1.0) & (df['sample']==1)]
-        
-        # Get unique devices and assign symbols
-        devices = df['dut'].unique()
-        arrays = df['array'].unique()
-        symbols = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '+', 'x']
-        colors = ["#887CAF", "#AA3939"]
-        array_colors = {array: colors[idx % len(colors)] for idx, array in enumerate(sorted(arrays))}
-
-        fig, ax = plt.subplots(figsize=(10, 10))
-
-        for idx, device in enumerate(sorted(devices)):
-            df_device = df[df['dut'] == device]
-            width = df_device['width'].values
-            area = df_device['area'].values
-            vth = df_device['Vth'].values
-            array = df_device['array'].iloc[0]
-
-            ax.plot(area, vth, 
-               marker='v',
-               linestyle=' ',
-               markersize=16,
-               markeredgecolor="#13073A",
-               markeredgewidth=2,
-               markerfacecolor=array_colors[array],
-               label=f'{device}')
-        
-        # Set axis labels
-        #ax.set_xlabel(r'Width [$\mu$m]', fontsize=textSize)
-        ax.set_xlabel(r'Area [$\mu \mathsf{m}^2$]', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{th}$ [V]', fontsize=textSize)
-        
-        # Add more ticks
-        ax.tick_params(axis='both', which='major', labelsize=textSizeLegend)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        # Add legend
-        legend_elements = [Line2D([0], [0], marker='v', color='w', 
-                     markerfacecolor=array_colors[array],
-                     markeredgecolor="#13073A", markeredgewidth=2,
-                     markersize=12, label=f'Array: {array}')
-                  for array in sorted(arrays)]
-        ax.legend(handles=legend_elements, fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.savefig(script_dir+"/figures/Vth_vs_area.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-        fig, ax = plt.subplots(figsize=(10, 10))
-
-        for idx, device in enumerate(sorted(devices)):
-            df_device = df[df['dut'] == device]
-            width = df_device['width'].values
-            area = np.array(df_device['area'].values[0])
-            SS = np.array(df_device['SS'].values[0])*1e3
-            array = df_device['array'].iloc[0]
-
-            ax.plot(area, SS, 
-               marker='v',
-               linestyle=' ',
-               markersize=16,
-               markeredgecolor="#13073A",
-               markeredgewidth=2,
-               markerfacecolor=array_colors[array],
-               label=f'{device}')
-        
-        # Set axis labels
-        #ax.set_xlabel(r'Width [$\mu$m]', fontsize=textSize)
-        ax.set_xlabel(r'Area [$\mu \mathsf{m}^2$]', fontsize=textSize)
-        ax.set_ylabel(r'$SS$ [mV/dec]', fontsize=textSize)
-        
-        # Add more ticks
-        ax.tick_params(axis='both', which='major', labelsize=textSizeLegend)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        # Add legend
-        legend_elements = [Line2D([0], [0], marker='v', color='w', 
-                     markerfacecolor=array_colors[array],
-                     markeredgecolor="#13073A", markeredgewidth=2,
-                     markersize=12, label=f'Array: {array}')
-                  for array in sorted(arrays)]
-        ax.legend(handles=legend_elements, fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.savefig(script_dir+"/figures/SS_vs_area.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-    if 0: # IdVgs Hysteresis
+    ########## Hysteresis plots ##########
+    if 1: # Hysteresis IdVg example
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['nom_freq'] == 0.001) & (df['precondition'] == False)]
         for c in ['Id','Vg']:
@@ -523,7 +379,18 @@ if __name__ == "__main__":
         Vmax = df['Vmax'].iloc[0]
         Vmin = df['Vmin'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.2, 2.5),constrained_layout=True)
+        fig, ax = plt.subplots(figsize=(2.2, 2),constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.6
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height
+        )
 
         # Get unique sweep frequencies
         freqs = df['nom_freq'].unique()
@@ -601,7 +468,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_IdVg_example.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Id vs t Hysteresis
+    if 1: # Id vs t Hysteresis
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['precondition'] == False)]
         for c in ['Id','Vg','time']:
@@ -610,7 +477,18 @@ if __name__ == "__main__":
                 
         # width = df['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.3, 2.5), constrained_layout=True)
+        fig, ax = plt.subplots(figsize=(2.2, 2), constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.2
+        right_in  = 0.3
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height
+        )
 
         # Get unique sweep frequencies
         freqs = [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
@@ -641,7 +519,7 @@ if __name__ == "__main__":
             Id = df_freq['Id'].values[0]
             time = df_freq['time'].values[0]
             sweep_time = np.max(time) - np.min(time)
-            ax.plot((time-np.min(time))/sweep_time, Id/width*1e6, '-', color =freq_to_color[freq], label=f'f = {freq} Hz')
+            ax.plot((time-np.min(time))/sweep_time, Id/width*1e6, '-', color =freq_to_color[freq])
             axins.plot((time-np.min(time))/sweep_time, Id/width*1e6, '-', color =freq_to_color[freq])
 
         # Sweep of the gate voltage
@@ -694,8 +572,8 @@ if __name__ == "__main__":
         axins.annotate('', xy=(0.715, 4.5e-3), xytext=(0.79, 4.5e-3), arrowprops=dict(arrowstyle='-|>', color='black'))
         # axins.text(0.755, 4.5e-3, r'$r_\mathsf{sweep}$', fontsize=7, va='bottom',ha='center')
         # Text sweep rate limits
-        axins.text(0.72, 4.5e-3, r'$r_\mathsf{sweep}^{\min}$', fontsize=5, va='center', ha='right')
-        axins.text(0.79, 4.5e-3, r'$r_\mathsf{sweep}^{\max}$', fontsize=5, va='center', ha='left')
+        axins.text(0.72, 4.5e-3, r'$t_\mathsf{sw}^{\max}$', fontsize=5, va='center', ha='right')
+        axins.text(0.79, 4.5e-3, r'$t_\mathsf{sw}^{\min}$', fontsize=5, va='center', ha='left')
         # Axis 2 texts
         # ax2.text(0.1, 3.5, r'$V_\mathsf{G}$- up sweep', fontsize=6, va='top', ha='left', color=color_up,rotation=30)
         # ax2.text(0.9, 3.5, r'$V_\mathsf{G}$- down sweep', fontsize=6, va='top', ha='right', color=color_down,rotation=-30)
@@ -706,241 +584,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_time_example.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # IdVgs Hysteresis
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
-        for c in ['Id','Vg']:
-            df[c] = df[c].map(json5.loads)
-
-        fig, ax = plt.subplots(figsize=(10, 10))
-
-        # Get unique sweep frequencies
-        freqs = df['nom_freq'].unique()
-        colors = plasma(np.linspace(0, 1, len(freqs)))
-        freq_to_color = {freq: colors[idx] for idx, freq in enumerate(sorted(freqs))}
-
-        width = 39 #um
-
-        for freq in sorted(freqs):
-            df_freq = df[df['nom_freq'] == freq]
-            vg = df_freq['Vg'].values[0]
-            id_vals = df_freq['Id'].values[0]
-            ax.semilogy(vg, np.array(id_vals)/width*1e6, '-', linewidth=2.5, 
-                   label=f'f = {freq} Hz', color=freq_to_color[freq])
-            # axins.plot(vg, np.array(id_vals)/width*1e6, '-', linewidth=2.5, 
-            #         color=freq_to_color[freq])
-
-
-        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
-        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
-        # axins.set_yscale("log")
-        # axins.set_xticks([])
-        # axins.set_yticks([])
-        # Define zoom region
-        # x1, x2 = 2, 4
-        # y1, y2 = 1e-3, 1e-2
-        # axins.set_xlim(x1, x2)
-        # axins.set_ylim(y1, y2)
-        # Draw connecting lines
-        # mark_inset(ax, axins, loc1=2, loc2=4, fc="none", ec="0.5")
-
-        # Add device info
-        device_text = f'Device {df["dut"].iloc[0]}' + '\n' + r'$T$ = 300 K' +'\n' + rf'$V_\mathsf{{D}}$ = {df["Vd"].iloc[0]} V'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-               fontsize=22, verticalalignment='top',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-
-        # Legend with min and max frequencies
-        sorted_freqs = sorted(freqs)
-        ax.legend([plt.gca().get_lines()[0], plt.gca().get_lines()[-1]], 
-             [rf'$f$ = {sorted_freqs[0]} Hz', rf'$f$ = {sorted_freqs[-1]} Hz'],
-             fontsize=textSizeLegend, loc='lower right', framealpha=0.9,
-             handlelength=1.5)
-
-        ax.set_title(r'$I_\mathsf{D}-V_\mathsf{G}$ curves during hysteresis')
-        plt.savefig(script_dir+"/figures/hysteresis_IdVg_0.pdf", bbox_inches="tight")
-        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
-        #axins.axhline(df['current_level'].iloc[0]/width*1e6, linestyle='--', color = 'k')
-        # Add vertical double arrow for one decade
-        current_max = np.max(np.array(id_vals)/width*1e6)
-        current_decade = current_max / 10
-        vg_max = vg[np.argmax(np.array(id_vals)/width*1e6)]
-        ax.annotate('', xy=(vg_max, current_max), xytext=(vg_max, current_decade),
-               arrowprops=dict(arrowstyle='<|-|>', color='black'))
-        ax.text(vg_max, (current_decade), '1-decade criterion', fontsize=textSizeLegend, va='top',ha='right')
-        plt.savefig(script_dir+"/figures/hysteresis_IdVg_1.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-    if 0: # Precondition IdVgs
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '2A9t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['precondition'] == True)]
-        for c in ['Id','Vg']:
-            df[c] = df[c].map(json5.loads)
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
-
-        # Get unique sweep frequencies
-        sweep_indexes = df['sweep_index'].unique()[:50]
-        colors = plasma(np.linspace(0, 1, len(sweep_indexes)))
-        sweep_index_to_color = {freq: colors[idx] for idx, freq in enumerate(sorted(sweep_indexes))}
-
-        width = 27 #um
-
-        for sweep_index in sorted(sweep_indexes):
-            df_sweep_index = df[df['sweep_index'] == sweep_index]
-            vg = df_sweep_index['Vg'].values[0]
-            id_vals = df_sweep_index['Id'].values[0]
-            ax.semilogy(vg, np.array(id_vals)/width*1e6, '-', linewidth=2.5, color=sweep_index_to_color[sweep_index])
-
-
-        ax.set_xlabel(r'$V_\mathsf{G}$ [V]', fontsize=textSize)
-        ax.set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=textSize)
-        device_text = f'Device {df["dut"].iloc[0]}' + '\n' + r'$T$ = 300 K' +'\n' + rf'$V_D$ = {df["Vd"].iloc[0]} V' +'\n'+ rf'$f$ = {df["nom_freq"].iloc[0]} Hz'
-        ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
-               fontsize=22, verticalalignment='top',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-
-        # Legend with min and max frequencies
-        sorted_freqs = sorted(freqs)
-        ax.legend([plt.gca().get_lines()[0], plt.gca().get_lines()[-1]], 
-             [f'cycle {sweep_indexes[0]}', f'cycle {sweep_indexes[-1]}'],
-             fontsize=textSizeLegend, loc='lower right', framealpha=0.9,
-             handlelength=1.5)
-
-        ax.set_title(r'$I_\mathsf{D}-V_\mathsf{G}$ curves during precondition')
-        plt.savefig(script_dir+"/figures/precondition_IdVg_0.pdf", bbox_inches="tight", transparent=True)
-        current_max = np.max(np.array(id_vals)/width*1e6)
-        current_decade = current_max / 10
-        ax.axhline(current_decade, linestyle='--', color = 'k')
-        # vg_max = vg[np.argmax(np.array(id_vals)/width*1e6)]
-        # ax.annotate('', xy=(vg_max, current_max), xytext=(vg_max, current_decade),
-        #        arrowprops=dict(arrowstyle='<->', color='black', lw=2))
-        # ax.text(vg_max, (current_decade), '1-decade criterion', fontsize=textSizeLegend, va='top',ha='right')
-        plt.savefig(script_dir+"/figures/precondition_IdVg.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-    if 0: # Precondition Vth and DeltaVth
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '2A9t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['precondition'] == True)]
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
-        # Plot Vth_up and Vth_down vs nom_freq
-        ax.plot(df['sweep_index'], df['Vth_up'], '^', markersize=10, 
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor="#AA3939", label=r'$V_{th,up}$')
-        ax.plot(df['sweep_index'], df['Vth_down'], 'v', markersize=10,
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor="#887CAF", label=r'$V_{th,down}$')
-        
-        ax.set_xlabel(r'Number of precondition cycles', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{th}$ [V]', fontsize=textSize)
-        ax.set_xlim(0,50)
-
-        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        #         fontsize=22, verticalalignment='top',
-        #         bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        
-        ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.title(r'$V_\mathsf{th}$ during precondition')
-        plt.savefig(script_dir+"/figures/hysteresis_precondition_Vth.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-        ## Precondition DeltaVth
-        ###############################################################################################
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '2A9t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['precondition'] == True)]
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
-        # Plot Vth_up and Vth_down vs nom_freq
-                # Plot DeltaVth vs frequency
-        ax.plot(df['sweep_index'], df['DeltaVth'], 'o', markersize=10,
-            markeredgecolor="#13073A", markeredgewidth=2,
-            markerfacecolor="#2E8B57", label=r'$\Delta V_{th}$')
-        
-        ax.set_xlabel(r'Number of precondition cycles', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=textSize)
-        ax.set_xlim(0,50)
-
-        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        #         fontsize=22, verticalalignment='top',
-        #         bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        ax.axhline(0, linestyle='--', color = 'k')
-        #ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.title(r'Hysteresis Width, $V_\mathsf{H}$')
-        plt.savefig(script_dir+"/figures/hysteresis_precondition_DeltaVth.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-    if 0: # Hysteresis Vth and DeltaVth vs frequency
-        ###############################################################################################
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
-        # Plot Vth_up and Vth_down vs nom_freq
-        ax.plot(df['freq'], df['Vth_up'], '^', markersize=10, 
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor="#AA3939", label=r'$V_{th,\text{up}}$')
-        ax.plot(df['freq'], df['Vth_down'], 'v', markersize=10,
-                markeredgecolor="#13073A", markeredgewidth=2,
-                markerfacecolor="#887CAF", label=r'$V_{th,\text{down}}$')
-        
-        # Plot fits
-        ax.plot(df['freq'], df['Vth_up_fit'], '-', linewidth=2.5,
-                color="#AA3939", alpha=0.7)
-        ax.plot(df['freq'], df['Vth_down_fit'], '-', linewidth=2.5,
-                color="#887CAF", alpha=0.7)
-        
-        ax.set_xlabel(r'$f$ [Hz]', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{th}$ [V]', fontsize=textSize)
-        ax.set_xscale('log')
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        #         fontsize=22, verticalalignment='top',
-        #         bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        
-        ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.title(r'$V_\mathsf{th}$ during hysteresis')
-        plt.savefig(script_dir+"/figures/hysteresis_Vth_vs_freq.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-        
-        # Plot DeltaVth vs frequency
-        df = pd.read_csv("data/hyst_TUWien_planar_hbn-encapsulated.csv")
-        df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
-        
-        fig, ax = plt.subplots(figsize=(10, 10))
-        
-        # Plot DeltaVth vs frequency
-        ax.plot(df['freq'], df['DeltaVth'], 'o', markersize=10,
-            markeredgecolor="#13073A", markeredgewidth=2,
-            markerfacecolor="#2E8B57", label=r'$\Delta V_{th}$')
-        ax.plot(df['freq'], df['DeltaVth_fit'], '-', linewidth=2.5,
-            color="#2E8B57", alpha=0.7)
-        
-        ax.set_xlabel(r'$f$ [Hz]', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=textSize)
-        ax.set_xscale('log')
-        #ax.grid(True, which='both', alpha=0.3)
-        ax.axhline(df['Ith'].iloc[0]/width*1e6, linestyle='--', color = 'k')
-
-        #device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        #     fontsize=22, verticalalignment='top',
-        #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        
-        #ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        plt.title(r'Hysteresis Width, $V_\mathsf{H}$')
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-    if 0: # Hysteresis Vth and DeltaVth vs sweep rate (one figure version)
+    if 1: # Hysteresis Vth and DeltaVth vs frequency (one figure version)
         ###############################################################################################
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
@@ -950,23 +594,35 @@ if __name__ == "__main__":
         Vmin = df['Vmin'].iloc[0]
 
         # Create figure with two stacked axes
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.2, 2.5), sharex=True, constrained_layout=True)
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.5, 2.), sharex=True, constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.5
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height,
+            hspace = 0.08
+        )
 
         # =========================
         # Top plot: Vth
         # =========================
-        ax1.plot(df['freq']*(Vmax-Vmin), df['Vth_up'], '^',
+        ax1.plot(df['freq'], df['Vth_up'], '^',
                 markeredgecolor="#13073A",
                 markerfacecolor=color_up, label=r'$V_{th,\mathrm{up}}$')
 
-        ax1.plot(df['freq']*(Vmax-Vmin), df['Vth_down'], 'v',
+        ax1.plot(df['freq'], df['Vth_down'], 'v',
                 markeredgecolor="#13073A",
                 markerfacecolor=color_down, label=r'$V_{th,\mathrm{down}}$')
 
-        ax1.plot(df['freq']*(Vmax-Vmin), df['Vth_up_fit'], '-',
+        ax1.plot(df['freq'], df['Vth_up_fit'], '-',
                 color=color_up, alpha=0.7)
 
-        ax1.plot(df['freq']*(Vmax-Vmin), df['Vth_down_fit'], '-',
+        ax1.plot(df['freq'], df['Vth_down_fit'], '-',
                 color=color_down, alpha=0.7)
 
         ax1.set_ylabel(r'$V_\mathsf{th}$ [V]', fontsize=8)
@@ -979,19 +635,22 @@ if __name__ == "__main__":
         # =========================
         # Bottom plot: Delta Vth
         # =========================
-        ax2.plot(df['freq']*(Vmax-Vmin), df['DeltaVth'], 'o',
+        ax2.plot(df['freq'], df['DeltaVth'], 'o',
                 markeredgecolor="#13073A",
                 markerfacecolor="#2E8B57", label=r'$\Delta V_{th}$')
 
-        ax2.plot(df['freq']*(Vmax-Vmin), df['DeltaVth_fit'], '-',
+        ax2.plot(df['freq'], df['DeltaVth_fit'], '-',
                 color="#2E8B57", alpha=0.7)
 
         ax2.axhline(df['Ith'].iloc[0] / width * 1e6,
                     linestyle='--', color='k')
 
-        ax2.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=7.5)
-        ax2.set_xlabel(r'Sweep Rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
+        ax2.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=7.5)
+        ax2.set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
         ax2.set_xscale('log')
+        ax2.xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax2.xaxis.set_major_formatter(FuncFormatter(make_log_formatter([-2,0,2])))
+        ax2.xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
 
         # =========================
         # Layout adjustments
@@ -1001,10 +660,454 @@ if __name__ == "__main__":
 
         # Save figure
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        plt.savefig(os.path.join(script_dir, "figures", "hysteresis_Vth_DeltaVth_vs_freq.pdf"), bbox_inches="tight")
+        plt.savefig(os.path.join(script_dir, "figures", "hysteresis_Vth_DeltaVth_vs_freq.pdf"), bbox_inches=None)
 
         plt.close()
 
+    if 0: # Plot hysteresis DeltaVth vs freq different Vd constant range
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
+        df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
+
+        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
+        plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
+        
+        Vmax = df['Vmax'].iloc[0]
+        Vmin = df['Vmin'].iloc[0]
+
+        # Plot DeltaVth vs frequency for different devices and samples
+        # Prepare groups and style lists
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '+', 'x', '<', '>']
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth'],
+                    marker=marker, linestyle=' ',
+                    markeredgecolor="#13073A",
+                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
+
+                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth_fit'], linestyle='-', markersize=8,color=Vd_color(Vd))
+        
+        ax.axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+        ax.legend(by_label.values(), by_label.keys(), fontsize=6, loc='upper center', framealpha=0, title = r'$V_D$')
+        
+        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K\n$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.0f}, {subset["Vmax"].iloc[0]:.0f}] V' 
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=22, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_xscale('log')
+        ax.set_ylim(-0.2, 0.3)
+        #ax.set_xlim(1e-3,200)
+        #ax.grid(True, which='both', alpha=0.3)
+        
+        #plt.title('Same voltage range')
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_constant_range.pdf", bbox_inches=None)
+        plt.close()
+
+    if 0: # Plot hysteresis DeltaVth different Vd adjusted ranges
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
+        df = df[(df['dut']=='1A15t1') & (df['precondition'] == False) & (df['sample'].isin([5,6,7,8,9]))]
+
+        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
+        plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
+
+        Vmin = df['Vmin'].iloc[0]
+        Vmax = df['Vmax'].iloc[0]
+
+        # Plot DeltaVth vs frequency for different devices and samples
+        # Prepare groups and style lists
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        dut_labels = []
+        dut_handles = []
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                dut = key[1]
+                line_dut, = ax.plot(subset['freq']*(Vmax - Vmin), subset['DeltaVth'],
+                    marker=marker, linestyle=' ', markeredgecolor="#13073A",
+                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
+                dut_handles.append(line_dut)
+                dut_labels.append(rf'$V_\text{{D}}$ = {Vd:.1f} V, $V_{{g,\text{{range}}}}$=[{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
+
+                ax.plot(subset['freq']*(Vmax - Vmin), subset['DeltaVth_fit'], linestyle='-',color=Vd_color(Vd))
+        
+        ax.axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+
+        # First legend for Vd
+        legend1 = ax.legend(
+            handles=[Line2D([0], [0], color=h.get_markerfacecolor(),  linewidth=3) for h in by_label.values()],
+            labels=by_label.keys(),
+            fontsize=textSizeLegend,
+            loc='best',
+            framealpha=0.9,
+            title=r'$V_\mathsf{D}$',
+            handlelength=1.0
+        )
+        # ax.add_artist(legend1)
+        
+        # Second legend for DUTs
+        ax.legend(dut_handles, dut_labels, fontsize=5, 
+              loc='upper left', framealpha=0,bbox_to_anchor=(0.2, 1))
+                
+        ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_xscale('log')
+        ax.set_ylim(-0.2, 0.3)
+        #ax.set_xlim(1e-3,200)
+        #ax.grid(True, which='both', alpha=0.3)
+        
+        # device_text = r'$T$ = 300 K' + '\n' + rf'$E_{{od}} = {df["Eod"].iloc[0]:.2f}$ MV/cm'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=6, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_adjusted_range.pdf", bbox_inches=None, transparent=True)
+        plt.close()
+
+    if 0: # Plot hysteresis DeltaVth vs freq different Vd (one figure version)
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
+        df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
+
+        fig, ax = plt.subplots(1, 2, figsize=(4, 2), constrained_layout=False, sharey=True, sharex=True)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.6
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height,
+            wspace = 0.1
+        )
+        
+        Vmax = df['Vmax'].iloc[0]
+        Vmin = df['Vmin'].iloc[0]
+
+        # Plot DeltaVth vs frequency for different devices and samples
+        # Prepare groups and style lists
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '+', 'x', '<', '>']
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                ax[0].plot(subset['freq'], subset['DeltaVth'],
+                    marker=marker, linestyle=' ',
+                    markeredgecolor="#13073A",
+                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
+
+                ax[0].plot(subset['freq'], subset['DeltaVth_fit'], linestyle='-',color=Vd_color(Vd))
+        
+        ax[0].axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax[0].get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+        Vd_leg = fig.legend(by_label.values(), by_label.keys(), fontsize=5, loc='upper center', framealpha=1, title = r'$V_D$', title_fontsize=6, bbox_to_anchor=(0.56, 1.00),markerscale=0.5,labelspacing=0.2)
+        
+        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K\n$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.0f}, {subset["Vmax"].iloc[0]:.0f}] V' 
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=22, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        ax[0].set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax[0].set_xscale('log')
+        ax[0].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax[0].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([-2,0,2])))
+        ax[0].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
+        ax[0].text(0.5, 0.85, rf'$V_\mathsf{{G,range}}$ = [{subset["Vmin"].iloc[0]:.0f}, {subset["Vmax"].iloc[0]:.0f}] V', transform=ax[0].transAxes, fontsize=5, va='top', ha='center')
+        #ax.set_xlim(1e-3,200)
+        #ax.grid(True, which='both', alpha=0.3)
+
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
+        df = df[(df['dut']=='1A15t1') & (df['precondition'] == False) & (df['sample'].isin([5,6,7,8,9]))]
+
+        Vmin = df['Vmin'].iloc[0]
+        Vmax = df['Vmax'].iloc[0]
+
+        # Plot DeltaVth vs frequency for different devices and samples
+        # Prepare groups and style lists
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        dut_labels = []
+        dut_handles = []
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                dut = key[1]
+                ax[1].plot(subset['freq'], subset['DeltaVth'],
+                    marker=marker, linestyle=' ', markeredgecolor="#13073A",
+                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
+                line_dut = Line2D([0], [0], marker=marker, linestyle=' ', markeredgecolor="#13073A", markerfacecolor=Vd_color(Vd), markersize=2)
+                dut_handles.append(line_dut)
+                dut_labels.append(rf'$V_\mathsf{{G,range}}$=[{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V')
+
+                ax[1].plot(subset['freq'], subset['DeltaVth_fit'], linestyle='-',color=Vd_color(Vd))
+        
+        ax[1].axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax[1].get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+
+        # First legend for Vd
+        # legend1 = ax[1].legend(
+        #     handles=[Line2D([0], [0], color=h.get_markerfacecolor(),  linewidth=3) for h in by_label.values()],
+        #     labels=by_label.keys(),
+        #     fontsize=5,
+        #     loc='best',
+        #     framealpha=0.9,
+        #     title=r'$V_\mathsf{D}$',
+        #     handlelength=1.0,
+        #     title_fontsize=5
+        # )
+        # ax.add_artist(legend1)
+        
+        # Second legend for DUTs
+        ax[1].legend(dut_handles, dut_labels, fontsize=5, 
+              loc='upper left', framealpha=0, bbox_to_anchor=(0.2, 1))
+                
+        #ax[1].set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
+        fig.supxlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
+        ax[1].set_xscale('log')
+        ax[1].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax[1].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([-2,0,2])))
+        ax[1].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
+        ax[1].set_ylim(-0.2, 0.4)
+        #ax.set_xlim(1e-3,200)
+        #ax.grid(True, which='both', alpha=0.3)
+        
+        # device_text = r'$T$ = 300 K' + '\n' + rf'$E_{{od}} = {df["Eod"].iloc[0]:.2f}$ MV/cm'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=6, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        Vd_leg.set_zorder(10)
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None)
+        plt.close()
+        
+    if 1: # Plot hysteresis DeltaVth vs freq duts variability
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS_Eod.csv'))
+        df = df[(df['Vd']==1) & (df['precondition'] == False)]
+
+        fig, ax = plt.subplots(figsize=(3, 2), constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.6
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height,
+        )
+        
+        df_groups = {
+            k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
+            if np.isclose(g['nom_freq'].min(), 1e-3)
+        }
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        dut_labels = []
+        dut_handles = []
+        all_keys = sorted(all_keys, key=lambda x: df_groups[x]['width'].iloc[0] / df_groups[x]['length'].iloc[0])
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                width = subset['width'].iloc[0]
+                length = subset['length'].iloc[0]
+                Vmax = subset['Vmax'].iloc[0]
+                Vmin = subset['Vmin'].iloc[0]
+                dut = key[1]
+                line_dut, = ax.plot(subset['freq'], subset['DeltaVth'],
+                    marker=marker, linestyle=' ',
+                    markeredgecolor="#13073A",
+                    markerfacecolor=WL_color(width/length), label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};' +f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
+                dut_handles.append(line_dut)
+                dut_labels.append(dut + rf'$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
+
+                ax.plot(subset['freq'], subset['DeltaVth_fit'], linestyle='-', markersize=8,color=WL_color(width/length))
+        
+        ax.axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+
+        # First legend for Vd
+        legend1 = ax.legend(
+            handles=handles,
+            labels=by_label.keys(),
+            fontsize=6,
+            loc='best',
+            framealpha=0,
+            handlelength=1.0
+        )
+        ax.add_artist(legend1)
+        
+        # Second legend for DUTs
+        ax.legend(dut_handles, dut_labels, fontsize=5, 
+              loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
+                
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_xscale('log')
+        #ax.set_xlim(1e-3,200)
+        ax.set_ylim(-0.2, 0.4)
+        #ax.grid(True, which='both', alpha=0.3)
+        ax.set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
+        
+        device_text = r'$T$ = 300 K'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=6, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        
+        #plt.title('Different devices and voltage ranges')
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
+        plt.close()
+
+    if 1: # Plot hysteresis DeltaVth vs freq comparison
+        df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
+        df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
+
+        fig, ax = plt.subplots(figsize=(3, 2), constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        left_in   = 0.6
+        right_in  = 0.1
+        top_in    = 0.1
+        bottom_in = 0.4
+        plt.subplots_adjust(
+            left   = left_in / fig_width,
+            right  = 1 - right_in / fig_width,
+            bottom = bottom_in / fig_height,
+            top    = 1 - top_in / fig_height,
+        )
+        
+        df_groups = {
+            k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
+            # if np.isclose(g['nom_freq'].min(), 1e-3)
+        }
+        all_keys = sorted(set(list(df_groups.keys())))
+
+        n_keys = len(all_keys)
+        # Map colors to vacuum conditions
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
+        batch_colors = {
+            'TUWien_planar_hbn-encapsulated': '#2E8B57',  # SeaGreen
+            'TUWien_planar_20nm': '#1E90FF',  # DodgerBlue
+        }
+
+        # Plot each unique (batch, dut, sample) with distinct color & marker
+        dut_labels = []
+        dut_handles = []
+        # all_keys = sorted(all_keys, key=lambda x: df_groups[x]['width'].iloc[0] / df_groups[x]['length'].iloc[0])
+        for idx, key in enumerate(all_keys):
+            # Determine vacuum condition from sample number
+            marker = markers[idx % len(markers)]
+            if key in df_groups:
+                subset = df_groups[key]
+                Vd = subset['Vd'].iloc[0]
+                batch = subset['batch'].iloc[0]
+                # width = subset['width'].iloc[0]
+                # length = subset['length'].iloc[0]
+                Vmax = subset['Vmax'].iloc[0]
+                Vmin = subset['Vmin'].iloc[0]
+                dut = key[1]
+                line_dut, = ax.plot(subset['freq'], subset['DeltaVth'],
+                    marker=marker, linestyle=' ',
+                    markeredgecolor="#13073A",
+                    markerfacecolor=batch_colors[batch]) # label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};') #+f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
+                dut_handles.append(line_dut)
+                dut_labels.append(dut + rf'$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
+
+                ax.plot(subset['freq'], subset['DeltaVth_fit'], linestyle='-', markersize=8,color=batch_colors[batch])
+        
+        ax.axhline(0, linestyle='--', color = 'k')
+        # Remove duplicate legend entries
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+
+        # First legend for Vd
+        # legend1 = ax.legend(
+        #     handles=handles,
+        #     labels=by_label.keys(),
+        #     fontsize=6,
+        #     loc='best',
+        #     framealpha=0,
+        #     handlelength=1.0
+        # )
+        # ax.add_artist(legend1)
+        
+        # Second legend for DUTs
+        ax.legend(dut_handles, dut_labels, fontsize=5, 
+              loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
+                
+        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_xscale('log')
+        #ax.set_xlim(1e-3,200)
+        ax.set_ylim(-0.2, 0.4)
+        #ax.grid(True, which='both', alpha=0.3)
+        ax.set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
+        
+        device_text = r'$T$ = 300 K'
+        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
+        # fontsize=6, verticalalignment='top',
+        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+        
+        #plt.title('Different devices and voltage ranges')
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_comparison.pdf", bbox_inches=None)
+        plt.close()
+
+    ######### BTI plots ###################
     if 0: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
@@ -1017,9 +1120,7 @@ if __name__ == "__main__":
             ('TUWien_planar_hbn-encapsulated', '2A13t1', 1, 'OTF'),
             ('TUWien_planar_hbn-encapsulated', '2A1t1', 1, 'MSM')
         ]
-        markers = ['o', '^']
         df_list = []
-
         for k in selected_keys:
             g = groups.get_group(k).copy()
 
@@ -1027,11 +1128,10 @@ if __name__ == "__main__":
                 g = g[~g['cycle'].isin([5])]
 
             df_list.append(g)
-
         df_selected = pd.concat(df_list)
 
+        markers = ['o', '^']
         max_cycles = df_selected['cycle'].max()
-
         fig, ax = plt.subplots(1,max_cycles + 1, figsize=(4.3, 2.5), sharey=True, constrained_layout=False)
         plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.90, left=0.12, right=0.98)
 
@@ -1595,67 +1695,6 @@ if __name__ == "__main__":
         #plt.title('Hysteresis Width, $V_h$')
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_Vd1.pdf", bbox_inches="tight", transparent=True)
         plt.close()
-
-    if 0: # Plot hysteresis DeltaVth vs freq comparisons vacuum vs ambient
-        df = pd.read_csv("data/hyst_Vth_TUWien_planar_hbn-encapsulated_amb_vs_vac.csv")
-        df_fit = pd.read_csv("data/hyst_Vthfit_freq_TUWien_planar_hbn-encapsulated_amb_vs_vac.csv")
-        df = df[(df['dut']=='1A15t1') & (df['sample'].isin([3,4])) & (df['precondition'] == False)]
-        df_fit = df_fit[(df_fit['dut']=='1A15t1') & (df_fit['sample'].isin([3,4])) & (df_fit['precondition'] == False)]
-        fig, ax = plt.subplots(figsize=(10, 10))
-        
-        # Plot DeltaVth vs frequency for different devices and samples
-        # Prepare groups and style lists
-        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
-        df_fit_groups = dict(tuple(df_fit.groupby(['batch','dut','sample'])))
-        all_keys = sorted(set(list(df_groups.keys()) + list(df_fit_groups.keys())))
-
-        n_keys = len(all_keys)
-        # Map colors to vacuum conditions
-        vacuum_colors = {'vacuum': '#0047AB', 'ambient': '#FF0000'}
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '+', 'x', '<', '>']
-
-        # Plot each unique (batch, dut, sample) with distinct color & marker
-        for idx, key in enumerate(all_keys):
-            # Determine vacuum condition from sample number
-            marker = markers[idx % len(markers)]
-            if key in df_groups:
-                subset = df_groups[key]
-                vacuum = subset['vacuum'].iloc[0]
-                ax.plot(subset['freq'], subset['DeltaVth'],
-                    marker=marker, linestyle=' ', markersize=10,
-                    markeredgecolor="#13073A", markeredgewidth=2,
-                    markerfacecolor=vacuum_colors[vacuum], label=vacuum)
-
-            if key in df_fit_groups:
-                subset_fit = df_fit_groups[key]
-                vacuum = subset_fit['vacuum'].iloc[0]
-                # plot fits with same color but different line/marker style (no duplicate label)
-                ax.plot(subset_fit['freq'], subset_fit['DeltaVth_fit'], linestyle='-', markersize=8,color=vacuum_colors[vacuum])
-        
-        ax.axhline(0, linestyle='--', color = 'k')
-        # Remove duplicate legend entries
-        handles, labels = ax.get_legend_handles_labels()
-        by_label = dict(zip(labels, handles))
-        ax.legend(by_label.values(), by_label.keys(), fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        ax.set_xlabel(r'$f$ [Hz]', fontsize=textSize)
-        ax.set_ylabel(r'$V_\mathsf{H}$ [V]', fontsize=textSize)
-        ax.set_xscale('log')
-        ax.set_xlim(0.5e-1,200)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        #     fontsize=22, verticalalignment='top',
-        #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        
-        #ax.legend(fontsize=textSizeLegend, loc='best', framealpha=0.9)
-        
-        #plt.title('Hysteresis Width, $V_h$')
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_vacuum_vs_amb.pdf", bbox_inches="tight", transparent=True)
-        plt.close()
-
-        ##### Plot hysteresis DeltaVth vs freq comparisons encapsulated vs non-encapsulated
     
     if 0: # Plot hysteresis DeltaVth vs freq comparisons
         df = pd.read_csv("data/hyst_hbn-encapsulated_vs_non-encapsulated.csv")
@@ -1708,214 +1747,8 @@ if __name__ == "__main__":
         #plt.title('Hysteresis Width, $V_h$')
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_enc_vs_non.pdf", bbox_inches="tight", transparent=True)
         plt.close()
-
-        ##### Plot hysteresis DeltaVth vs freq different Vd
-
-    if 0: # Plot hysteresis DeltaVth vs freq different Vd
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
-        df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
-
-        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
-        plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
-        
-        Vmax = df['Vmax'].iloc[0]
-        Vmin = df['Vmin'].iloc[0]
-
-        # Plot DeltaVth vs frequency for different devices and samples
-        # Prepare groups and style lists
-        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
-        all_keys = sorted(set(list(df_groups.keys())))
-
-        n_keys = len(all_keys)
-        # Map colors to vacuum conditions
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '+', 'x', '<', '>']
-
-        # Plot each unique (batch, dut, sample) with distinct color & marker
-        for idx, key in enumerate(all_keys):
-            # Determine vacuum condition from sample number
-            marker = markers[idx % len(markers)]
-            if key in df_groups:
-                subset = df_groups[key]
-                Vd = subset['Vd'].iloc[0]
-                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth'],
-                    marker=marker, linestyle=' ',
-                    markeredgecolor="#13073A",
-                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
-
-                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth_fit'], linestyle='-', markersize=8,color=Vd_color(Vd))
-        
-        ax.axhline(0, linestyle='--', color = 'k')
-        # Remove duplicate legend entries
-        handles, labels = ax.get_legend_handles_labels()
-        by_label = dict(zip(labels, handles))
-        ax.legend(by_label.values(), by_label.keys(), fontsize=6, loc='upper center', framealpha=0, title = r'$V_D$')
-        
-        device_text = f'Device {df["dut"].iloc[0]}\n$T$ = 300 K\n$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.0f}, {subset["Vmax"].iloc[0]:.0f}] V' 
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        # fontsize=22, verticalalignment='top',
-        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-        ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
-        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
-        ax.set_xscale('log')
-        ax.set_ylim(-0.2, 0.3)
-        #ax.set_xlim(1e-3,200)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        #plt.title('Same voltage range')
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None)
-        plt.close()
-
-    if 0: # Plot hysteresis DeltaVth vs freq duts
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS_Eod.csv'))
-        df = df[(df['Vd']==1) & (df['precondition'] == False)]
-
-        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
-        plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
-        
-        df_groups = {
-            k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
-            if np.isclose(g['nom_freq'].min(), 1e-3)
-        }
-        all_keys = sorted(set(list(df_groups.keys())))
-
-        n_keys = len(all_keys)
-        # Map colors to vacuum conditions
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
-
-        # Plot each unique (batch, dut, sample) with distinct color & marker
-        dut_labels = []
-        dut_handles = []
-        all_keys = sorted(all_keys, key=lambda x: df_groups[x]['width'].iloc[0] / df_groups[x]['length'].iloc[0])
-        for idx, key in enumerate(all_keys):
-            # Determine vacuum condition from sample number
-            marker = markers[idx % len(markers)]
-            if key in df_groups:
-                subset = df_groups[key]
-                Vd = subset['Vd'].iloc[0]
-                width = subset['width'].iloc[0]
-                length = subset['length'].iloc[0]
-                Vmax = subset['Vmax'].iloc[0]
-                Vmin = subset['Vmin'].iloc[0]
-                dut = key[1]
-                line_dut, = ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth'],
-                    marker=marker, linestyle=' ',
-                    markeredgecolor="#13073A",
-                    markerfacecolor=WL_color(width/length), label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};' +f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
-                dut_handles.append(line_dut)
-                dut_labels.append(dut + rf'$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
-
-                ax.plot(subset['freq']*(Vmax-Vmin), subset['DeltaVth_fit'], linestyle='-', markersize=8,color=WL_color(width/length))
-        
-        ax.axhline(0, linestyle='--', color = 'k')
-        # Remove duplicate legend entries
-        handles, labels = ax.get_legend_handles_labels()
-        by_label = dict(zip(labels, handles))
-
-        # First legend for Vd
-        legend1 = ax.legend(
-            handles=handles,
-            labels=by_label.keys(),
-            fontsize=6,
-            loc='best',
-            framealpha=0,
-            handlelength=1.0
-        )
-        ax.add_artist(legend1)
-        
-        # Second legend for DUTs
-        ax.legend(dut_handles, dut_labels, fontsize=5, 
-              loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
-                
-        ax.set_xlabel(r'Sweep rate, $r_{\mathsf{sw}}$ [V/s]', fontsize=8)
-        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
-        ax.set_xscale('log')
-        #ax.set_xlim(1e-3,200)
-        ax.set_ylim(-0.2, 0.4)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        device_text = r'$T$ = 300 K'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        # fontsize=6, verticalalignment='top',
-        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-        
-        #plt.title('Different devices and voltage ranges')
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
-        plt.close()
-
-    if 0: # Plot hysteresis DeltaVth different Vd ranges
-        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
-        df = df[(df['dut']=='1A15t1') & (df['precondition'] == False) & (df['sample'].isin([5,6,7,8,9]))]
-
-        fig, ax = plt.subplots(figsize=(3.3, 2.25), constrained_layout=False)
-        plt.subplots_adjust(left=0.18, right=0.95, top=0.98, bottom=0.18)
-
-        Vmin = df['Vmin'].iloc[0]
-        Vmax = df['Vmax'].iloc[0]
-
-        # Plot DeltaVth vs frequency for different devices and samples
-        # Prepare groups and style lists
-        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
-        all_keys = sorted(set(list(df_groups.keys())))
-
-        n_keys = len(all_keys)
-        # Map colors to vacuum conditions
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
-
-        # Plot each unique (batch, dut, sample) with distinct color & marker
-        dut_labels = []
-        dut_handles = []
-        for idx, key in enumerate(all_keys):
-            # Determine vacuum condition from sample number
-            marker = markers[idx % len(markers)]
-            if key in df_groups:
-                subset = df_groups[key]
-                Vd = subset['Vd'].iloc[0]
-                dut = key[1]
-                line_dut, = ax.plot(subset['freq']*(Vmax - Vmin), subset['DeltaVth'],
-                    marker=marker, linestyle=' ', markeredgecolor="#13073A",
-                    markerfacecolor=Vd_color(Vd), label=rf'{Vd:.1f} V')
-                dut_handles.append(line_dut)
-                dut_labels.append(rf'$V_\text{{D}}$ = {Vd:.1f} V, $V_{{g,\text{{range}}}}$=[{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
-
-                ax.plot(subset['freq']*(Vmax - Vmin), subset['DeltaVth_fit'], linestyle='-',color=Vd_color(Vd))
-        
-        ax.axhline(0, linestyle='--', color = 'k')
-        # Remove duplicate legend entries
-        handles, labels = ax.get_legend_handles_labels()
-        by_label = dict(zip(labels, handles))
-
-        # First legend for Vd
-        legend1 = ax.legend(
-            handles=[Line2D([0], [0], color=h.get_markerfacecolor(),  linewidth=3) for h in by_label.values()],
-            labels=by_label.keys(),
-            fontsize=textSizeLegend,
-            loc='best',
-            framealpha=0.9,
-            title=r'$V_\mathsf{D}$',
-            handlelength=1.0
-        )
-        # ax.add_artist(legend1)
-        
-        # Second legend for DUTs
-        ax.legend(dut_handles, dut_labels, fontsize=5, 
-              loc='upper left', framealpha=0,bbox_to_anchor=(0.2, 1))
-                
-        ax.set_xlabel(r'Sweep rate, $r_\mathsf{sw}$ [V/s]', fontsize=8)
-        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
-        ax.set_xscale('log')
-        ax.set_ylim(-0.2, 0.3)
-        #ax.set_xlim(1e-3,200)
-        #ax.grid(True, which='both', alpha=0.3)
-        
-        # device_text = r'$T$ = 300 K' + '\n' + rf'$E_{{od}} = {df["Eod"].iloc[0]:.2f}$ MV/cm'
-        # ax.text(0.05, 0.95, device_text, transform=ax.transAxes,
-        # fontsize=6, verticalalignment='top',
-        # bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
-        
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_range.pdf", bbox_inches=None, transparent=True)
-        plt.close()
     
-    if 1: # Plot BTI OTF DeltaVth vs different VgStress
+    if 0: # Plot BTI OTF DeltaVth vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
@@ -1976,16 +1809,14 @@ if __name__ == "__main__":
 
         plt.savefig(script_dir+"/figures/OTF_DeltaVth_strrec_differentVstr.pdf", bbox_inches=None)
         plt.close()
-
-        ##### Plot BTI MSM DeltaVth all duts vs different VgStress
     
-    if 1: # Plot BTI MSM DeltaVth all duts vs different VgStress
+    if 0: # Plot BTI MSM DeltaVth all duts vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
-        fig, ax = plt.subplots(figsize=(2.7, 2.25), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(4, 2.25), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        plt.subplots_adjust(left=0.65/fig_width, right=1 - 0.04/fig_width, top=1 - 0.1/fig_height, bottom=0.4/fig_height)
+        plt.subplots_adjust(left=0.65/fig_width, right=1 - 1.7/fig_width, top=1 - 0.1/fig_height, bottom=0.4/fig_height)
 
         VgStress_array = [3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
         colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
@@ -1994,10 +1825,17 @@ if __name__ == "__main__":
            label=rf'{Vg:.1f} V') for Vg in VgStress_array]
 
         df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
-        all_keys = sorted(set(list(df_groups.keys())))
+        removed_keys = [
+            ('TUWien_planar_hbn-encapsulated', '2A1t1', 2),
+            ('TUWien_planar_hbn-encapsulated', '1A11t1', 3),
+            ('TUWien_planar_hbn-encapsulated', '1A11t1', 6),
+            ('TUWien_planar_hbn-encapsulated', '1A13t1', 2),
+            ('TUWien_planar_hbn-encapsulated', '1A13t1', 4),
+        ]
+        all_keys = [k for k in df_groups.keys() if k not in removed_keys]
         n_keys = len(all_keys)
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
 
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
         used_labels = set()
         legend_meas = []
         for i,VgStress in enumerate(VgStress_array[::-1]):
@@ -2025,7 +1863,7 @@ if __name__ == "__main__":
                     else:
                         label = None
 
-                    ax.plot(subset['tRec'], subset['Vth'] - subset['Vth_initial'],
+                    ax.plot(subset['tRec'], subset['Vth'] - subset['Vth_ref'],
                         marker=marker, linestyle=' ',
                         markeredgecolor="#13073A",
                         markerfacecolor=str_colors[VgStress],label=label)
@@ -2053,11 +1891,11 @@ if __name__ == "__main__":
             title=r'$V_\mathsf{G,stress}$',
             title_fontsize=7
         )
-        #ax.add_artist(leg1)
+        ax.add_artist(leg1)
         plt.savefig(script_dir+f"/figures/MSM_DeltaVth_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI MSM DeltaVth all duts vs Eod,str
+    if 0: # Plot BTI MSM DeltaVth all duts vs Eod,str
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
@@ -2070,7 +1908,17 @@ if __name__ == "__main__":
         str_colors = {Vg: colors[i] for i, Vg in enumerate(VgStress_array)}
 
         df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
-        all_keys = sorted(set(list(df_groups.keys())))
+        removed_keys = [
+            ('TUWien_planar_hbn-encapsulated', '2A1t1', 2),
+            ('TUWien_planar_hbn-encapsulated', '1A11t1', 3),
+            ('TUWien_planar_hbn-encapsulated', '1A11t1', 6),
+            ('TUWien_planar_hbn-encapsulated', '1A13t1', 2),
+            ('TUWien_planar_hbn-encapsulated', '1A13t1', 4),
+            #('TUWien_planar_hbn-encapsulated', '1A15t1', 4),
+            ('TUWien_planar_hbn-encapsulated', '1A15t1', 5),
+            ('TUWien_planar_hbn-encapsulated', '1A15t1', 6),
+        ]
+        all_keys = [k for k in df_groups.keys() if k not in removed_keys]
         n_keys = len(all_keys)
         markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
 
@@ -2112,12 +1960,12 @@ if __name__ == "__main__":
                         label = None
                     
 
-                    ax.plot(subset_max['Eod_str'], subset_max['Vth'] - subset_max['Vth_initial'],
+                    ax.plot(subset_max['area'], subset_max['Vth'] - subset_max['Vth_initial'],
                         marker = marker, linestyle=' ',
                         markeredgecolor="#13073A",
                         markerfacecolor=str_colors[VgStress],label=label)
                     
-                    ax.plot(subset_begin['Eod_str'], subset_begin['Vth'] - subset_begin['Vth_initial'],
+                    ax.plot(subset_begin['area'], subset_begin['Vth'] - subset_begin['Vth_initial'],
                         marker = marker, linestyle=' ',
                         markeredgecolor="#13073A",
                         markerfacecolor=str_colors[VgStress],label=label)
@@ -2219,8 +2067,7 @@ if __name__ == "__main__":
             plt.close()
     
     if 0: # Measuring Vth vs measuring one point Id
-        df = pd.read_csv("data/TUWien_planar_hbn-encapsulated/BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv")
-        df.loc[~df['tStress'].isin(['initial', 'extra','end']), 'tStress'] = df.loc[~df['tStress'].isin(['initial', 'extra','end']),'tStress'].astype(float)
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
 
         VgStress_array = [3.0, 4.0, 5.0, 6.0]
         colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
@@ -2268,6 +2115,63 @@ if __name__ == "__main__":
             all_labels = labels1 + labels2
             ax.legend(all_handles, all_labels, fontsize=textSizeLegend, loc='upper left', bbox_to_anchor=(0.85, 1), framealpha=0.9)
             plt.savefig(script_dir+f"/figures/OTF_Vth_vs_I_duts_{VgStress}.pdf", bbox_inches="tight", transparent=True)
+            plt.close()
+    
+    if 0: # One point Id BTI MSM
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
+        df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100) & ~(df['tRec']== 0.5)]
+        #df = df[(df['dut'] == '1A15t1') & (df['temp'] == '300K') & (df['sample'] == 6)]
+
+        df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
+        all_keys = sorted(set(list(df_groups.keys())))
+        n_keys = len(all_keys)
+        cycles = sorted(df['cycle'].unique())
+        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h']
+        #Cycle 
+        cycle_colors = plasma(np.linspace(0.1, 0.9, len(cycles)))
+        cycle_color_map = {cycle: cycle_colors[i] for i, cycle in enumerate(cycles)}
+        #VgStress
+        VgStress_array = sorted(df['VgStress'].unique())
+        VgStress_colors = viridis(np.linspace(0.1, 0.9, len(VgStress_array)))
+        VgStress_color_map = {Vg: VgStress_colors[i] for i, Vg in enumerate(VgStress_array)}
+        
+        for i, Vgstr in enumerate(VgStress_array[::-1]):
+            # df_cycle = df[(df['cycle']==cycle)]
+            # df_groups_cycle = dict(tuple(df_cycle.groupby(['batch','dut','sample'])))
+            # cycle_color = cycle_color_map[cycle]
+            fig, ax = plt.subplots(figsize=(3.3, 3.3), constrained_layout=True)
+            ax2 = ax.twinx()
+            df_Vstr = df[(df['VgStress']==Vgstr)]
+            df_groups_cycle = dict(tuple(df_Vstr.groupby(['batch','dut','sample'])))
+            VgStress_color = VgStress_color_map[Vgstr]
+            for idx, key in enumerate(all_keys):
+                marker = markers[idx % len(markers)]
+                if key in df_groups_cycle:
+                    subset = df_groups_cycle[key]
+                    if subset['Vth'].notna().any():
+                        ax.plot(subset['tRec'], subset['Vth'],
+                            marker=marker, linestyle=' ', markersize=10,
+                            markeredgecolor="#13073A", markeredgewidth=2,
+                            markerfacecolor='b',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                    else:
+                        ax2.plot(subset['tRec'], subset['I'],
+                            marker=marker, linestyle=' ', markersize=10,
+                            markeredgecolor="#13073A", markeredgewidth=2,
+                            markerfacecolor='r',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                        
+            ax2.set_yscale('log')
+            #ax2.set_ylim(5e-9, 1e-8)
+            ax2.set_ylabel(r'$I_D$ [A]', fontsize=8, color='r')
+
+            device_text = f'$T$ = {df["temp"].iloc[0]}\n$V_{{G,str}}$ = {VgStress:.1f} V'
+            ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
+                fontsize=6, verticalalignment='top',
+                bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
+            ax.set_xlabel(r'$t_{\mathsf{rec}}$ [s]', fontsize=8)
+            ax.set_ylabel(r'$\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
+            ax.set_xscale('log')
+            # ax.legend(all_handles, all_labels, fontsize=6, loc='upper left', bbox_to_anchor=(0.85, 1), framealpha=0.9)
+            plt.savefig(script_dir+f"/figures/MSM_Vth_vs_I_duts_VgStress{Vgstr}.pdf", bbox_inches="tight", transparent=True)
             plt.close()
     
     sys.exit()
