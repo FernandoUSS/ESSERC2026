@@ -1818,7 +1818,7 @@ def plot_sweep(dataset, meas_type, xvar_plot, yvar_plot, show_add=None, meas = N
                     (df['sample'] == sample)
                 ]
             meas_text = f'{dut} {sample} {T}'
-            meas_text += f'\n S. R. = {df_meas['sweep_rate'].iloc[0]:.2f} V/s'
+            meas_text += f'\n S. R. = {df_meas["sweep_rate"].iloc[0]:.2f} V/s'
             axs[i,column].text(0.95,0.95,meas_text, transform=axs[i, column].transAxes, horizontalalignment='right', verticalalignment='center')
             #axs[i,column].axhline(noise_level, linestyle='--', color = 'k')
             handles = []
@@ -2496,13 +2496,13 @@ def plot_BTI_DeltaVth(dataset, meas=None, df=None, t_plot='all', name = False, v
             label = f'{dut} {sample} {T}'
             for l,elem in enumerate(non_var):
                 if elem == 'tStress':
-                    label += '\n' + rf' $t_{{str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                    label += '\n' + rf' $t_{{str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
                 elif elem == 'VgStress':
-                    label += '\n' + rf' $V_{{TG,str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                    label += '\n' + rf' $V_{{TG,str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                 elif elem == 'VtgRemain':
-                    label += '\n' + rf' $V_{{TG,rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                    label += '\n' + rf' $V_{{TG,rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                 elif elem == 'tRec':
-                    label += '\n' + rf' $t_{{rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                    label += '\n' + rf' $t_{{rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
             axs[row,column_rec].add_collection(lc)
             axs[row,column_rec].set_ylabel(ylabel)
             # fig.text((ylabel_space+(k*axis_width + (k-1)*inter_space_width)*0.5)/W,1-(title_space + row*(axis_height+inter_space_height))/H,label, 
@@ -2831,13 +2831,13 @@ def plot_BTI_vars(dataset, vars, meas = None, df=None, name = None, show_sweep=F
                 label = f'{dut} {sample} {T}'
                 for l,elem in enumerate(non_var):
                     if elem == 'tStress':
-                        label += '\n' + rf' $t_\mathsf{{str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                        label += '\n' + rf' $t_\mathsf{{str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
                     elif elem == 'VgStress':
-                        label +=  '\n' + rf' $V_\mathsf{{TG,str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                        label +=  '\n' + rf' $V_\mathsf{{TG,str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                     elif elem == 'VgRemain':
-                        label +='\n' + rf' $V_\mathsf{{TG,rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                        label +='\n' + rf' $V_\mathsf{{TG,rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                     elif elem == 'tRec':
-                        label += '\n' + rf' $t_\mathsf{{rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                        label += '\n' + rf' $t_\mathsf{{rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
                 if j == 0:
                     # fig.text(left/W,1 - (bottom - axis_height)/H,label, 
                     # horizontalalignment='left', verticalalignment='bottom', color ='k')
@@ -3169,13 +3169,13 @@ def plot_BTI_Vth(dataset, meas = None, df=None, name = None, show_IdVg=False, sh
                     label = f'{dut} {sample} {T}'
                     for l,elem in enumerate(non_var):
                         if elem == 'tStress':
-                            label += '\n' + rf' $t_\mathsf{{str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                            label += '\n' + rf' $t_\mathsf{{str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
                         elif elem == 'VgStress':
-                            label +=  '\n' + rf' $V_\mathsf{{TG,str}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                            label +=  '\n' + rf' $V_\mathsf{{TG,str}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                         elif elem == 'VtgRemain':
-                            label +='\n' + rf' $V_\mathsf{{TG,rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} V'
+                            label +='\n' + rf' $V_\mathsf{{TG,rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} V'
                         elif elem == 'tRec':
-                            label += '\n' + rf' $t_\mathsf{{rec}}$ = {df_meas[(df_meas['cycle'] == 1)][non_var[l]].iloc[0]} s'
+                            label += '\n' + rf' $t_\mathsf{{rec}}$ = {df_meas[(df_meas["cycle"] == 1)][non_var[l]].iloc[0]} s'
                     if j == 0:
                         # fig.text(left/W,1 - (bottom - axis_height)/H,label, 
                         # horizontalalignment='left', verticalalignment='bottom', color ='k')

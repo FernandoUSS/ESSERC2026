@@ -1,4 +1,5 @@
 import pandas as pd
+from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.cm import plasma, viridis
 from matplotlib.patches import Ellipse, Rectangle
@@ -167,7 +168,8 @@ if __name__ == "__main__":
     set_matplotlibstyle_Fernando(textSize, textSizeLegend)
     inputdir = os.getcwd()
     
-    data_folder = os.path.join('/','home','delossa','Nextcloud','DataProcessingLab','data')
+    #data_folder = os.path.join('/','home','delossa','Nextcloud','DataProcessingLab','data')
+    data_folder = Path(__file__).resolve().parent.parent / "DataProcessingLab" / "data"
 
     color_up = "#AA3939"
     color_down = "#887CAF"
@@ -443,7 +445,12 @@ if __name__ == "__main__":
         mark_inset(ax, axins, loc1=1, loc2=2, fc="none", ec="0.5")
 
         # Add device info
-        device_text = r'$T$ = 300 K' +'\n' + rf'$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$'+ '\n' + rf'$V_\mathsf{{D}}$ = {df["Vd"].iloc[0]} V' + '\n' + rf'$r_\mathsf{{sweep}}$ = {df["nom_freq"].iloc[0]*(Vmax - Vmin):.2f} V/s'
+        device_text = (
+            r"$T$ = 300 K\n"
+            + rf"$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$\n"
+            + rf"$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V\n"
+            + rf"$r_\mathsf{{sweep}}$ = {df['nom_freq'].iloc[0]*(Vmax - Vmin):.2f} V/s"
+        )
         # ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
         #        fontsize=6, verticalalignment='top',
         #        bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
@@ -554,7 +561,12 @@ if __name__ == "__main__":
         mark_inset(ax, axins, loc1=1, loc2=2, fc="none", ec="0.5",alpha=0.7)
 
         # Add device info
-        device_text = r'$T$ = 300 K' +'\n' + rf'$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$'+ '\n' + rf'$V_\mathsf{{D}}$ = {df["Vd"].iloc[0]} V'
+        device_text = (
+            r"$T$ = 300 K\n"
+            + rf"$W/L$ = $\frac{{{df['width'].iloc[0]:.0f}\,\mu m}}{{{df['length'].iloc[0]:.0f}\,\mu m}}$\n"
+            + rf"$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V\n"
+            + rf"$r_\mathsf{{sweep}}$ = {df['nom_freq'].iloc[0]*(Vmax - Vmin):.2f} V/s"
+        )
         # ax.text(0.05, 0.95, device_text, transform=ax.transAxes, 
         #        fontsize=6, verticalalignment='top',
         #        bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
@@ -1033,9 +1045,11 @@ if __name__ == "__main__":
                 line_dut, = ax.plot(subset['freq'], subset['DeltaVth'],
                     marker=marker, linestyle=' ',
                     markeredgecolor="#13073A",
-                    markerfacecolor=WL_color(width/length), label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};' +f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
-                dut_handles.append(line_dut)
-                dut_labels.append(dut + rf'$V_{{g,range}}$ = [{subset["Vmin"].iloc[0]:.2f}, {subset["Vmax"].iloc[0]:.2f}] V' )
+                    markerfacecolor=WL_color(width/length), label = (
+                    rf"$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f}; "
+                    + f"Array {subset['array'].iloc[0]}; "
+                    + f"Meas {subset['sample'].iloc[0]}"
+                ))
 
                 ax.plot(subset['freq'], subset['DeltaVth_fit'], linestyle='-', markersize=8,color=WL_color(width/length))
         
@@ -1220,7 +1234,7 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 0: # Plot BTI DeltaVth vs total time
+    if 1: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         for c in ['Id','Vg']:
@@ -1244,8 +1258,20 @@ if __name__ == "__main__":
 
         markers = ['o', '^']
         max_cycles = df_selected['cycle'].max()
-        fig, ax = plt.subplots(1,max_cycles + 1, figsize=(4.3, 2), sharey=True, constrained_layout=False)
-        plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.90, left=0.12, right=0.98)
+        fig, ax = plt.subplots(1,max_cycles + 1, figsize=(4.4, 2), sharey=True, constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        x_left_in   = 0.5
+        x_right_in  = 0.1
+        x_top_in    = 0.2
+        x_bottom_in = 0.4
+        # plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.90, left=0.12, right=0.98)
+        plt.subplots_adjust(
+            left   = x_left_in / fig_width,
+            right  = 1 - x_right_in / fig_width,
+            bottom = x_bottom_in / fig_height,
+            top    = 1 - x_top_in / fig_height,
+            wspace = 0.00
+        )
 
         for key in selected_keys:
             df_dut = df_selected[(df_selected['batch'] == key[0]) & (df_selected['dut'] == key[1]) & (df_selected['sample'] == key[2]) & (df_selected['meas_type'] == key[3])]
@@ -1406,7 +1432,7 @@ if __name__ == "__main__":
 
         fig.legend(
             handles=legend_elements,
-            loc='upper right',
+            loc='upper center',
             ncol=4,
             fontsize=7,
             framealpha=0.0,
@@ -1426,7 +1452,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_stress_time.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot BTI IdVg (joint plot with recovery)
+    if 1: # Plot BTI IdVg (joint plot with recovery)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 7)]
         for c in ['Id','Vg']:
@@ -1435,7 +1461,19 @@ if __name__ == "__main__":
         width = df['width'].iloc[0]
 
         fig, ax = plt.subplots(1,2,figsize=(2.7, 2),sharey=True, constrained_layout=False)
-        plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.9, left=0.21, right=0.98)
+        fig_width, fig_height = fig.get_size_inches()
+        x_left_in   = 0.6
+        x_right_in  = 0.05
+        x_top_in    = 0.2
+        x_bottom_in = 0.4
+        #plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.9, left=0.21, right=0.98)
+        plt.subplots_adjust(
+            left   = x_left_in / fig_width,
+            right  = 1 - x_right_in / fig_width,
+            bottom = x_bottom_in / fig_height,
+            top    = 1 - x_top_in / fig_height,
+            wspace = 0.00
+        )
         
         # Get unique stress times and assign colors
         stress_times = df[(df['initial'] != True) &
@@ -1529,7 +1567,7 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
-        fig, ax = plt.subplots(1,2,figsize=(2.5, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(1,2,figsize=(2.3, 2.0), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         xlabel_space = 0.4
         ylabel_space = 0.5
@@ -1553,13 +1591,13 @@ if __name__ == "__main__":
             ax[0].plot(subset['tStress'], subset['Vth_fit'] - subset['Vth_initial'].iloc[0], '-',color=colors[i], alpha=0.7)
         
         ax[0].text(0.05, 0.95, 'Stress', transform=ax[0].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='left')
-        ax[0].legend(fontsize=6, loc='upper left', framealpha=0.0, title=r'$V_\mathsf{G,stress}$', bbox_to_anchor=(0, 0.925),title_fontsize=7)
+        ax[0].legend(fontsize=5, loc='upper left', framealpha=0.0, title=r'$V_\mathsf{G,str}$', bbox_to_anchor=(0, 0.9),title_fontsize=6)
         ax[0].axhline(0, linestyle='--', color = 'k')
         # xlim = ax[0].get_xlim()
         # ylim = ax[0].get_ylim()
         ax[0].set_ylim(-0.2, 1.4)
 
-        ax[0].set_xlabel(r'$t_{\mathsf{stress}}$ [s]', fontsize=8)
+        ax[0].set_xlabel(r'$t_{\mathsf{str}}$ [s]', fontsize=8)
         ax[0].set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
         ax[0].set_xscale('log')
         ax[0].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
@@ -1581,7 +1619,8 @@ if __name__ == "__main__":
             ax[1].plot(subset['tStress'], subset['Vth_fit'] - df[df['cycle']==cycle-1]['Vth_initial'].iloc[0], '-',
                 color=colors[i], alpha=0.7)
         
-        ax[1].text(0.95, 0.95, 'Relax \n' + r'$V_\mathsf{{G,rec}}$=0 V', transform=ax[1].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='right')
+        ax[1].text(0.95, 0.95, 'Relax', transform=ax[1].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='right')
+        ax[1].text(0.95, 0.89, r'$V_\mathsf{{G,relax}}$ = 0 V', transform=ax[1].transAxes, fontsize=6, verticalalignment='top',horizontalalignment='right')
 
         # ax[1].text(0.05, 0.25,r'$V_\mathsf{{G,rec}}$ = 0 V', transform=ax[1].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='left')
                    
@@ -1603,10 +1642,19 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
-        fig, ax = plt.subplots(figsize=(4, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.3, 2.0), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        #plt.subplots_adjust(left=0.125, right=0.7, top=0.98, bottom=0.18)
-        plt.subplots_adjust(left=0.2, right=0.7, top=0.98, bottom=0.18)
+        xlabel_space = 0.4
+        ylabel_space = 0.5
+        right_space = 0.05
+        top_space = 0.05
+        plt.subplots_adjust(
+            wspace = 0.0/fig_width,
+            left   = ylabel_space / fig_width,
+            right  = 1 - right_space / fig_width,
+            bottom = xlabel_space / fig_height,
+            top    = 1 - top_space / fig_height,
+        )
 
         VgStress_array = [3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
         colors = plasma(np.linspace(0.1, 0.9, len(VgStress_array)))
@@ -1630,7 +1678,8 @@ if __name__ == "__main__":
 
         markers = ['v', '^', 's', 'D', 'p', '*', 'h']
         used_labels = set()
-        legend_meas = []
+        #legend_meas = []
+        wl_handles = {}
         for i,VgStress in enumerate(VgStress_array[::-1]):
             df_Vstr = df_filtered[(df_filtered['VgStress']==VgStress)]
             df_groups_Vstr = dict(tuple(df_Vstr.groupby(['batch','dut','sample'])))
@@ -1640,18 +1689,30 @@ if __name__ == "__main__":
                 if key in df_groups_Vstr:
                     subset = df_groups_Vstr[key]
                     subset = subset.sort_values(by='tRec')
-
+                    width = subset['width'].iloc[0]
+                    length = subset['length'].iloc[0]
+                    wl = f'{width}/{length}'
                     # Only label once per key
                     if key not in used_labels:
-                        label = rf'$W/L$ = {subset["width"].iloc[0]}/{subset["length"].iloc[0]}; ' \
-                        rf'Array {subset["array"].iloc[0]}; Meas {subset["sample"].iloc[0]}; '
-                        legend_meas.append(
+                        # label = rf'$W/L$ = {subset["width"].iloc[0]}/{subset["length"].iloc[0]}; ' \
+                        # rf'Array {subset["array"].iloc[0]}; Meas {subset["sample"].iloc[0]}; '
+                        # legend_meas.append(
+                        #     Line2D([0], [0],
+                        #         marker=marker,
+                        #         linestyle='None',
+                        #         markerfacecolor='none',
+                        #         markeredgecolor='#13073A',
+                        #         label=label)
+                        # )
+                        if wl not in wl_handles:
+                            wl_handles[wl] = []
+                        wl_handles[wl].append(
                             Line2D([0], [0],
                                 marker=marker,
                                 linestyle='None',
                                 markerfacecolor='none',
-                                markeredgecolor='#13073A',
-                                label=label)
+                                markeredgecolor='#13073A'
+                                )
                         )
                         used_labels.add(key)
 
@@ -1684,13 +1745,41 @@ if __name__ == "__main__":
         ax.set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
         ax.set_ylim(-0.2, 1.4)
         ax.set_xscale('log')
-        leg1 =ax.legend(handles=legend_meas, fontsize=6, loc='upper left', bbox_to_anchor=(1, 1), framealpha=1)
+
+        legend_handles = []
+        legend_labels = []
+        for wl in wl_handles:
+            handles_tuple = tuple(wl_handles[wl])
+
+            legend_handles.append(handles_tuple)
+            width, length = wl.split('/')
+            label = rf'$W/L = \frac{{{int(float(width))}\,\mu\mathrm{{m}}}}{{{int(float(length))}\,\mu\mathrm{{m}}}}$'
+            legend_labels.append(label) 
+
+        leg1 = ax.legend(
+            legend_handles,
+            legend_labels,
+            handler_map={tuple: HandlerTuple(ndivide=None)},
+            ncol=2,
+            handlelength=1.2,      # shorter line
+            handletextpad=0.3,     # space between line and text
+            columnspacing=0.6,     # space between columns
+            labelspacing=0.2,      # vertical spacing
+            borderpad=0.2,         # padding inside legend box
+            fontsize=4,
+            frameon=False,
+            markerscale=0.5,
+            loc='upper center',
+            bbox_to_anchor=(0.45, 1)
+        )
+        # leg1 =ax.legend(handles=legend_meas, fontsize=4, loc='upper left', bbox_to_anchor=(0, 1), framealpha=0)
         leg2 = ax.legend(
             handles=color_legend,
             fontsize=5,
             loc='upper right',
             framealpha=0.0,
             title=r'$V_\mathsf{G,stress}$',
+            handlelength=1.2,
             title_fontsize=6
         )
         ax.add_artist(leg1)
@@ -1702,8 +1791,20 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','BTI_hbn-encapsulated_vs_non-encapsulated_MSM.csv'))
         df = df[(df['tStress']==100) & (df['temp'] == '300K') & (df['VgRemain'] == 0.0)]
         
-        fig, ax = plt.subplots(2,2,figsize=(3.3, 2.0), constrained_layout=False, sharex=True, sharey=True)
-        plt.subplots_adjust(wspace=0.05, hspace=0.05, left=0.15, right=0.95, top=0.98, bottom=0.18)
+        fig, ax = plt.subplots(2,2,figsize=(2.3, 2.0), constrained_layout=False, sharex=True, sharey=True)
+        fig_width, fig_height = fig.get_size_inches()
+        xlabel_space = 0.4
+        ylabel_space = 0.5
+        right_space = 0.05
+        top_space = 0.05
+        plt.subplots_adjust(
+            wspace = 0.1/fig_width,
+            hspace = 0.1/fig_height,
+            left   = ylabel_space / fig_width,
+            right  = 1 - right_space / fig_width,
+            bottom = xlabel_space / fig_height,
+            top    = 1 - top_space / fig_height,
+        )
         ax = ax.flatten()
         # Plot DeltaVth vs frequency for different devices and samples
         # Prepare groups and style lists
@@ -1749,7 +1850,7 @@ if __name__ == "__main__":
                 })
                 .reset_index()
             )
-            ax[i].text(0.95, 0.95, f'$V_{{G,str}}$ = {VgStress:.1f} V', transform=ax[i].transAxes, fontsize=5, verticalalignment='top',horizontalalignment='right')
+            ax[i].text(0.95, 0.95, f'$V_\mathsf{{G,str}}$ = {VgStress:.1f} V', transform=ax[i].transAxes, fontsize=5, verticalalignment='top',horizontalalignment='right')
             for idx, key in enumerate(all_keys):
                 if key in df_dict:
                     marker = markers_keys[key]
@@ -1808,7 +1909,7 @@ if __name__ == "__main__":
             loc='upper left',
             frameon=False,
             handlelength=0.6,
-            bbox_to_anchor=(0, 1.05)
+            bbox_to_anchor=(0, 0.95)
         )
 
         fig.supylabel(r'$\Delta V_{\mathsf{th}}/t_{\mathsf{ox}}$ [MV/cm]', fontsize=8,y=0.57,x=0.02)
@@ -1861,7 +1962,7 @@ if __name__ == "__main__":
         #     fontsize=22, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
         
-        Vd_text = rf'$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]:.1f} V'
+        Vd_text = rf"$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]:.1f} V"
         ax.text(0.05, 0.05, Vd_text, transform=ax.transAxes, 
                fontsize=22, verticalalignment='bottom',
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
@@ -1914,7 +2015,7 @@ if __name__ == "__main__":
         #     fontsize=22, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
         
-        Vd_text = rf'$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V'
+        Vd_text = rf"$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V"
         ax.text(0.05, 0.05, Vd_text, transform=ax.transAxes, 
                fontsize=22, verticalalignment='bottom',
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
@@ -1968,7 +2069,7 @@ if __name__ == "__main__":
         #     fontsize=22, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
         
-        Vd_text = rf'$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V'
+        Vd_text = rf"$V_\mathsf{{D}}$ = {df['Vd'].iloc[0]} V"
         ax.text(0.05, 0.05, Vd_text, transform=ax.transAxes, 
                fontsize=22, verticalalignment='bottom',
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
@@ -2148,12 +2249,12 @@ if __name__ == "__main__":
                         ax.plot(subset['tStress'], subset['Vth'],
                             marker=marker, linestyle=' ', markersize=10,
                             markeredgecolor="#13073A", markeredgewidth=2,
-                            markerfacecolor='b',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                            markerfacecolor='b',label=rf"$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm")
                     else:
                         ax2.plot(subset['tStress'], subset['I'],
                             marker=marker, linestyle=' ', markersize=10,
                             markeredgecolor="#13073A", markeredgewidth=2,
-                            markerfacecolor='r',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                            markerfacecolor='r',label=rf"$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm")
                         
             ax2.set_yscale('log')
             ax2.set_ylabel(r'$I_D$ [A]', fontsize=textSize, color='r')
@@ -2208,12 +2309,12 @@ if __name__ == "__main__":
                         ax.plot(subset['tRec'], subset['Vth'],
                             marker=marker, linestyle=' ', markersize=10,
                             markeredgecolor="#13073A", markeredgewidth=2,
-                            markerfacecolor='b',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                            markerfacecolor='b',label=rf"$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm")
                     else:
                         ax2.plot(subset['tRec'], subset['I'],
                             marker=marker, linestyle=' ', markersize=10,
                             markeredgecolor="#13073A", markeredgewidth=2,
-                            markerfacecolor='r',label=rf'$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm')
+                            markerfacecolor='r',label=rf"$W/L$ = {subset['width'].iloc[0]}/{subset['length'].iloc[0]}; Array {subset['array'].iloc[0]}; Meas {subset['sample'].iloc[0]}; $E_{{od,str}}$ = {subset['Eod_str'].iloc[0]:.2f} MV/cm")
                         
             ax2.set_yscale('log')
             #ax2.set_ylim(5e-9, 1e-8)

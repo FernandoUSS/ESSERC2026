@@ -1,0 +1,23 @@
+name: envESSERC2026
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - jupyterlab
+  - pip
+
+  - pip:
+      - tensorflow
+      - keras
+      - tensorboard
+      - scienceplots
+      - python-vxi11
