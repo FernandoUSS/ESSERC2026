@@ -372,7 +372,7 @@ if __name__ == "__main__":
         plt.close()
 
     ########## Hysteresis plots ##########
-    if 0: # Hysteresis IdVg example
+    if 1: # Hysteresis IdVg example
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['nom_freq'] == 0.001) & (df['precondition'] == False)]
         for c in ['Id','Vg']:
@@ -385,8 +385,8 @@ if __name__ == "__main__":
 
         fig, ax = plt.subplots(figsize=(2.2, 2),constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        left_in   = 0.6
-        right_in  = 0.1
+        left_in   = 0.5
+        right_in  = 0.05
         top_in    = 0.1
         bottom_in = 0.4
         plt.subplots_adjust(
@@ -477,7 +477,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_IdVg_example.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Id vs t Hysteresis
+    if 1: # Id vs t Hysteresis
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['precondition'] == False)]
         for c in ['Id','Vg','time']:
@@ -598,7 +598,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_time_example.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Hysteresis Vth and DeltaVth vs frequency (one figure version)
+    if 1: # Hysteresis Vth and DeltaVth vs frequency (one figure version)
         ###############################################################################################
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut'] == '1A13t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
@@ -608,10 +608,10 @@ if __name__ == "__main__":
         Vmin = df['Vmin'].iloc[0]
 
         # Create figure with two stacked axes
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.5, 2.), sharex=True, constrained_layout=False)
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.75, 2.), sharex=True, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        left_in   = 0.5
-        right_in  = 0.1
+        left_in   = 0.43
+        right_in  = 0.05
         top_in    = 0.1
         bottom_in = 0.4
         plt.subplots_adjust(
@@ -825,14 +825,14 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_adjusted_range.pdf", bbox_inches=None, transparent=True)
         plt.close()
 
-    if 0: # Plot hysteresis DeltaVth vs freq different Vd (one figure version)
+    if 1: # Plot hysteresis DeltaVth vs freq different Vd (one figure version)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(1, 2, figsize=(4, 2), constrained_layout=False, sharey=True, sharex=True)
+        fig, ax = plt.subplots(1, 2, figsize=(4.2, 2), constrained_layout=False, sharey=True, sharex=True)
         fig_width, fig_height = fig.get_size_inches()
-        left_in   = 0.6
-        right_in  = 0.1
+        left_in   = 0.5
+        right_in  = 0.05
         top_in    = 0.1
         bottom_in = 0.4
         plt.subplots_adjust(
@@ -1089,14 +1089,14 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot hysteresis DeltaVth vs freq comparison
+    if 1: # Plot hysteresis DeltaVth vs freq comparison
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
         df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(figsize=(3, 2), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.75, 2), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        left_in   = 0.6
-        right_in  = 0.1
+        left_in   = 0.5
+        right_in  = 0.05
         top_in    = 0.1
         bottom_in = 0.4
         plt.subplots_adjust(
@@ -1234,7 +1234,7 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 1: # Plot BTI DeltaVth vs total time
+    if 0: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         for c in ['Id','Vg']:
@@ -1452,7 +1452,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_stress_time.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI IdVg (joint plot with recovery)
+    if 0: # Plot BTI IdVg (joint plot with recovery)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 7)]
         for c in ['Id','Vg']:
@@ -1563,7 +1563,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_IdVg_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI OTF DeltaVth vs different VgStress
+    if 0: # Plot BTI OTF DeltaVth vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
@@ -1638,7 +1638,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/OTF_DeltaVth_strrec_differentVstr.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI MSM DeltaVth all duts vs different VgStress
+    if 0: # Plot BTI MSM DeltaVth all duts vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
@@ -1786,7 +1786,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+f"/figures/MSM_DeltaVth_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
+    if 0: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
 
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','BTI_hbn-encapsulated_vs_non-encapsulated_MSM.csv'))
         df = df[(df['tStress']==100) & (df['temp'] == '300K') & (df['VgRemain'] == 0.0)]
