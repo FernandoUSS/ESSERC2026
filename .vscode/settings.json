@@ -14,7 +14,7 @@
 
   "latex-workshop.latex.recipes": [
         {
-      "name": "latexmk → biber → latexmk (2×)",
+      "name": "latexmk → biber → latexmk (2x)",
       "tools": [
         "latexmk",
         "biber",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "name": "pdflatex → makeglossaries → pdflatex (2×)",
+      "name": "pdflatex → makeglossaries → pdflatex (2x)",
       "tools": [
         "pdflatex",
         "makeglossaries",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "name": "pdflatex → bibtex → pdflatex (2×)",
+      "name": "pdflatex → bibtex → pdflatex (2x)",
       "tools": [
         "pdflatex",
         "bibtex",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "name": "latexmk → biber → makeglossaries → latexmk (2×)",
+      "name": "latexmk → biber → makeglossaries → latexmk (2x)",
       "tools": [
         "latexmk",
         "biber",
@@ -65,6 +65,20 @@
     {
       "name": "latex only",
       "tools": ["latex"]
+    },
+    {
+      "name": "pdflatex → png",
+      "tools": [
+        "pdflatex",
+        "pdftoppm"
+        ]
+    },
+    {
+      "name": "pdflatex → svg",
+      "tools": [
+        "pdflatex",
+        "pdftocairo"
+      ]
     }
   ],
 
@@ -120,6 +134,27 @@
       "name": "makeglossaries",
       "command": "makeglossaries",
       "args": ["%DOCFILE%"]
+    },
+    {
+      "name": "pdftoppm",
+      "command": "pdftoppm",
+      "args": [
+        "-png",
+        "-r",
+        "1200",
+        "-singlefile",
+        "%DOCFILE%.pdf",
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "pdftocairo",
+      "command": "pdftocairo",
+      "args": [
+        "-svg",
+        "%DOCFILE%.pdf",
+        "%DOCFILE%.svg"
+      ]
     }
   ],
 

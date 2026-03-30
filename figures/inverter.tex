@@ -1,0 +1,38 @@
+%!LW recipe = pdflatex → svg
+\documentclass{standalone}
+
+\usepackage{circuitikz}
+
+% 🔥 Auto-cropping
+\usepackage{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{5pt}
+
+\begin{document}
+\resizebox{0.5in}{!}{
+\begin{tikzpicture}[line width=0.8pt]
+
+    % Circuit
+    \node[nmos] at (6, 6.23){};
+    \node[nmos] at (6, 7.77){};
+    \node[ground] at (6, 5.46){};
+
+    \node[vcc] (N1) at (6, 8.54){};
+    \node[above, yshift=12pt] at (N1) {$V_\mathsf{DD}$};
+
+    \draw (5.02, 7.77) |- (6, 7);
+
+    \node[circ] (N2) at (4.75, 6.23){};
+    \node[left] at (N2) {$V_\mathsf{in}$};
+
+    \draw (5.02, 6.23) -| (4.75, 6.25);
+
+    \draw (6, 7) -- (6.5, 7);
+
+    \node[circ] (N3) at (6.5, 7){};
+    \node[right] at (N3) {$V_\mathsf{out}$};
+
+\end{tikzpicture}
+}
+
+\end{document}

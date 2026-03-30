@@ -1,0 +1,61 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{fuller}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7d81d4c06481869192d144c549cfbb62}{%
+           family={Fuller},
+           familyi={F\bibinitperiod},
+           given={J.\bibnamedelimi F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=ad529f5ac1d07e2f90a058e2d08ed5f8}{%
+           family={Fuchs},
+           familyi={F\bibinitperiod},
+           given={E.\bibnamedelimi F.},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=fe5b3d6143a1b961279dd92fde341f29}{%
+           family={Roesler},
+           familyi={R\bibinitperiod},
+           given={K.\bibnamedelimi J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{afaeede774d1402807ee2dcac032e9f7}
+      \strng{fullhash}{afaeede774d1402807ee2dcac032e9f7}
+      \strng{bibnamehash}{afaeede774d1402807ee2dcac032e9f7}
+      \strng{authorbibnamehash}{afaeede774d1402807ee2dcac032e9f7}
+      \strng{authornamehash}{afaeede774d1402807ee2dcac032e9f7}
+      \strng{authorfullhash}{afaeede774d1402807ee2dcac032e9f7}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Trans. Power Delivery}
+      \field{month}{4}
+      \field{title}{Influence of harmonics on power distribution system protection}
+      \field{volume}{3}
+      \field{year}{1988}
+      \field{pages}{549\bibrangedash 557}
+      \range{pages}{9}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
