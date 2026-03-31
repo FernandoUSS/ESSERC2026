@@ -151,6 +151,83 @@
       \verb https://www.nature.com/articles/s41928-021-00670-1
       \endverb
     \endentry
+    \entry{lan_reliability_2025}{article}{}
+      \name{author}{7}{}{%
+        {{hash=68a050e4896da812dea11d1b6c528e87}{%
+           family={Lan},
+           familyi={L\bibinitperiod},
+           given={Hao-Yu},
+           giveni={H\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=6c392358242ac9de33f06a8fac36526d}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Shao-Heng},
+           giveni={S\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=755fc75e2332fc5d0ffaf866405d3ccd}{%
+           family={Kantre},
+           familyi={K\bibinitperiod},
+           given={Karim-Alexandros},
+           giveni={K\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=67357d3043bf5679274405c2fa84c5db}{%
+           family={Cott},
+           familyi={C\bibinitperiod},
+           given={Daire},
+           giveni={D\bibinitperiod}}}%
+        {{hash=228ab1b54de583ea8c40dbdb7bcd6a57}{%
+           family={Tripathi},
+           familyi={T\bibinitperiod},
+           given={Rahul},
+           giveni={R\bibinitperiod}}}%
+        {{hash=95e5fc39f3cefcd3e7539245244443a5}{%
+           family={Appenzeller},
+           familyi={A\bibinitperiod},
+           given={Joerg},
+           giveni={J\bibinitperiod}}}%
+        {{hash=abb0bef8736a31b4f5e7952d653f4b28}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhihong},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{fullhash}{be40fad58ea047096b021e74a06f9fb8}
+      \strng{bibnamehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{authorbibnamehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{authornamehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{authorfullhash}{be40fad58ea047096b021e74a06f9fb8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2397-7132}
+      \field{journaltitle}{npj 2D Materials and Applications}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Reliability of high-performance monolayer {MoS2} transistors on scaled high-k {HfO2}}
+      \field{urlday}{24}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{volume}{9}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{5}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/s41699-025-00527-7
+      \endverb
+      \verb{file}
+      \verb PDF:/home/delossa/Zotero/storage/8D73WRKU/Lan et al. - 2025 - Reliability of high-performance monolayer MoS2 transistors on scaled high-κ HfO2.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41699-025-00527-7
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41699-025-00527-7
+      \endverb
+    \endentry
     \entry{liu_promises_2021}{article}{}
       \name{author}{6}{}{%
         {{hash=8e34231ba9b9318aa75b42a62d10fba4}{%

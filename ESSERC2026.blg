@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is '/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.blg'
-[74] biber:340> INFO - === Tue Mar 31, 2026, 17:34:45
-[88] Biber.pm:419> INFO - Reading '/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bcf'
-[145] Biber.pm:979> INFO - Found 2 citekeys in bib section 0
-[156] Biber.pm:4419> INFO - Processing section 0
-[165] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
-[166] bibtex.pm:1713> INFO - LaTeX decoding ...
-[171] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[237] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[237] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[237] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[237] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[243] bbl.pm:660> INFO - Writing '/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bbl' with encoding 'UTF-8'
-[246] bbl.pm:763> INFO - Output to /home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bbl
+[77] biber:340> INFO - === Tue Mar 31, 2026, 18:03:14
+[92] Biber.pm:419> INFO - Reading '/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bcf'
+[148] Biber.pm:979> INFO - Found 3 citekeys in bib section 0
+[160] Biber.pm:4419> INFO - Processing section 0
+[168] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[169] bibtex.pm:1713> INFO - LaTeX decoding ...
+[176] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[259] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[259] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[259] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[259] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[266] bbl.pm:660> INFO - Writing '/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bbl' with encoding 'UTF-8'
+[268] bbl.pm:763> INFO - Output to /home/delossa/Nextcloud/ESSERC2026/ESSERC2026.bbl

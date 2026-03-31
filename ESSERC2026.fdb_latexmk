@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber ESSERC2026"] 1774971279.86636 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1774971285.22523 0
-  "ESSERC2026.bcf" 1774971285.12226 107848 a124250a561c29041390de91bd92f355 "pdflatex"
-  "references.bib" 1774971268.51224 1700 4f5ffdda5cd8d9749a1d7f152d7188aa ""
+["biber ESSERC2026"] 1774972989.71653 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1774972994.20845 0
+  "ESSERC2026.bcf" 1774972994.08213 107923 9275caa741af462d966d8e19c1bc3051 "pdflatex"
+  "references.bib" 1774972989.41113 2460 4cb815d0976d2a952bfa8b1612f74846 ""
   (generated)
   "ESSERC2026.bbl"
   "ESSERC2026.blg"
   (rewritten before read)
-["pdflatex"] 1774971283.70784 "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1774971285.22556 0
+["pdflatex"] 1774972992.36143 "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1774972994.2089 0
   "/etc/texmf/web2c/texmf.cnf" 1763374453.26846 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" 1774971278.1792 8887 4f8c03aba20007810d07c24b342c45c7 ""
+  "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" 1774972967.36604 9202 358720f26acd649ba72301561b00965f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvr7t.tfm" 1136768653 2520 53e01eef820ca829e42c1333c3fd02b9 ""
@@ -52,6 +52,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1248133631 36094 798f80770b3b148ceedd006d487db67c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb" 1248133631 24420 52dbb8e8aa0069a1b987309557f8d303 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -208,10 +209,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1764145359.02932 5399163 1d63915be91df504719dfec6da5ec43e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1764145398 6927419 b91f006974c701e58abf10c5d3734f92 ""
-  "ESSERC2026.aux" 1774971285.12026 7055 f620eb03a8442fb17e01073ada5b54b9 "pdflatex"
-  "ESSERC2026.bbl" 1774971280.66691 8428 2099e9993837919b263a5ac19dce4d72 "biber ESSERC2026"
-  "ESSERC2026.run.xml" 1774971285.1237 2347 d8d493c03f0a38164834749ef134e866 "pdflatex"
-  "ESSERC2026.tex" 1774971278.1792 8887 4f8c03aba20007810d07c24b342c45c7 ""
+  "ESSERC2026.aux" 1774972994.08013 7215 f289ff34d3fc1afeb8ccd65e788858f6 "pdflatex"
+  "ESSERC2026.bbl" 1774972990.57346 11374 f369977857076523a750d54b46b273d5 "biber ESSERC2026"
+  "ESSERC2026.run.xml" 1774972994.08395 2347 d8d493c03f0a38164834749ef134e866 "pdflatex"
+  "ESSERC2026.tex" 1774972967.36604 9202 358720f26acd649ba72301561b00965f ""
   "IEEEtran.cls" 1440632924 288304 b67b6fc6c2abb39f9b461923f5199343 ""
   "figures/BTI_IdVg_stressrelax.pdf" 1774819202 30067 99d9eae2b3226b8b8d3138ad2450a1fa ""
   "figures/BTI_inv_stressrelax.pdf" 1774894641.27957 30969 9179d8f167a59671197141281383fc05 ""
