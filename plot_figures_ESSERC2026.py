@@ -193,6 +193,7 @@ if __name__ == "__main__":
     # Figures
 
     ########## Performance and variability ##########
+
     if 0: # IdVg curves for encapsulated devices
 
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
@@ -1158,7 +1159,15 @@ if __name__ == "__main__":
                 Vmax = subset['Vmax'].iloc[0]
                 Vmin = subset['Vmin'].iloc[0]
                 dut = key[1]
-                line_dut, = ax.plot(subset['freq'], subset['DeltaVth'],
+                subset = subset.sort_values(by='freq') 
+                if batch == 'TUWien_planar_hbn-encapsulated':
+                    subset = subset.iloc[:-4]  
+                    freq = subset['freq']
+                    DeltaVth = subset['DeltaVth']
+                else:
+                    freq = subset['freq']
+                    DeltaVth = subset['DeltaVth']
+                line_dut, = ax.plot(freq, DeltaVth,
                     marker=marker, linestyle=' ',
                     markeredgecolor="#13073A",
                     markerfacecolor=batch_colors[batch], alpha=0.7) # label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};') #+f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
@@ -2011,7 +2020,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/inverter_VTC.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot inverter gain for different Vdd
+    if 1: # Plot inverter gain for different Vdd
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
@@ -2034,16 +2043,18 @@ if __name__ == "__main__":
         # Inset
         axins = ax.inset_axes([0.5, 0.3, 0.48, 0.48])
         axins.tick_params(axis='x',
-            which='both',
-            bottom=False,
-            labelbottom=False,
+            # which='both',
+            # bottom=False,
+            # labelbottom=False,
+            labelsize=5
         )
         axins.tick_params(axis='y', labelsize=5)
 
         Vdd_array = df['Vdd'].sort_values().unique()
+        Vdd_array_gain = [3.5, 4.0, 4.5, 5.0]
         colors = viridis(np.linspace(0.1, 0.9, len(Vdd_array)))
         Vdd_colors = {Vdd: colors[i] for i, Vdd in enumerate(Vdd_array)}
-        for Vdd in Vdd_array:
+        for Vdd in Vdd_array[::-1]:
             df_Vdd = df[df['Vdd'] == Vdd]
             Vin = df_Vdd['Vinput'].values[0]
             Vout = df_Vdd['Voutput'].values[0]
@@ -2053,17 +2064,25 @@ if __name__ == "__main__":
             dVoutdVin_fit = df_Vdd['dVoutdVin_fit'].values[0]
             ax.plot(Vin, Vout, '.', color=Vdd_colors[Vdd], label=f'{Vdd:.1f} V', markeredgewidth=0.00, markeredgecolor="#13073A", markerfacecolor=Vdd_colors[Vdd], alpha = 0.7)
             ax.plot(Vin_fit, Vout_fit, '-', color=Vdd_colors[Vdd], alpha = 1)
-            axins.plot(Vin, dVoutdVin, '.', color=Vdd_colors[Vdd], markeredgewidth=0.1, markeredgecolor="#13073A", markerfacecolor=Vdd_colors[Vdd], alpha = 0.5)
-            axins.plot(Vin_fit, dVoutdVin_fit, '-', color=Vdd_colors[Vdd], alpha = 1)
+            if Vdd in Vdd_array_gain:
+                axins.plot(Vin, dVoutdVin, '.', color=Vdd_colors[Vdd], markeredgewidth=0.1, markeredgecolor="#13073A", markerfacecolor=Vdd_colors[Vdd], alpha = 0.5)
+                axins.plot(Vin_fit, dVoutdVin_fit, '-', color=Vdd_colors[Vdd], alpha = 1, label=f'{Vdd:.1f} V')
+                ymin, ymax = axins.get_ylim()
+                axins.vlines(x=Vin_fit[np.argmax(dVoutdVin_fit)], ymin=ymin, ymax=np.max(dVoutdVin_fit), color=Vdd_colors[Vdd], linestyle='--', alpha=0.7)
         
-        x1, x2 = np.min(Vin_fit), np.max(Vin_fit)
+        x1, x2 = 0.5,0.65
         axins.set_xlim(x1, x2)
+        axins.set_ylim(0, 140)
+        axins.set_xticks([0.5, 0.55, 0.6, 0.65])
+        axins.set_xticklabels([0.50, 0.55, 0.60, None])
         ax.axvspan(x1, x2, color='gray', alpha=0.15)
         con1 = ConnectionPatch(
             xyA=(x1, ax.get_ylim()[0]), coordsA=ax.transData,
             xyB=(0, 0), coordsB=axins.transAxes,
             color="0.5"
         )
+
+        axins.legend(fontsize=4, loc='upper left', framealpha=0.0, title=r'$V_\mathsf{DD}$', title_fontsize=4, handlelength=0.8)
 
         con2 = ConnectionPatch(
             xyA=(x2, ax.get_ylim()[0]), coordsA=ax.transData,
@@ -2103,7 +2122,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/inverter_gain.png", bbox_inches=None, dpi=600)
         plt.close()
 
-    if 1: # Plot inverter BTI
+    if 0: # Plot inverter BTI
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['cycle'] == 1)]
         for c in ['Vinput','Voutput']:
