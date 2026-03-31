@@ -11,7 +11,8 @@
 \usepackage{float}
 \usepackage[caption=false,font=normalsize,labelfont=small,textfont=sf]{subfig}
 \usepackage{circuitikz}
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,style=ieee]{biblatex}
+%\bibliographystyle{IEEEtran}
 \addbibresource{references.bib}
 %\usepackage{subcaption}
 
@@ -63,11 +64,13 @@ component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-As device miniaturization continues, the performance of traditional logic devices based on bulk semiconductors becomes increasingly constrained, either by the exacerbation of short-channel effects when the channel thickness is not scaled accordingly, or by the associated mobility degradation when it is~\cite{liu_promises_2021}. To overcome this inherent trade-off of bulk channels, two-dimensional (2D) materials, whose carrier mobility exhibits weak thickness dependence, have attracted significant attention. Among them, transition-metal dichalcogenides (TMDs) offer suitable bandgaps and currently represent the backbone of active logic devices based on 2D materials~\cite{das_transistors_2021}. 
+As device miniaturization continues, the performance of traditional logic devices based on bulk semiconductors becomes increasingly constrained, either by the exacerbation of short-channel effects when the channel thickness is not scaled accordingly, or by the associated mobility reduction when it is~\cite{liu_promises_2021}. To overcome this inherent trade-off of bulk channels, two-dimensional (2D) materials, whose carrier mobility exhibits weak thickness dependence, have attracted significant attention. Among them, transition-metal dichalcogenides (TMDs) offer suitable bandgaps and currently represent the backbone of active logic devices based on 2D materials~\cite{das_transistors_2021}. 
 
-However, important limitations arise with the use of 2D materials. While their dangling-bond-free interfaces mitigate mobility degradation, the absence of covalent bonding at the oxide–channel interface results in increased instabilities compared to the well-established SiO$_2$/Si interface~\cite{lan_reliability_2025}. 
+However, important limitations arise with the use of 2D materials. While their dangling-bond-free interfaces mitigate the mobility drop for scaled devices, the absence of covalent bonding at the oxide–channel interface leads to increased instability compared to the well-established SiO$_2$/Si interface~\cite{lan_reliability_2025}. This instability typically manifests during device operation and entails shifts in key device parameters (most notably the threshold voltage), thereby compromising the functionality and the performance of the resulting logic circuits. 
 
-\section{Methods and Fabrication}
+These detrimental effects can be observed and quantified either under varying device conditions, as in classical hysteresis and bias temperature instability (BTI) measurements where the gate voltage is altered, or under constant conditions, as in low-frequency noise measurements. In particular, the former have proven to be straightforward and highly effective techniques for assessing device reliability~\cite{provias_reliability_2023}. However, inaccurate conclusions may be drawn if key experimental parameters and essential characteristics of the devices under test are overlooked. For instance, while the time required to perform the up- and down-sweeps in hysteresis measurements is rarely reported, it has been shown to have a significant impact on the underlying physical mechanisms of hysteresis and the resulting measurements~\cite{karl_standardized_2025}. Similarly, as the impact of most degradation mechanisms depends on oxide thickness, it becomes essential to normalize both hysteresis and BTI shifts with respect to thickness to enable accurate comparisons between samples.
+
+\section{Device Fabrication and Performance}
 
 \begin{figure}[ht]
     \centering
@@ -81,6 +84,8 @@ However, important limitations arise with the use of 2D materials. While their d
     \label{fig:devices_performance}
 \end{figure}
 
+\section{Hysteresis Characterization}
+
 \begin{figure*}[ht]
     \centering
     \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:example_hyst_IdVg}}
@@ -90,9 +95,11 @@ However, important limitations arise with the use of 2D materials. While their d
     \subfloat[\small FETs B, C]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_differentVd}}
     \hfill
     \subfloat[\small FETs D, E(enc.), $\alpha, \beta, \gamma, \delta$(non-enc.)]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} 
-    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$ evaluated at a constant current criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep times, $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent from the applied drain bias, as evaluated on two different devices. More consistent hysteresis results are obtained when using an adaptive scheme for the gate voltage range targeting the same overdrive and the same sweep range in the subthreshold (right), as compared to a fixed gate voltage range (left). (e) \textbf{Hysteresis on encapsulated vs. non-encapsulated devices}: The hysteresis width on encapsulated devices is negative (counter-clockwise) and on non-encapsulated devices it was of a similar magnitude but positive (clockwise) evaluated at $V_\mathsf{D}=0.1 V$.  }
+    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$ evaluated at a constant current criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep times, $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent from the applied drain bias, as evaluated on two different devices. More consistent hysteresis results are obtained when using an adaptive scheme for the gate voltage range targeting the same overdrive and the same sweep range in the subthreshold (right), as compared to a fixed gate voltage range (left). (e) \textbf{Hysteresis on encapsulated vs. non-encapsulated devices}: The hysteresis width on encapsulated devices is negative (counter-clockwise) and on non-encapsulated devices it was of a similar magnitude but positive (clockwise) evaluated at $V_\mathsf{D}=0.1 V$.}
     \label{fig:hysteresis}
 \end{figure*}
+
+\section{Bias Temperature Instability}
 
 \begin{figure*}[ht]
     \centering
@@ -108,6 +115,8 @@ However, important limitations arise with the use of 2D materials. While their d
     \label{fig:BTI}
 \end{figure*}
 
+\section{Inverter Performance and Reliability}
+
 \begin{figure*}[ht]
     \centering
     \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
@@ -118,6 +127,8 @@ However, important limitations arise with the use of 2D materials. While their d
     \caption{(a) Example of a TDDB curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
     \label{fig:inverters}
 \end{figure*}
+
+\section{Conclusions}
 
 \section*{Acknowledgment}
 

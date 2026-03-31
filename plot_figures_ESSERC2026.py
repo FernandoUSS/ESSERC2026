@@ -9,10 +9,10 @@ from matplotlib.colors import to_rgb, LogNorm
 import matplotlib.colors as mcolors
 from matplotlib.legend_handler import HandlerTuple
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-from reportlab.pdfgen import canvas
-from svglib.svglib import svg2rlg
-from reportlab.graphics import renderPDF
-from pypdf import PdfReader, PdfWriter, Transformation
+# from reportlab.pdfgen import canvas
+# from svglib.svglib import svg2rlg
+# from reportlab.graphics import renderPDF
+# from pypdf import PdfReader, PdfWriter, Transformation
 import matplotlib.image as mpimg
 import numpy as np
 import os
@@ -1096,7 +1096,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot hysteresis DeltaVth vs freq comparison
+    if 1: # Plot hysteresis DeltaVth vs freq comparison
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
         df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
 
@@ -1154,6 +1154,7 @@ if __name__ == "__main__":
                 subset = df_dict[key]
                 Vd = subset['Vd'].iloc[0]
                 batch = subset['batch'].iloc[0]
+                tox = subset['tox'].iloc[0]*1e-8 # convert to cm
                 width = str(subset['width'].iloc[0])
                 length = str(subset['length'].iloc[0])
                 Vmax = subset['Vmax'].iloc[0]
@@ -1162,11 +1163,8 @@ if __name__ == "__main__":
                 subset = subset.sort_values(by='freq') 
                 if batch == 'TUWien_planar_hbn-encapsulated':
                     subset = subset.iloc[:-4]  
-                    freq = subset['freq']
-                    DeltaVth = subset['DeltaVth']
-                else:
-                    freq = subset['freq']
-                    DeltaVth = subset['DeltaVth']
+                freq = subset['freq']
+                DeltaVth = subset['DeltaVth']/tox*1e-6 # Convert to MV/cm
                 line_dut, = ax.plot(freq, DeltaVth,
                     marker=marker, linestyle=' ',
                     markeredgecolor="#13073A",
@@ -1182,6 +1180,7 @@ if __name__ == "__main__":
 
         batch_elements = []
         for batch in df['batch'].unique():
+            tox = df[df['batch'] == batch]['tox'].iloc[0]*1e-8 # convert to cm
             batch_elements.append(
                 Line2D([0], [0],
                     marker=None,                    # choose your marker
@@ -1191,7 +1190,12 @@ if __name__ == "__main__":
                     label=batch_labels[batch])
             )
             freq_fit = np.logspace(np.log10(df_avg['nom_freq'].min()), np.log10(df_avg['nom_freq'].max()), 100)
-            DeltaVth_fit,_ = ProcessingLibrary.fit_data_freq(df_avg[df_avg['batch'] == batch]['nom_freq'], df_avg[df_avg['batch'] == batch]['DeltaVth'], freq_fit=freq_fit, fit='spline')
+            df_avg_batch = df_avg[df_avg['batch'] == batch].sort_values(by='nom_freq')
+            if batch == 'TUWien_planar_hbn-encapsulated':
+                df_avg_batch = df_avg_batch.iloc[:-4]  
+            freq = df_avg_batch['nom_freq']
+            DeltaVth = df_avg_batch['DeltaVth']/tox*1e-6
+            DeltaVth_fit,_ = ProcessingLibrary.fit_data_freq(freq, DeltaVth, freq_fit=freq_fit, fit='spline')
             ax.plot(freq_fit, DeltaVth_fit, linestyle=batch_linestyle[batch], color=batch_colors[batch], alpha=1)
         
         ax.axhline(0, linestyle='--', color = 'k', alpha=0.5)
@@ -1209,10 +1213,10 @@ if __name__ == "__main__":
         # ax.legend(dut_handles, dut_labels, fontsize=5, 
         #       loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
                 
-        ax.set_ylabel(r'Hysteresis Width, $V_\mathsf{H}$ [V]', fontsize=8)
+        ax.set_ylabel(r'$V_\mathsf{H}/t_\mathsf{ox}$ [MV/cm]', fontsize=8)
         ax.set_xscale('log')
         #ax.set_xlim(1e-3,200)
-        ax.set_ylim(-0.2, 0.4)
+        ax.set_ylim(-1, 1.5)
         #ax.grid(True, which='both', alpha=0.3)
         ax.set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
         
@@ -1241,7 +1245,7 @@ if __name__ == "__main__":
             frameon=False,
             markerscale=0.5,
             loc='upper center',
-            bbox_to_anchor=(0.55, 0.82)
+            bbox_to_anchor=(0.55, 0.87)
         )
 
         ax.add_artist(leg_batch)
@@ -2020,7 +2024,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/inverter_VTC.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot inverter gain for different Vdd
+    if 0: # Plot inverter gain for different Vdd
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
