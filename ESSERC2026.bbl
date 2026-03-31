@@ -19,41 +19,209 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
-    \entry{fuller}{article}{}
-      \name{author}{3}{}{%
-        {{hash=7d81d4c06481869192d144c549cfbb62}{%
-           family={Fuller},
+    \entry{das_transistors_2021}{article}{}
+      \name{author}{18}{}{%
+        {{hash=f7d6ba3680d946d04ec8ea2803aa4179}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Saptarshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c9849cdd5fa9e9b068bd4bb5b291e1f3}{%
+           family={Sebastian},
+           familyi={S\bibinitperiod},
+           given={Amritanand},
+           giveni={A\bibinitperiod}}}%
+        {{hash=288efd65c91c298f33226d5b96dd3c2e}{%
+           family={Pop},
+           familyi={P\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=f392f869eb544b9e6c18d8b888158427}{%
+           family={McClellan},
+           familyi={M\bibinitperiod},
+           given={Connor\bibnamedelima J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=fdf9bce9594d4efe5b8d010f74754b55}{%
+           family={Franklin},
            familyi={F\bibinitperiod},
-           given={J.\bibnamedelimi F.},
-           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
-        {{hash=ad529f5ac1d07e2f90a058e2d08ed5f8}{%
-           family={Fuchs},
-           familyi={F\bibinitperiod},
-           given={E.\bibnamedelimi F.},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
-        {{hash=fe5b3d6143a1b961279dd92fde341f29}{%
-           family={Roesler},
-           familyi={R\bibinitperiod},
-           given={K.\bibnamedelimi J.},
-           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+           given={Aaron\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=0853f6a1e046077355103ffb9123653f}{%
+           family={Grasser},
+           familyi={G\bibinitperiod},
+           given={Tibor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=15ac05beebf119673c1b0c8ecc716e00}{%
+           family={Knobloch},
+           familyi={K\bibinitperiod},
+           given={Theresia},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c996042c934e23cff6c14c0714a34b53}{%
+           family={Illarionov},
+           familyi={I\bibinitperiod},
+           given={Yury},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=4260e8d86c83f87894ccdb5900b5dc19}{%
+           family={Penumatcha},
+           familyi={P\bibinitperiod},
+           given={Ashish\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=95e5fc39f3cefcd3e7539245244443a5}{%
+           family={Appenzeller},
+           familyi={A\bibinitperiod},
+           given={Joerg},
+           giveni={J\bibinitperiod}}}%
+        {{hash=abb0bef8736a31b4f5e7952d653f4b28}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhihong},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=24b1249cd0ca43fe622834c13bb79606}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Wenjuan},
+           giveni={W\bibinitperiod}}}%
+        {{hash=c73c672e5278c0834502ff5d6233bdb2}{%
+           family={Asselberghs},
+           familyi={A\bibinitperiod},
+           given={Inge},
+           giveni={I\bibinitperiod}}}%
+        {{hash=da46492ce09ca687e56cf8af2947316c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Lain-Jong},
+           giveni={L\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=d54b8da45f81512ec11d7deb986a2eab}{%
+           family={Avci},
+           familyi={A\bibinitperiod},
+           given={Uygar\bibnamedelima E.},
+           giveni={U\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=bfb3d334774f8b96784ae6a95abb0dcc}{%
+           family={Bhat},
+           familyi={B\bibinitperiod},
+           given={Navakanta},
+           giveni={N\bibinitperiod}}}%
+        {{hash=ec87b2c4da8580d6515b2c46e8046c59}{%
+           family={Anthopoulos},
+           familyi={A\bibinitperiod},
+           given={Thomas\bibnamedelima D.},
+           giveni={T\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=cbde85ee2c0a3616ba2a13bc0999a450}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Rajendra},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{afaeede774d1402807ee2dcac032e9f7}
-      \strng{fullhash}{afaeede774d1402807ee2dcac032e9f7}
-      \strng{bibnamehash}{afaeede774d1402807ee2dcac032e9f7}
-      \strng{authorbibnamehash}{afaeede774d1402807ee2dcac032e9f7}
-      \strng{authornamehash}{afaeede774d1402807ee2dcac032e9f7}
-      \strng{authorfullhash}{afaeede774d1402807ee2dcac032e9f7}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{fullhash}{33cc53ab0dba8523332a9a00305859b0}
+      \strng{bibnamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{authorbibnamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{authornamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{authorfullhash}{33cc53ab0dba8523332a9a00305859b0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Trans. Power Delivery}
-      \field{month}{4}
-      \field{title}{Influence of harmonics on power distribution system protection}
-      \field{volume}{3}
-      \field{year}{1988}
-      \field{pages}{549\bibrangedash 557}
-      \range{pages}{9}
+      \field{issn}{2520-1131}
+      \field{journaltitle}{Nature Electronics}
+      \field{month}{11}
+      \field{number}{11}
+      \field{title}{Transistors based on two-dimensional materials for future integrated circuits}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{volume}{4}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{786\bibrangedash 799}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1038/s41928-021-00670-1
+      \endverb
+      \verb{file}
+      \verb PDF:/home/delossa/Zotero/storage/6ILX55ZL/Das et al. - 2021 - Transistors based on two-dimensional materials for future integrated circuits.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41928-021-00670-1
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41928-021-00670-1
+      \endverb
+    \endentry
+    \entry{liu_promises_2021}{article}{}
+      \name{author}{6}{}{%
+        {{hash=8e34231ba9b9318aa75b42a62d10fba4}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a51cbca7e7ebbcd2360b8084c3f55b8c}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Xidong},
+           giveni={X\bibinitperiod}}}%
+        {{hash=a4b150834492dfa3c6d18640667e0908}{%
+           family={Shin},
+           familyi={S\bibinitperiod},
+           given={Hyeon-Jin},
+           giveni={H\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=8a0efc3ec5dba4771b60adb40447e4c3}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Seongjun},
+           giveni={S\bibinitperiod}}}%
+        {{hash=dc6b5e453107942fba466f6dd9f9bf05}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d08a43e8d0557d0f1c41d00369694872}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Xiangfeng},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{fullhash}{8b327eef08c1fe9c4a890f59d0f25e9f}
+      \strng{bibnamehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{authorbibnamehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{authornamehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{authorfullhash}{8b327eef08c1fe9c4a890f59d0f25e9f}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0028-0836, 1476-4687}
+      \field{journaltitle}{Nature}
+      \field{month}{3}
+      \field{number}{7848}
+      \field{title}{Promises and prospects of two-dimensional transistors}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{volume}{591}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{43\bibrangedash 53}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1038/s41586-021-03339-z
+      \endverb
+      \verb{file}
+      \verb Liu et al. - 2021 - Promises and prospects of two-dimensional transist.pdf:/home/delossa/Zotero/storage/XN6F2KJS/Liu et al. - 2021 - Promises and prospects of two-dimensional transist.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41586-021-03339-z
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41586-021-03339-z
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
