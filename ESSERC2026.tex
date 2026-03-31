@@ -19,7 +19,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{A Comprehensive Reliability Assessment of hBN-encapsulated MoS$_2$ FETs and Inverters\\
+\title{A Comprehensive Reliability Assessment of hBN-encapsulated TMD FETs and Inverters\\
 %Hysteresis and Reliability of \\ hBN-encapsulated MoS$_2$ FETs\\
 \thanks{We gratefully acknowledge funding from the European Innovation Council under project number 101223249.}
 }
@@ -28,11 +28,12 @@
 \IEEEauthorblockN{
 F. de los Santos-Prieto\IEEEauthorrefmark{1},
 A. Verdianu\IEEEauthorrefmark{1},
-A. Provias \IEEEauthorrefmark{1},
-A. Karl \IEEEauthorrefmark{1},
-D. Polyushkin\IEEEauthorrefmark{2},
+A. Provias\IEEEauthorrefmark{1},
+A. Karl\IEEEauthorrefmark{1},
+L. Pettorosso\IEEEauthorrefmark{2},
+D. Polyushkin\IEEEauthorrefmark{2},\\
 D. Waldhoer\IEEEauthorrefmark{1},
-T. Müller\IEEEauthorrefmark{2}, \\ 
+T. Müller\IEEEauthorrefmark{2}, 
 T. Grasser\IEEEauthorrefmark{1}, and 
 T. Knobloch\IEEEauthorrefmark{1},
 }
@@ -44,6 +45,8 @@ Institute for Microelectronics, Technical University of Vienna, Vienna, Austria
 \IEEEauthorblockA{\IEEEauthorrefmark{2}
 Institute of Photonics, Technical University of Vienna, Vienna, Austria
 }
+
+Email: \{delossa\textbar knobloch\}@iue.tuwien.ac.at
 }
 
 \maketitle
@@ -70,44 +73,44 @@ component, formatting, style, styling, insert
     % \subfloat[]{\includegraphics[width=0.35\linewidth]{figures/layout.png}\label{fig:modes}}
     % \hfill
     \subfloat[]{\includegraphics[]{figures/IdVg_encapsulated_1.pdf}\label{fig:performance_hbn}}
-    \caption{\textbf{Cross-section schematics}: (a) exposed and (b) hBN-encapsulated MoS$_2$ FETs. (c) \textbf{Performance of the fabricated devices}: $I_\mathsf{D(G)}$-$V_\mathsf{G}$ curves for different drain voltages and main device metrics.}
+    \caption{\textbf{Cross-section schematics}: (a) exposed and (b) hBN-encapsulated MoS$_2$ FETs. (c) \textbf{Performance of the fabricated devices}: $I_\mathsf{D(G)}$-$V_\mathsf{G}$ curves for different drain voltages and the main device metrics.}
     \label{fig:devices_performance}
 \end{figure}
 
 \begin{figure*}[ht]
     \centering
-    \subfloat[]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:example_hyst_IdVg}}
-    \subfloat[]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_vs_time}}
+    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:example_hyst_IdVg}}
+    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_vs_time}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:hysteresis_vs_freq}} \\[-1.2em]
-    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_differentVd}}
+    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:hysteresis_vs_freq}} \\[-1.2em]
+    \subfloat[\small FETs B, C]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_differentVd}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} 
-    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep rates, $r_\mathsf{sw}$. (c) \textbf{Hysteresis-$r_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep rate, $r_\mathsf{sw}$.}
+    \subfloat[\small FETs D, E(enc.), $\alpha, \beta, \gamma, \delta$(non-enc.)]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} 
+    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$ evaluated at a constant current criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep times, $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent from the applied drain bias, as evaluated on two different devices. More consistent hysteresis results are obtained when using an adaptive scheme for the gate voltage range targeting the same overdrive and the same sweep range in the subthreshold (right), as compared to a fixed gate voltage range (left). (e) \textbf{Hysteresis on encapsulated vs. non-encapsulated devices}: The hysteresis width on encapsulated devices is negative (counter-clockwise) and on non-encapsulated devices it was of a similar magnitude but positive (clockwise) evaluated at $V_\mathsf{D}=0.1 V$.  }
     \label{fig:hysteresis}
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
-    \subfloat[]{\includegraphics[]{figures/BTI_stress_time.pdf}\label{fig:OTF_MSM_time}}
+    \subfloat[\small FETs F, G]{\includegraphics[]{figures/BTI_stress_time.pdf}\label{fig:OTF_MSM_time}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/BTI_IdVg_stressrelax.pdf}\label{fig:BTI_IdVg}} \\[-1em]
-    \subfloat[]{\includegraphics[]{figures/OTF_DeltaVth_strrec_differentVstr.pdf}\label{fig:OTF_differentVstr}}
+    \subfloat[\small FET G]{\includegraphics[]{figures/BTI_IdVg_stressrelax.pdf}\label{fig:BTI_IdVg}} \\[-1em]
+    \subfloat[\small FET G]{\includegraphics[]{figures/OTF_DeltaVth_strrec_differentVstr.pdf}\label{fig:OTF_differentVstr}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/MSM_DeltaVth_duts.pdf}\label{fig:MSM_duts}}
+    \subfloat[\small FETs F,H,I,J,K,L]{\includegraphics[]{figures/MSM_DeltaVth_duts.pdf}\label{fig:MSM_duts}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/MSM_DeltaVth_comparison.pdf}\label{fig:MSM_comparison}}
+    \subfloat[\small FETs F,H,I,J,K,L(enc.), $\epsilon$(non-enc.)]{\includegraphics[]{figures/MSM_DeltaVth_comparison.pdf}\label{fig:MSM_comparison}}
     \caption{(a) Example of a hysteresis curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
     \label{fig:BTI}
 \end{figure*}
 
 \begin{figure*}[ht]
     \centering
-    \subfloat[]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
+    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/inverter_gain.png}\label{fig:inverter_gain}}
+    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_gain.png}\label{fig:inverter_gain}}
     \hfill
-    \subfloat[]{\includegraphics[]{figures/BTI_inv_stressrelax.pdf}}
+    \subfloat[\small Inverter B]{\includegraphics[]{figures/BTI_inv_stressrelax.pdf}}
     \caption{(a) Example of a TDDB curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
     \label{fig:inverters}
 \end{figure*}
