@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  1 APR 2026 00:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  1 APR 2026 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -836,9 +836,9 @@ pdfTeX warning: pdflatex (file ./figures/exposedMoS2.pdf): PDF inclusion: found 
 <figures/exposedMoS2.pdf, id=4, 309.07468pt x 174.6525pt>
 File: figures/exposedMoS2.pdf Graphic file (type pdf)
 <use figures/exposedMoS2.pdf>
-Package pdftex.def Info: figures/exposedMoS2.pdf  used on input line 77.
+Package pdftex.def Info: figures/exposedMoS2.pdf  used on input line 82.
 (pdftex.def)             Requested size: 118.4403pt x 66.92828pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 77.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 82.
 (C:\Users\bysho\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
@@ -847,82 +847,85 @@ pdfTeX warning: pdflatex (file ./figures/hBNencapsulatedMoS2.pdf): PDF inclusion
 <figures/hBNencapsulatedMoS2.pdf, id=5, 313.17pt x 174.6525pt>
 File: figures/hBNencapsulatedMoS2.pdf Graphic file (type pdf)
 <use figures/hBNencapsulatedMoS2.pdf>
-Package pdftex.def Info: figures/hBNencapsulatedMoS2.pdf  used on input line 78.
+Package pdftex.def Info: figures/hBNencapsulatedMoS2.pdf  used on input line 83.
 (pdftex.def)             Requested size: 118.4403pt x 66.05417pt.
 <figures/IdVg_encapsulated_1.pdf, id=6, 238.49101pt x 144.54pt>
 File: figures/IdVg_encapsulated_1.pdf Graphic file (type pdf)
 <use figures/IdVg_encapsulated_1.pdf>
-Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 82.
+Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 87.
 (pdftex.def)             Requested size: 238.49042pt x 144.53963pt.
 <figures/hysteresis_IdVg_example.pdf, id=7, 158.99399pt x 144.54pt>
 File: figures/hysteresis_IdVg_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_IdVg_example.pdf>
-Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 91.
+Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 97.
 (pdftex.def)             Requested size: 158.99359pt x 144.53963pt.
 <figures/hysteresis_time_example.pdf, id=8, 158.99399pt x 144.54pt>
 File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_time_example.pdf>
-Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 92.
+Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 98.
 (pdftex.def)             Requested size: 158.99359pt x 144.53963pt.
 <figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=9, 187.902pt x 144.54pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
-Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 94.
+Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 100.
 (pdftex.def)             Requested size: 187.90154pt x 144.53963pt.
 <figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=10, 289.08pt x 144.54pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 95.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 101.
 (pdftex.def)             Requested size: 289.07928pt x 144.53963pt.
 <figures/hysteresis_DeltaVth_vs_freq_comparison.pdf, id=11, 216.81pt x 144.54pt>
 File: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf  used on input line 97.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf  used on input line 103.
 (pdftex.def)             Requested size: 216.80946pt x 144.53963pt.
 <figures/BTI_stress_time.pdf, id=12, 317.98799pt x 144.54pt>
 File: figures/BTI_stress_time.pdf Graphic file (type pdf)
 <use figures/BTI_stress_time.pdf>
-Package pdftex.def Info: figures/BTI_stress_time.pdf  used on input line 106.
+Package pdftex.def Info: figures/BTI_stress_time.pdf  used on input line 112.
 (pdftex.def)             Requested size: 317.9872pt x 144.53963pt.
 <figures/BTI_IdVg_stressrelax.pdf, id=13, 195.129pt x 144.54pt>
 File: figures/BTI_IdVg_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_IdVg_stressrelax.pdf>
-Package pdftex.def Info: figures/BTI_IdVg_stressrelax.pdf  used on input line 108.
+Package pdftex.def Info: figures/BTI_IdVg_stressrelax.pdf  used on input line 114.
 (pdftex.def)             Requested size: 195.12851pt x 144.53963pt.
 <figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=14, 166.22101pt x 144.54pt>
 File: figures/OTF_DeltaVth_strrec_differentVstr.pdf Graphic file (type pdf)
 <use figures/OTF_DeltaVth_strrec_differentVstr.pdf>
-Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 109.
+Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 115.
 (pdftex.def)             Requested size: 166.22058pt x 144.53963pt.
 <figures/MSM_DeltaVth_duts.pdf, id=15, 166.22101pt x 144.54pt>
 File: figures/MSM_DeltaVth_duts.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_duts.pdf>
-Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 111.
+Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 117.
 (pdftex.def)             Requested size: 166.22058pt x 144.53963pt.
 <figures/MSM_DeltaVth_comparison.pdf, id=16, 166.22101pt x 144.54pt>
 File: figures/MSM_DeltaVth_comparison.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_comparison.pdf>
-Package pdftex.def Info: figures/MSM_DeltaVth_comparison.pdf  used on input line 113.
+Package pdftex.def Info: figures/MSM_DeltaVth_comparison.pdf  used on input line 119.
 (pdftex.def)             Requested size: 166.22058pt x 144.53963pt.
 <figures/inverter_VTC.pdf, id=17, 151.767pt x 144.54pt>
 File: figures/inverter_VTC.pdf Graphic file (type pdf)
 <use figures/inverter_VTC.pdf>
-Package pdftex.def Info: figures/inverter_VTC.pdf  used on input line 122.
+Package pdftex.def Info: figures/inverter_VTC.pdf  used on input line 128.
 (pdftex.def)             Requested size: 151.76662pt x 144.53963pt.
 <figures/inverter_gain.png, id=18, 158.994pt x 144.54pt>
 File: figures/inverter_gain.png Graphic file (type png)
 <use figures/inverter_gain.png>
-Package pdftex.def Info: figures/inverter_gain.png  used on input line 124.
+Package pdftex.def Info: figures/inverter_gain.png  used on input line 130.
 (pdftex.def)             Requested size: 158.9936pt x 144.53963pt.
 <figures/BTI_inv_stressrelax.pdf, id=20, 180.675pt x 144.54pt>
 File: figures/BTI_inv_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_inv_stressrelax.pdf>
-Package pdftex.def Info: figures/BTI_inv_stressrelax.pdf  used on input line 126.
+Package pdftex.def Info: figures/BTI_inv_stressrelax.pdf  used on input line 132.
 (pdftex.def)             Requested size: 180.67455pt x 144.53963pt.
-[1{C:/Users/bysho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/Users/bysho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
- <./figures/exposedMoS2.pdf> <./figures/hBNencapsulatedMoS2.pdf> <./figures/IdVg_encapsulated_1.pdf>]
+]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -934,7 +937,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>] [3 <./figures/BTI_stress_time.pdf> <./figures/BTI_IdVg_stressrelax.pdf> <./figures/OTF_DeltaVth_strrec_differentVstr.pdf> <./figures/MSM_DeltaVth_duts.pdf> <./figures/MSM_DeltaVth_comparison.pdf> <./figures/inverter_VTC.pdf> <./figures/inverter_gain.png> <./figures/BTI_inv_stressrelax.pdf>] (ESSERC2026.aux)
+[2 <./figures/exposedMoS2.pdf> <./figures/hBNencapsulatedMoS2.pdf> <./figures/IdVg_encapsulated_1.pdf>] [3 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>] [4 <./figures/BTI_stress_time.pdf> <./figures/BTI_IdVg_stressrelax.pdf> <./figures/OTF_DeltaVth_strrec_differentVstr.pdf> <./figures/MSM_DeltaVth_duts.pdf> <./figures/MSM_DeltaVth_comparison.pdf> <./figures/inverter_VTC.pdf> <./figures/inverter_gain.png> <./figures/BTI_inv_stressrelax.pdf>] (ESSERC2026.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -944,17 +947,17 @@ Package logreq Info: Writing requests to 'ESSERC2026.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41733 strings out of 474486
- 1024735 string characters out of 5743755
- 2042142 words of memory out of 5000000
- 63593 multiletter control sequences out of 15000+600000
+ 41749 strings out of 474486
+ 1025499 string characters out of 5743755
+ 2045430 words of memory out of 5000000
+ 63609 multiletter control sequences out of 15000+600000
  606188 words of font info for 137 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,101p,1600b,1240s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,14n,101p,1600b,1189s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ESSERC2026.pdf (3 pages, 871935 bytes).
+Output written on ESSERC2026.pdf (4 pages, 875726 bytes).
 PDF statistics:
- 839 PDF objects out of 1000 (max. 8388607)
+ 842 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

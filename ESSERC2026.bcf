@@ -2368,8 +2368,12 @@
     <bcf:citekey order="1" intorder="1">liu_promises_2021</bcf:citekey>
     <bcf:citekey order="2" intorder="1">das_transistors_2021</bcf:citekey>
     <bcf:citekey order="3" intorder="1">lan_reliability_2025</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">provias_reliability_2023</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">karl_standardized_2025</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">mulong_luo_impacts_2015</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">geim_van_2013</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">knobloch_performance_2021</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">piacentini_stable_2022</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">provias_reliability_2023</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">karl_standardized_2025</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

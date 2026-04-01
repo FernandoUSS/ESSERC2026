@@ -64,11 +64,16 @@ component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-As device miniaturization continues, the performance of traditional logic devices based on bulk semiconductors becomes increasingly constrained, either by the exacerbation of short-channel effects when the channel thickness is not scaled accordingly, or by the associated mobility reduction when it is~\cite{liu_promises_2021}. To overcome this inherent trade-off of bulk channels, two-dimensional (2D) materials, whose carrier mobility exhibits weak thickness dependence, have attracted significant attention. Among them, transition-metal dichalcogenides (TMDs) offer suitable bandgaps and currently represent the backbone of active logic devices based on 2D materials~\cite{das_transistors_2021}. 
 
-However, important limitations arise with the use of 2D materials. While their dangling-bond-free interfaces mitigate the mobility drop for scaled devices, the absence of covalent bonding at the oxide–channel interface leads to increased instability compared to the well-established SiO$_2$/Si interface~\cite{lan_reliability_2025}. This instability typically manifests during device operation and entails shifts in key device parameters (most notably the threshold voltage), thereby compromising the functionality and the performance of the resulting logic circuits. 
+As device miniaturization continues, the performance of traditional logic devices based on bulk semiconductors becomes increasingly constrained, either by the exacerbation of short-channel effects in field-effect transistors (FETs) when the channel thickness is not scaled accordingly, or by the associated mobility reduction when it is~\cite{liu_promises_2021}. To overcome this inherent trade-off of bulk channels, two-dimensional (2D) materials, whose carrier mobility exhibits weak thickness dependence, have attracted significant attention. Among them, transition-metal dichalcogenides (TMDs) offer suitable bandgaps and currently represent the backbone of active logic devices based on 2D materials, with MoS$_2$ being the most mature option for realizing n-channel FETs~\cite{das_transistors_2021}. 
 
-These detrimental effects can be observed and quantified either under varying device conditions, as in classical hysteresis and bias temperature instability (BTI) measurements where the gate voltage is altered, or under constant conditions, as in low-frequency noise measurements. In particular, the former have proven to be straightforward and highly effective techniques for assessing device reliability~\cite{provias_reliability_2023}. However, inaccurate conclusions may be drawn if key experimental parameters and essential characteristics of the devices under test are overlooked. For instance, while the time required to perform the up- and down-sweeps in hysteresis measurements is rarely reported, it has been shown to have a significant impact on the underlying physical mechanisms of hysteresis and the resulting measurements~\cite{karl_standardized_2025}. Similarly, as the impact of most degradation mechanisms depends on oxide thickness, it becomes essential to normalize both hysteresis and BTI shifts with respect to thickness to enable accurate comparisons between samples.
+However, important limitations arise with the use of 2D materials. While their dangling-bond-free interfaces mitigate the mobility drop for scaled devices, the absence of covalent bonding at the oxide–channel interface leads to increased instability compared to the well-established SiO$_2$/Si interface~\cite{lan_reliability_2025}. This instability typically originates from charge transfer and transport processes through the gate stack, manifests during device operation, and entails shifts in key device parameters (most notably the threshold voltage), thereby compromising the functionality and performance of the resulting logic circuits~\cite{mulong_luo_impacts_2015}.
+
+To mitigate the aforementioned instabilities, different gate stack concepts and optimizations have been proposed to reduce charge transfer without compromising device performance. A promising approach involves the use of 2D insulators to achieve well-passivated interfaces with the channel, thereby enhancing device stability, while enabling the construction of van der Waals heterostructures to tune device properties~\cite{geim_van_2013}. Among the candidate materials, hexagonal boron nitride (hBN) is the most ubiquitous; however, its low dielectric constant limits its use as single insulating material in deeply scaled devices due to the expected high gate leakage~\cite{knobloch_performance_2021}. However, recent studies propose the use of hBN layers to encapsulate a bulk gate oxide, thereby improving device stability at the expense of increased fabrication complexity~\cite{piacentini_stable_2022}.
+
+To benchmark this and other proposed approaches, it is essential to quantify the detrimental instability effects, which can be observed either under varying device conditions, as in classical hysteresis and bias temperature instability (BTI) measurements where the gate voltage is altered, or under constant conditions, as in low-frequency noise measurements. In particular, the former have proven to be straightforward and highly effective techniques for assessing device reliability~\cite{provias_reliability_2023}. However, inaccurate conclusions may be drawn if key experimental parameters and essential characteristics of the devices under test are overlooked. For instance, while the time required to perform the up- and down-sweeps in hysteresis measurements is rarely reported, it has been shown to have a significant impact on the underlying physical mechanisms of hysteresis and the resulting measurements~\cite{karl_standardized_2025}. Similarly, as the impact of most degradation mechanisms depends on insulator thickness, it becomes essential to normalize both hysteresis and BTI shifts with respect to thickness to enable accurate comparisons between samples.
+
+In this work, a comprehensive reliability assessment of hBN-encapsulated MoS$_2$ FETs is presented, with hysteresis and BTI measurements constituting the core of the analysis and providing complementary insights. Special emphasis is placed on the number of analyzed devices to capture variability in instability behavior, as well as on key measurement parameters, such as the sweep time and the drain voltage in hysteresis measurements. Additionally, this analysis is extended to characterize depletion-load nMOS inverters realized with the previous FETs. The analysis is further extended to characterize depletion-load nMOS inverters based on these hBN-encapsulated FETs, enabling a straightforward evaluation of the reliability of this platform for deeply scaled logic applications. The rest of the manuscript is organized as follows...
 
 \section{Device Fabrication and Performance}
 
@@ -84,7 +89,8 @@ These detrimental effects can be observed and quantified either under varying de
     \label{fig:devices_performance}
 \end{figure}
 
-\section{Hysteresis Characterization}
+\section{Reliability of FETs}
+\subsection{Hysteresis Characterization}
 
 \begin{figure*}[ht]
     \centering
@@ -99,7 +105,7 @@ These detrimental effects can be observed and quantified either under varying de
     \label{fig:hysteresis}
 \end{figure*}
 
-\section{Bias Temperature Instability}
+\subsection{Bias Temperature Instability}
 
 \begin{figure*}[ht]
     \centering
@@ -111,11 +117,11 @@ These detrimental effects can be observed and quantified either under varying de
     \subfloat[\small FETs F,H,I,J,K,L]{\includegraphics[]{figures/MSM_DeltaVth_duts.pdf}\label{fig:MSM_duts}}
     \hfill
     \subfloat[\small FETs F,H,I,J,K,L(enc.), $\epsilon$(non-enc.)]{\includegraphics[]{figures/MSM_DeltaVth_comparison.pdf}\label{fig:MSM_comparison}}
-    \caption{(a) Example of a hysteresis curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
+    \caption{(a) \textbf{Typical BTI experiments}: The device under test undergoes alternating periods of stress and recovery bias conditions.}
     \label{fig:BTI}
 \end{figure*}
 
-\section{Inverter Performance and Reliability}
+\section{Reliability of Inverters}
 
 \begin{figure*}[ht]
     \centering

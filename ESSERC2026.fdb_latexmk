@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber ESSERC2026"] 1774992509.56889 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1774995184.80427 0
-  "ESSERC2026.bcf" 1774995184 107528 ed6213c6d9565959bda9bae00ff5cb20 "pdflatex"
-  "references.bib" 1774991807 5762 bfd0f4cd5869bbe17791c74af09dbc26 ""
+["biber ESSERC2026"] 0 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1775052079.19809 -1
+  "ESSERC2026.bcf" 1775052078 107831 3268a1a4a24565ab42b34d88d8a6045f "pdflatex"
+  "references.bib" 1775040392 12156 e7abd57c8d02a64649b7f1126a83b8ad ""
   (generated)
   "ESSERC2026.bbl"
   "ESSERC2026.blg"
   (rewritten before read)
-["pdflatex"] 1774995182.43697 "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1774995184.80496 0
+["pdflatex"] 1775052077.0207 "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1775052079.19874 0
   "C:/Users/bysho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772051759 96553 dffee761e85545da86bb786de5d6a945 ""
   "C:/Users/bysho/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1772052686 24225046 ba7d03437d796a1cd6a6b3c0ab209a82 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -207,12 +207,12 @@
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/subfig/subfig.sty" 1121281010 22049 9ef165ca6df8815c92e693146a376c92 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "ESSERC2026.aux" 1774995184 8027 76e335ca32f97538439381041bf17313 "pdflatex"
-  "ESSERC2026.bbl" 1774994419 20942 f904beaa54e89501044587144852d5dd "biber ESSERC2026"
-  "ESSERC2026.run.xml" 1774995184 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
-  "ESSERC2026.tex" 1774995181 10739 d3137dce7ecb915f033740a002dbb3af ""
-  "IEEEtran.cls" 1440632924 288304 b67b6fc6c2abb39f9b461923f5199343 ""
-  "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" 1774995181 10739 d3137dce7ecb915f033740a002dbb3af ""
+  "ESSERC2026.aux" 1775052078 8758 c19dfd3804623a61e407ace4454ac6bb "pdflatex"
+  "ESSERC2026.bbl" 1775051905 32383 b2b36cd51713dfc3080bc95f858d7fd2 "biber ESSERC2026"
+  "ESSERC2026.run.xml" 1775052078 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
+  "ESSERC2026.tex" 1775052074 12762 88cfe5e9c3ccf5596314991f78764568 ""
+  "IEEEtran.cls" 1440632924 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
+  "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" 1775052074 12762 88cfe5e9c3ccf5596314991f78764568 ""
   "figures/BTI_IdVg_stressrelax.pdf" 1774819202 30067 99d9eae2b3226b8b8d3138ad2450a1fa ""
   "figures/BTI_inv_stressrelax.pdf" 1774894641 30969 74a5d9bcfd0108820e5ebece0415a480 ""
   "figures/BTI_stress_time.pdf" 1774819202 30209 36531de4e4a5c42af1720ffc09ff4519 ""
@@ -222,12 +222,12 @@
   "figures/OTF_DeltaVth_strrec_differentVstr.pdf" 1774819202 21604 103d22e84d07aecccbd04c5fda95071b ""
   "figures/exposedMoS2.pdf" 1771343903 33726 af8ea12f00db46f06876cf2d6ad98ed4 ""
   "figures/hBNencapsulatedMoS2.pdf" 1771344309 32880 425e89761f3d63a20a998001cb93108a ""
-  "figures/hysteresis_DeltaVth_vs_freq_comparison.pdf" 1774995141 22292 c7ce6c3d78f80f2ae4366f0f1db61baa ""
+  "figures/hysteresis_DeltaVth_vs_freq_comparison.pdf" 1775049769 22292 2e51f923efb232456af8365d263f678f ""
   "figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf" 1774856903 32335 ad856e3922491dff6b7bfb0813f6fa08 ""
   "figures/hysteresis_IdVg_example.pdf" 1774856899 18737 96de06f865098892fbdb84213db64090 ""
   "figures/hysteresis_Vth_DeltaVth_vs_freq.pdf" 1774856901 21228 1a3614d7406b26969ce551590a00e46e ""
   "figures/hysteresis_time_example.pdf" 1774856901 19482 8f2ed20c170bc00c31490f78992fcd0d ""
-  "figures/inverter_VTC.pdf" 1774893515 16171 c44c9fffc9f2214bbd9e9e6259fd3827 ""
+  "figures/inverter_VTC.pdf" 1775049793 16167 93ab1b7eb2ae2c25db2ce65d2a2a07d6 ""
   "figures/inverter_gain.png" 1774994411 229202 22d0e2d01268a2b9beb7e79ef484994b ""
   (generated)
   "ESSERC2026.aux"

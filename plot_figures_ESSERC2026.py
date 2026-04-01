@@ -1096,7 +1096,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot hysteresis DeltaVth vs freq comparison
+    if 0: # Plot hysteresis DeltaVth vs freq comparison
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
         df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
 
@@ -1253,9 +1253,10 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 0: # Plot BTI DeltaVth vs total time
+    if 1: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
+        #df = df[~df['cycle'] == 0]
         for c in ['Id','Vg']:
             df[c] = df[c].map(safe_json_load)
         width = df['width'].iloc[0]
@@ -1296,7 +1297,7 @@ if __name__ == "__main__":
             df_dut = df_selected[(df_selected['batch'] == key[0]) & (df_selected['dut'] == key[1]) & (df_selected['sample'] == key[2]) & (df_selected['meas_type'] == key[3])]
             marker = markers[selected_keys.index(key)]
             cycles = sorted(df_dut['cycle'].unique())
-            for cycle in cycles:
+            for j, cycle in enumerate(cycles):
 
                 df_cycle = df_dut[df_dut['cycle'] == cycle]
                 df_initial = df_cycle[df_cycle['initial'] == True]
@@ -1324,19 +1325,18 @@ if __name__ == "__main__":
                     Vth = df_cycle_stress['Vth'].values + 1 # shift up for better visibility
                     Vth_initial = df_initial['Vth'].values[0] + 1
 
-                if cycle == 0:
 
-
-                    df_cycle_stress = df_cycle_stress.sort_values(by=tvar)
-
-                    ax[i].scatter(t, Vth, c=t, cmap=cmap_precondition, norm=norm, marker=marker, edgecolors='#13073A', linewidths=0.8)
-
+                if j == 0: # only label first cycle for each measurement type
                     if meas_type == 'OTF':
                         ax[i].text(t[0], np.max(Vth)+0.1, f'{df_cycle["meas_type"].iloc[0]} meas', fontsize=6, verticalalignment='bottom',horizontalalignment='left')
                     else:
                         ax[i].text(t[0], np.min(Vth)-0.15, f'{df_cycle["meas_type"].iloc[0]} meas', fontsize=6, verticalalignment='top',horizontalalignment='left')
 
                         ax[i].axhline(Vth_initial, linestyle='--', color=color_precondition, alpha=0.7)
+
+                if cycle == 0:
+
+                    ax[i].scatter(t, Vth, c=t, cmap=cmap_precondition, norm=norm, marker=marker, edgecolors='#13073A', linewidths=0.8)
 
                 else:
 
@@ -1446,7 +1446,7 @@ if __name__ == "__main__":
         legend_elements = [
             Line2D([0], [0], marker='^',markerfacecolor='none', linestyle='none', label='MSM meas. example'),
             Line2D([0], [0], marker='o',markerfacecolor='none', linestyle='none', label='OTF meas. example'),
-            Line2D([0], [0], color='k', linestyle='--', label=r'$V_\mathsf{th}$ before stress'),
+            #Line2D([0], [0], color='k', linestyle='--', label=r'$V_\mathsf{th}$ before stress'),
         ]
 
         fig.legend(
@@ -2013,7 +2013,7 @@ if __name__ == "__main__":
         ax.set_yticks([np.min(Vout),Vdd/2,Vdd])
         ax.set_yticklabels([r'$V_\mathsf{out,low}$', r'$V_\mathsf{DD}/2$', r'$V_\mathsf{out,high}$' + '\n' + r'$\left(= V_\mathsf{DD}\right)$'], fontsize=6)
         ax.set_xticks([np.min(Vout),Vm, Vdd])
-        ax.set_xticklabels([r'$V_\mathsf{in,low}$', r'$V_\mathsf{M}$', r'$V_\mathsf{out,high}$'], fontsize=6)
+        ax.set_xticklabels([r'$V_\mathsf{out,low}$', r'$V_\mathsf{M}$', r'$V_\mathsf{out,high}$'], fontsize=6)
         ax.set_xlim(-1, 4)
         ax.set_ylim(-0.25, 3.25)
         device_text = f'Device {df["dut"].iloc[0]}\n$T$ = {df["temp"].iloc[0]}'

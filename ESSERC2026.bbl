@@ -65,7 +65,6 @@
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{0028-0836, 1476-4687}
       \field{journaltitle}{Nature}
       \field{month}{3}
       \field{number}{7848}
@@ -74,9 +73,6 @@
       \field{year}{2021}
       \field{pages}{43\bibrangedash 53}
       \range{pages}{11}
-      \verb{doi}
-      \verb 10.1038/s41586-021-03339-z
-      \endverb
     \endentry
     \entry{das_transistors_2021}{article}{}
       \name{author}{18}{}{%
@@ -184,7 +180,6 @@
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{2520-1131}
       \field{journaltitle}{Nature Electronics}
       \field{month}{11}
       \field{number}{11}
@@ -193,9 +188,6 @@
       \field{year}{2021}
       \field{pages}{786\bibrangedash 799}
       \range{pages}{14}
-      \verb{doi}
-      \verb 10.1038/s41928-021-00670-1
-      \endverb
     \endentry
     \entry{lan_reliability_2025}{article}{}
       \name{author}{7}{}{%
@@ -248,7 +240,6 @@
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{2397-7132}
       \field{journaltitle}{npj 2D Materials and Applications}
       \field{month}{1}
       \field{number}{1}
@@ -257,9 +248,261 @@
       \field{year}{2025}
       \field{pages}{5}
       \range{pages}{1}
-      \verb{doi}
-      \verb 10.1038/s41699-025-00527-7
-      \endverb
+    \endentry
+    \entry{mulong_luo_impacts_2015}{article}{}
+      \name{author}{6}{}{%
+        {{hash=18653db450ca774baa49f915019492c9}{%
+           family={{Mulong Luo}},
+           familyi={M\bibinitperiod}}}%
+        {{hash=d1878b556c4dd5e8dad7fed98898ad34}{%
+           family={{Runsheng Wang}},
+           familyi={R\bibinitperiod}}}%
+        {{hash=3a276e84dab44be28a965f1d43f7cf67}{%
+           family={{Shaofeng Guo}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=6016e0d22234574d034d59b453103750}{%
+           family={{Jing Wang}},
+           familyi={J\bibinitperiod}}}%
+        {{hash=09af2e0568d7654535328d98fe06f6c3}{%
+           family={{Jibin Zou}},
+           familyi={J\bibinitperiod}}}%
+        {{hash=d4473b936c35639248de71e9cd578252}{%
+           family={{Ru Huang}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
+      \strng{fullhash}{05d940419c4322124a76711d114a73c8}
+      \strng{bibnamehash}{05d940419c4322124a76711d114a73c8}
+      \strng{authorbibnamehash}{05d940419c4322124a76711d114a73c8}
+      \strng{authornamehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
+      \strng{authorfullhash}{05d940419c4322124a76711d114a73c8}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Random telegraph noise (RTN) is one of the important dynamic variation sources in ultrascaled MOSFETs. In this paper, the recently focused ac trap effects of RTN in digital circuits and their impacts on circuit performance are systematically investigated. Instead of trap occupancy probability under dc bias condition ( pdc), which is traditionally used for RTN characterization, ac trap occupancy probability ( pac), i.e., the effective percentage of time trap being occupied under ac bias condition, is proposed and evaluated analytically to investigate the dynamic trapping/detrapping behavior of RTN. A simulation approach that fully integrates the dynamic properties of ac trap effects is presented for accurate simulation of RTN in digital circuits. The impacts of RTN on digital circuit performances, e.g., failure probabilities of SRAM cells and jitters of ring oscillators, are then evaluated by the simulations and veriﬁed against predictions based on pac. The results show that degradations are highly workload dependent and that pac is critical in accurately evaluating the RTN-induced performance degradation and variability. The results are helpful for robust and resilient circuit design.}
+      \field{journaltitle}{IEEE Transactions on Electron Devices}
+      \field{month}{6}
+      \field{number}{6}
+      \field{title}{Impacts of {Random} {Telegraph} {Noise} ({RTN}) on {Digital} {Circuits}}
+      \field{volume}{62}
+      \field{year}{2015}
+      \field{pages}{1725\bibrangedash 1732}
+      \range{pages}{8}
+    \endentry
+    \entry{geim_van_2013}{article}{}
+      \name{author}{2}{}{%
+        {{hash=40f0ba5816a970378fff1e96ae8538f7}{%
+           family={Geim},
+           familyi={G\bibinitperiod},
+           given={A.\bibnamedelimi K.},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=95e5b1f7631e44941e31f4157a125fe8}{%
+           family={Grigorieva},
+           familyi={G\bibinitperiod},
+           given={I.\bibnamedelimi V.},
+           giveni={I\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{fullhash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{bibnamehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{authorbibnamehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{authornamehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{authorfullhash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{month}{7}
+      \field{number}{7459}
+      \field{title}{Van der {Waals} heterostructures}
+      \field{volume}{499}
+      \field{year}{2013}
+      \field{pages}{419\bibrangedash 425}
+      \range{pages}{7}
+    \endentry
+    \entry{knobloch_performance_2021}{article}{}
+      \name{author}{13}{}{%
+        {{hash=15ac05beebf119673c1b0c8ecc716e00}{%
+           family={Knobloch},
+           familyi={K\bibinitperiod},
+           given={Theresia},
+           giveni={T\bibinitperiod}}}%
+        {{hash=cd257f8cd57814e0a4cc7bbd2645cab4}{%
+           family={Illarionov},
+           familyi={I\bibinitperiod},
+           given={Yury\bibnamedelima Yu.},
+           giveni={Y\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=c0394fac4dc6827a2740e9c7374c2ea6}{%
+           family={Ducry},
+           familyi={D\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=31150b4f490433d2c58a524a9502e197}{%
+           family={Schleich},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=923638f6c6c3f93dce6f2b338fee7e44}{%
+           family={Wachter},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ec13cda2cbfddcda8775a94455efdce0}{%
+           family={Watanabe},
+           familyi={W\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5a856342313a0ed8d5c7c0315c53a88f}{%
+           family={Taniguchi},
+           familyi={T\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6040d212722adae7d724a97793df38d1}{%
+           family={Mueller},
+           familyi={M\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0ed04c9744b652ac683c553c50a0df40}{%
+           family={Waltl},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=263bd10d26fb995a4262faf44eb6a79a}{%
+           family={Lanza},
+           familyi={L\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod}}}%
+        {{hash=441fc0a20a0188f8e883913ff8b1d0a1}{%
+           family={Vexler},
+           familyi={V\bibinitperiod},
+           given={Mikhail\bibnamedelima I.},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=8cba4ed1c540a83c85b011f202f8eb4c}{%
+           family={Luisier},
+           familyi={L\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0853f6a1e046077355103ffb9123653f}{%
+           family={Grasser},
+           familyi={G\bibinitperiod},
+           given={Tibor},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{fullhash}{c76946896fae2feac3fe87a46c0781eb}
+      \strng{bibnamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{authorbibnamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{authornamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{authorfullhash}{c76946896fae2feac3fe87a46c0781eb}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Electronics}
+      \field{month}{2}
+      \field{number}{2}
+      \field{title}{The performance limits of hexagonal boron nitride as an insulator for scaled {CMOS} devices based on two-dimensional materials}
+      \field{volume}{4}
+      \field{year}{2021}
+      \field{pages}{98\bibrangedash 108}
+      \range{pages}{11}
+    \endentry
+    \entry{piacentini_stable_2022}{article}{}
+      \name{author}{12}{}{%
+        {{hash=447084927eb2583c575d3dade4ce4d73}{%
+           family={Piacentini},
+           familyi={P\bibinitperiod},
+           given={Agata},
+           giveni={A\bibinitperiod}}}%
+        {{hash=935fc75a0478c2a7192a8804254ce052}{%
+           family={Marian},
+           familyi={M\bibinitperiod},
+           given={Damiano},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b3e18dab0953b5679100eca2cdf95f95}{%
+           family={Schneider},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima S.},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=7d8d316d85fffa532d1c570a134b3648}{%
+           family={González\bibnamedelima Marín},
+           familyi={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Enrique},
+           giveni={E\bibinitperiod}}}%
+        {{hash=63ea41498c9400a3d16d0249bafa4bfa}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhenyu},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=05502e865c2cd99503ebb572a930cd93}{%
+           family={Otto},
+           familyi={O\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f709448308f534f06261aac2f3ab1245}{%
+           family={Canto},
+           familyi={C\bibinitperiod},
+           given={Bárbara},
+           giveni={B\bibinitperiod}}}%
+        {{hash=cec695f9472bb6ed56c08d848ba1524b}{%
+           family={Radenovic},
+           familyi={R\bibinitperiod},
+           given={Aleksandra},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0d65d8b35c25b1f6df1c09159676aab6}{%
+           family={Kis},
+           familyi={K\bibinitperiod},
+           given={Andras},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1465b3f764f8d879c2d2d06b73e98c54}{%
+           family={Fiori},
+           familyi={F\bibinitperiod},
+           given={Gianluca},
+           giveni={G\bibinitperiod}}}%
+        {{hash=0142b76cb8d28bd897bf376d213e5c82}{%
+           family={Lemme},
+           familyi={L\bibinitperiod},
+           given={Max\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=067770ce9b997659b75a9dda76212c8c}{%
+           family={Neumaier},
+           familyi={N\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{fullhash}{ab0478c5d05c02b18e605a25c36ae30b}
+      \strng{bibnamehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{authorbibnamehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{authornamehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{authorfullhash}{ab0478c5d05c02b18e605a25c36ae30b}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Molybdenum disulfide (MoS2) has great potential as a two-dimensional semiconductor for electronic and optoelectronic application, but its high sensitivity to environmental adsorbents and charge transfer from neighboring dielectrics can lead to device variability and instability. Aluminum oxide (Al2O3) is widely used as an encapsulation layer in (opto)-electronics, but it leads to detrimental charge transfer n-doping to MoS2. Here, this work reports a scalable encapsulation approach for MoS2 field-effect transistors (FETs) where hexagonal boron nitride (h-BN) monolayers are employed as a barrier layer in-between each of the Al2O3 and MoS2 interfaces. These devices exhibit a significant reduction of charge transfer, when compared to structures without h-BN. This benefit of h-BN in the gate stack is confirmed by ab initio density functional theory calculations. In addition, the devices with h-BN layers show very low hysteresis even under ambient operating conditions.}
+      \field{journaltitle}{Advanced Electronic Materials}
+      \field{number}{9}
+      \field{title}{Stable {Al2O3} {Encapsulation} of {MoS2}-{FETs} {Enabled} by {CVD} {Grown} h-{BN}}
+      \field{volume}{8}
+      \field{year}{2022}
+      \field{pages}{2200123}
+      \range{pages}{1}
+      \keyw{Al2O3,fixed charges,h-BN encapsulation,hysteresis in MoS2-based devices,MoS2 transistors}
     \endentry
     \entry{provias_reliability_2023}{inproceedings}{}
       \name{author}{14}{}{%
@@ -349,20 +592,16 @@
       \strng{authorbibnamehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
       \strng{authornamehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
       \strng{authorfullhash}{7f3f51f19fb8b4ca1216e7426e45e8c0}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2023 {International} {Electron} {Devices} {Meeting} ({IEDM})}
-      \field{isbn}{979-8-3503-2767-0}
       \field{month}{12}
       \field{title}{Reliability {Assessment} of {Double}-{Gated} {Wafer}-{Scale} {MoS}$_{\textrm{2}}$ {Field} {Effect} {Transistors} through {Hysteresis} and {Bias} {Temperature} {Instability} {Analyses}}
       \field{year}{2023}
       \field{pages}{1\bibrangedash 4}
       \range{pages}{4}
-      \verb{doi}
-      \verb 10.1109/IEDM45741.2023.10413755
-      \endverb
     \endentry
     \entry{karl_standardized_2025}{article}{}
       \name{author}{26}{}{%
@@ -506,35 +745,18 @@
       \strng{authorbibnamehash}{2b652d975d67a83e7538ec1e1a63d46b}
       \strng{authornamehash}{2b652d975d67a83e7538ec1e1a63d46b}
       \strng{authorfullhash}{492b6cda6a63c084ea251be5d94b8947}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{2041-1723}
       \field{journaltitle}{Nature Communications}
       \field{month}{11}
       \field{number}{1}
       \field{title}{A standardized approach to characterize hysteresis in {2D}-materials-based transistors for stability benchmarking and performance projection}
-      \field{urlday}{31}
-      \field{urlmonth}{3}
-      \field{urlyear}{2026}
       \field{volume}{17}
       \field{year}{2025}
-      \field{urldateera}{ce}
       \field{pages}{171}
       \range{pages}{1}
-      \verb{doi}
-      \verb 10.1038/s41467-025-66210-z
-      \endverb
-      \verb{file}
-      \verb PDF:C\:\\Users\\bysho\\Zotero\\storage\\LSDNM45E\\Karl et al. - 2025 - A standardized approach to characterize hysteresis in 2D-materials-based transistors for stability b.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://www.nature.com/articles/s41467-025-66210-z
-      \endverb
-      \verb{url}
-      \verb https://www.nature.com/articles/s41467-025-66210-z
-      \endverb
     \endentry
   \enddatalist
 \endrefsection
