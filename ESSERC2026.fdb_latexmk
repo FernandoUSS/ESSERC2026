@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber ESSERC2026"] 0 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1775079706.05036 -1
-  "ESSERC2026.bcf" 1775079705 107831 3268a1a4a24565ab42b34d88d8a6045f "pdflatex"
+["biber ESSERC2026"] 0 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1775079961.45157 -1
+  "ESSERC2026.bcf" 1775079961 107831 3268a1a4a24565ab42b34d88d8a6045f "pdflatex"
   "references.bib" 1775040392 12156 e7abd57c8d02a64649b7f1126a83b8ad ""
   (generated)
   "ESSERC2026.bbl"
   "ESSERC2026.blg"
   (rewritten before read)
-["pdflatex"] 1775079704.04786 "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1775079706.05105 0
+["pdflatex"] 1775079959.29358 "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1775079961.45229 0
   "C:/Users/bysho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1775064696 96553 dffee761e85545da86bb786de5d6a945 ""
   "C:/Users/bysho/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1772052686 24225046 ba7d03437d796a1cd6a6b3c0ab209a82 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -206,12 +206,12 @@
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/subfig/subfig.sty" 1121281010 22049 9ef165ca6df8815c92e693146a376c92 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/bysho/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "ESSERC2026.aux" 1775079705 10799 f9152e2bcb8eac4c82f02587417a1890 "pdflatex"
-  "ESSERC2026.bbl" 1775079695 32383 b2b36cd51713dfc3080bc95f858d7fd2 "biber ESSERC2026"
-  "ESSERC2026.run.xml" 1775079705 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
-  "ESSERC2026.tex" 1775079701 15315 88cf17b75bd30c9f87e54c84dad4fb81 ""
+  "ESSERC2026.aux" 1775079961 10797 329719933b54c5ecdab73e1b498f5065 "pdflatex"
+  "ESSERC2026.bbl" 1775079708 32383 b2b36cd51713dfc3080bc95f858d7fd2 "biber ESSERC2026"
+  "ESSERC2026.run.xml" 1775079961 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
+  "ESSERC2026.tex" 1775079956 15472 7681e68f4cb3ff199fb0082e371b7cf7 ""
   "IEEEtran.cls" 1440632924 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
-  "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" 1775079701 15315 88cf17b75bd30c9f87e54c84dad4fb81 ""
+  "c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.tex" 1775079956 15472 7681e68f4cb3ff199fb0082e371b7cf7 ""
   "figures/BTI_IdVg_stressrelax.pdf" 1775061180 29993 d7d1b0844f008363b3b00f1ca82ab4a9 ""
   "figures/BTI_inv_stressrelax.pdf" 1775063532 30060 c22c2e468edabd3428bbcef76f64bbf6 ""
   "figures/BTI_stress_time.pdf" 1775061179 23705 a753bd29a2f9fac20d02b0675297de05 ""

@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.blg'
-[103] biber-MSWIN64:340> INFO - === 
-[141] Biber.pm:419> INFO - Reading 'c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bcf'
-[230] Biber.pm:979> INFO - Found 9 citekeys in bib section 0
-[242] Biber.pm:4419> INFO - Processing section 0
-[253] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
-[304] bibtex.pm:1713> INFO - LaTeX decoding ...
-[330] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[451] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[451] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[451] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[451] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[457] bbl.pm:660> INFO - Writing 'c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bbl' with encoding 'UTF-8'
-[472] bbl.pm:763> INFO - Output to c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bbl
+[94] biber-MSWIN64:340> INFO - === 
+[127] Biber.pm:419> INFO - Reading 'c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bcf'
+[215] Biber.pm:979> INFO - Found 9 citekeys in bib section 0
+[227] Biber.pm:4419> INFO - Processing section 0
+[239] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[291] bibtex.pm:1713> INFO - LaTeX decoding ...
+[316] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[439] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[439] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[439] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[439] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[446] bbl.pm:660> INFO - Writing 'c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bbl' with encoding 'UTF-8'
+[462] bbl.pm:763> INFO - Output to c:/Users/bysho/Nextcloud/ESSERC2026/ESSERC2026.bbl
