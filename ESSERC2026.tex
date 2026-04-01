@@ -73,24 +73,27 @@ To mitigate the aforementioned instabilities, different gate stack concepts and 
 
 To benchmark this and other proposed approaches, it is essential to quantify the detrimental instability effects, which can be observed either under varying device conditions, as in classical hysteresis and bias temperature instability (BTI) measurements where the gate voltage is altered, or under constant conditions, as in low-frequency noise measurements. In particular, the former have proven to be straightforward and highly effective techniques for assessing device reliability~\cite{provias_reliability_2023}. However, inaccurate conclusions may be drawn if key experimental parameters and essential characteristics of the devices under test are overlooked. For instance, while the time required to perform the up- and down-sweeps in hysteresis measurements is rarely reported, it has been shown to have a significant impact on the underlying physical mechanisms of hysteresis and the resulting measurements~\cite{karl_standardized_2025}. Similarly, as the impact of most degradation mechanisms depends on insulator thickness, it becomes essential to normalize both hysteresis and BTI shifts with respect to thickness to enable accurate comparisons between samples.
 
-In this work, a comprehensive reliability assessment of hBN-encapsulated MoS$_2$ FETs is presented, with hysteresis and BTI measurements constituting the core of the analysis and providing complementary insights. Special emphasis is placed on the number of analyzed devices to capture variability in instability behavior, as well as on key measurement parameters, such as the sweep time and the drain voltage in hysteresis measurements. Additionally, this analysis is extended to characterize depletion-load nMOS inverters realized with the previous FETs. The analysis is further extended to characterize depletion-load nMOS inverters based on these hBN-encapsulated FETs, enabling a straightforward evaluation of the reliability of this platform for deeply scaled logic applications. The rest of the manuscript is organized as follows...
+In this work, a comprehensive reliability assessment of hBN-encapsulated MoS$_2$ FETs is presented, with hysteresis and BTI measurements constituting the core of the analysis and providing complementary insights. Special emphasis is placed on the number of analyzed devices to capture variability in instability behavior, as well as on key measurement parameters, such as the sweep time and the drain voltage in hysteresis measurements. Additionally, this analysis is extended to characterize depletion-load nMOS inverters realized with the previous FETs. The analysis is further extended to characterize depletion-load nMOS inverters based on these hBN-encapsulated FETs, enabling a straightforward evaluation of the reliability of this platform for deeply scaled logic applications. The rest of the manuscript is organized as follows: Section~\ref{sec:device} describes the device fabrication and analyzes the performance of the resulting FETs and inverters. Section~\ref{sec:hysteresis} presents a comprehensive analysis of the hysteresis behavior of the fabricated devices, while Section~\ref{sec:BTI} focuses on BTI measurements. Finally, conclusions are drawn in Section~\ref{sec:conclusions}.
 
-\section{Device Fabrication and Performance}
+\section{Device Fabrication and Performance}\label{sec:device}
 
-\begin{figure}[ht]
+\begin{figure*}[ht]
     \centering
-    \subfloat[]{\includegraphics[width=0.47\linewidth]{figures/exposedMoS2.pdf}\label{fig:crosssection_exposed}} 
-    \subfloat[]{\includegraphics[width=0.47\linewidth]{figures/hBNencapsulatedMoS2.pdf}\label{fig:crosssection_hbn}} \\
-    %%\hfill
-    % \subfloat[]{\includegraphics[width=0.35\linewidth]{figures/layout.png}\label{fig:modes}}
-    % \hfill
-    \subfloat[]{\includegraphics[]{figures/IdVg_encapsulated_1.pdf}\label{fig:performance_hbn}}
-    \caption{\textbf{Cross-section schematics}: (a) exposed and (b) hBN-encapsulated MoS$_2$ FETs. (c) \textbf{Performance of the fabricated devices}: $I_\mathsf{D(G)}$-$V_\mathsf{G}$ curves for different drain voltages and the main device metrics.}
+    \subfloat[]{\includegraphics[]{figures/crossections.pdf}\label{fig:crosssection_exposed}} 
+    \hspace{0.25in}
+    \subfloat[FET A]{\includegraphics[]{figures/OM_FET.pdf}\label{fig:OM_hBN}}
+    \hfill
+    \subfloat[FET A]{\includegraphics[]{figures/IdVg_encapsulated_1.pdf}\label{fig:performance_hbn_FET}} \\[-0.75em]
+    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
+    \hspace{0.25in}
+    \subfloat[\small Inverter A]{\includegraphics[]{figures/OM_INV.pdf}\label{fig:OM_hBN_INV}}
+    \hfill
+    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_gain.png}\label{fig:inverter_gain}}
+    \caption{~(a)~\textbf{Device cross-section:} Schematics of exposed (top) and hBN-encapsulated (bottom) MoS$_2$ FETs.~(b)~\textbf{FET optical image:} Fabricated hBN-encapsulated FET.~(c)~\textbf{Performance of the fabricated devices:} $I_\mathrm{D(G)}$--$V_\mathrm{G}$ curves for different drain voltages and key device metrics extracted at $V_\mathrm{D}$ = 1.5 V.~(d)~\textbf{Inverter VTC:} Typical voltage transfer curve of a depletion-load nMOS inverter. For simplicity, $V_\mathrm{M}$ is defined as the input voltage at which the output equals half the supply voltage $V_\mathsf{DD}$.~(e)~\textbf{Inverter optical image:} Fabricated hBN-encapsulated inverter.~(f)~\textbf{Inverter performance with $V_\mathsf{DD}$:} Inverter VTC curves for different supply voltages and the corresponding gain curves for the higher supply voltages.}
     \label{fig:devices_performance}
-\end{figure}
+\end{figure*}
 
-\section{Reliability of FETs}
-\subsection{Hysteresis Characterization}
+\section{Hysteresis Characterization}\label{sec:hysteresis}
 
 \begin{figure*}[ht]
     \centering
@@ -101,48 +104,40 @@ In this work, a comprehensive reliability assessment of hBN-encapsulated MoS$_2$
     \subfloat[\small FETs B, C]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_differentVd}}
     \hfill
     \subfloat[\small FETs D, E(enc.), $\alpha, \beta, \gamma, \delta$(non-enc.)]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} 
-    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$ evaluated at a constant current criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep times, $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent from the applied drain bias, as evaluated on two different devices. More consistent hysteresis results are obtained when using an adaptive scheme for the gate voltage range targeting the same overdrive and the same sweep range in the subthreshold (right), as compared to a fixed gate voltage range (left). (e) \textbf{Hysteresis on encapsulated vs. non-encapsulated devices}: The hysteresis width on encapsulated devices is negative (counter-clockwise) and on non-encapsulated devices it was of a similar magnitude but positive (clockwise) evaluated at $V_\mathsf{D}=0.1 V$.}
+    \caption{(a) \textbf{Typical hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as the difference between the threshold voltages extracted during the up and down sweeps, i.e., $V_{H} = V_\mathsf{th,up} - V_\mathsf{th,down}$ evaluated at a constant current criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the gate voltage sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for different sweep times, $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: Threshold voltages, $V_\mathsf{th,up}$ and $V_\mathsf{th,down}$, and hysteresis width, $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent from the applied drain bias, as evaluated on two different devices. More consistent hysteresis results are obtained when using an adaptive scheme for the gate voltage range targeting the same overdrive and the same sweep range in the subthreshold (right), as compared to a fixed gate voltage range (left). (e) \textbf{Hysteresis in encapsulated vs. non-encapsulated devices}: The hysteresis width in encapsulated devices is negative (counter-clockwise), whereas in non-encapsulated devices it was of a similar magnitude but positive (clockwise) evaluated at $V_\mathsf{D}$=0.1 V.}
     \label{fig:hysteresis}
 \end{figure*}
 
-\subsection{Bias Temperature Instability}
+\section{Bias Temperature Instability}\label{sec:BTI}
 
 \begin{figure*}[ht]
     \centering
     \subfloat[\small FETs F, G]{\includegraphics[]{figures/BTI_stress_time.pdf}\label{fig:OTF_MSM_time}}
     \hfill
-    \subfloat[\small FET G]{\includegraphics[]{figures/BTI_IdVg_stressrelax.pdf}\label{fig:BTI_IdVg}} \\[-1em]
+    \subfloat[\small FET G]{\includegraphics[]{figures/BTI_IdVg_stressrelax.pdf}\label{fig:BTI_IdVg}}
+    \hfill
+    \subfloat[\small Inverter B]{\includegraphics[]{figures/BTI_inv_stressrelax.pdf}} \\[-1em]
     \subfloat[\small FET G]{\includegraphics[]{figures/OTF_DeltaVth_strrec_differentVstr.pdf}\label{fig:OTF_differentVstr}}
     \hfill
     \subfloat[\small FETs F,H,I,J,K,L]{\includegraphics[]{figures/MSM_DeltaVth_duts.pdf}\label{fig:MSM_duts}}
     \hfill
-    \subfloat[\small FETs F,H,I,J,K,L(enc.), $\epsilon$(non-enc.)]{\includegraphics[]{figures/MSM_DeltaVth_comparison.pdf}\label{fig:MSM_comparison}}
-    \caption{(a) \textbf{Typical BTI experiments}: The device under test undergoes alternating periods of stress and recovery bias conditions.}
+    \subfloat[\small FETs F,H,I,J,K,L (enc.), $\epsilon$ (non-enc.)]{\includegraphics[]{figures/MSM_DeltaVth_comparison.pdf}\label{fig:MSM_comparison}}
+    \caption{(a) \textbf{Types BTI experiments}: The device under test undergoes alternating periods of stress and relaxation bias conditions. Each point in the plot corresponds to the threshold voltage extracted from an $I_\mathsf{D}$–$V_\mathsf{G}$ curve at the corresponding time. Depending on the nature of the experiment, the device state is only assessed during the relaxation period in MSM measurements, whereas in OTF measurements it is continuously monitored.~(b) \textbf{Stress and Relaxation $I_\mathsf{D}$–$V_\mathsf{G}$ curves}: The evolution of the device transfer curve during the stress and relaxation periods indicates that the degradation manifests mainly as a threshold voltage shift. Similarly to the hysteresis case, a constant-current criterion, $I_\mathsf{th}$, must be defined to extract the threshold voltage.~(c)\textbf{PBTI impact on inverter}: Similarly to the FET case, applying a positive bias shifts the inverter transfer curve toward higher input voltages, increasing the transition point $V_\mathsf{M}$.~(d) \textbf{OTF PBTI measurement}: Stress and relaxation curves at different stress voltages for the same device. An anomalous behavior (negative $\Delta V_\mathsf{th}$ in PBTI for n-channel FETs) is observed at lower stress voltages and relatively short times.~(e) \textbf{MSM PBTI measurements}: Relaxation curves at different stress voltages for six different devices. Similar degradation values and high device-to-device variations are observed at lower stress voltages.~(f) \textbf{PBTI in encapsulated vs. non-encapsulated devices}: hBN encapsulation slightly improves resilience to PBTI stress, likely associated with the presence of an anomalous component in these devices.}
     \label{fig:BTI}
 \end{figure*}
 
-\section{Reliability of Inverters}
+% \begin{figure*}[ht]
+%     \centering
+%     \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
+%     \hfill
+%     \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_gain.png}\label{fig:inverter_gain}}
+%     \hfill
+%     \subfloat[\small Inverter B]{\includegraphics[]{figures/BTI_inv_stressrelax.pdf}}
+%     \caption{(a) Example of a TDDB curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
+%     \label{fig:inverters}
+% \end{figure*}
 
-\begin{figure*}[ht]
-    \centering
-    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_VTC.pdf}\label{fig:inverter_schematic}}
-    \hfill
-    \subfloat[\small Inverter A]{\includegraphics[]{figures/inverter_gain.png}\label{fig:inverter_gain}}
-    \hfill
-    \subfloat[\small Inverter B]{\includegraphics[]{figures/BTI_inv_stressrelax.pdf}}
-    \caption{(a) Example of a TDDB curve and the corresponding time evolution of the gate voltage. (b) Comparison of the $I_{ds}-V_{gs}$ curves for the RO stage and the asymmetric stage.}
-    \label{fig:inverters}
-\end{figure*}
-
-\section{Conclusions}
-
-\section*{Acknowledgment}
-
-The preferred spelling of the word ``acknowledgment'' in America is without 
-an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
-G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
-acknowledgments in the unnumbered footnote on the first page.
-
+\section{Conclusions}\label{sec:conclusions}
 
 \printbibliography
 
