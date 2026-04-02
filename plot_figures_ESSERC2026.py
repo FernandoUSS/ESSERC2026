@@ -453,7 +453,7 @@ if __name__ == "__main__":
         ax.set_yticks([np.min(Vout),Vdd/2,Vdd])
         ax.set_yticklabels([r'$V_\mathsf{out,low}$', r'$V_\mathsf{DD}/2$', r'$V_\mathsf{out,high}$' + '\n' + r'$\left(= V_\mathsf{DD}\right)$'], fontsize=6)
         ax.set_xticks([np.min(Vout),Vm, Vdd])
-        ax.set_xticklabels([r'$V_\mathsf{out,low}$', r'$V_\mathsf{M}$', r'$V_\mathsf{out,high}$'], fontsize=6)
+        ax.set_xticklabels([r'$V_\mathsf{out,low}$   ', r'$V_\mathsf{M}$', r'$V_\mathsf{out,high}$'], fontsize=6)
         ax.set_xlim(-1, 4)
         ax.set_ylim(-0.25, 3.25)
         device_text = f'Device {df["dut"].iloc[0]}\n$T$ = {df["temp"].iloc[0]}'
@@ -461,7 +461,7 @@ if __name__ == "__main__":
         #     fontsize=6, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
 
-        plt.savefig(script_dir+"/figures/inverter_VTC.png", bbox_inches=None,dpi = 600)
+        plt.savefig(script_dir+"/figures/inverter_VTC.svg", bbox_inches=None)
         plt.close()
 
     if 0: # Plot inverter gain for different Vdd
