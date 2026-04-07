@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
     ########## Performance and variability ##########
 
-    if 0: # IdVg curves for encapsulated devices
+    if 1: # IdVg curves for encapsulated devices
 
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
@@ -205,7 +205,7 @@ if __name__ == "__main__":
         Igate_A = df[(df['Vd'] == 1.5)]['gate_leakage'].iloc[0]
         width = df[(df['Vd'] == 1.5)]['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.7, 2), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.7, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.6
         right_in  = 0.1
@@ -294,7 +294,7 @@ if __name__ == "__main__":
         
         # ax.text(0.77, 0.07, rf'@ V$_\mathsf{{D}}$ = {vds} V', transform=ax.transAxes, verticalalignment='bottom', horizontalalignment='left', fontsize=6)
 
-        plt.savefig(os.path.join(inputdir,'figures','IdVg_encapsulated_1.pdf'), bbox_inches=None)
+        plt.savefig(os.path.join(inputdir,'figures','IdVg_encapsulated_1.pdf'), bbox_inches=None, transparent=True)
         plt.close()
 
     if 0: # IdVg curves for different devices with W/L normalization
@@ -382,7 +382,7 @@ if __name__ == "__main__":
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
             df[c] = df[c].map(json5.loads)
 
-        fig, ax = plt.subplots(1,1,figsize=(2.1, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(1,1,figsize=(2.1, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.6
         right_in  = 0.1
@@ -461,16 +461,16 @@ if __name__ == "__main__":
         #     fontsize=6, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
 
-        plt.savefig(script_dir+"/figures/inverter_VTC.svg", bbox_inches=None)
+        plt.savefig(script_dir+"/figures/inverter_VTC.pdf", bbox_inches=None, transparent=True)
         plt.close()
 
-    if 0: # Plot inverter gain for different Vdd
+    if 1: # Plot inverter gain for different Vdd
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
             df[c] = df[c].map(json5.loads)
 
-        fig, ax = plt.subplots(1,1,figsize=(2.7, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(1,1,figsize=(2.7, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.6
         right_in  = 0.1
@@ -496,7 +496,7 @@ if __name__ == "__main__":
 
         Vdd_array = df['Vdd'].sort_values().unique()
         Vdd_array_gain = [3.5, 4.0, 4.5, 5.0]
-        colors = viridis(np.linspace(0.1, 0.9, len(Vdd_array)))
+        colors = plasma(np.linspace(0.1, 0.9, len(Vdd_array)))
         Vdd_colors = {Vdd: colors[i] for i, Vdd in enumerate(Vdd_array)}
         for Vdd in Vdd_array[::-1]:
             df_Vdd = df[df['Vdd'] == Vdd]
@@ -563,7 +563,7 @@ if __name__ == "__main__":
             arrowprops=dict(arrowstyle='<|-', color='black',shrinkA=0, shrinkB=0))
         ax.text(-0.5, 0.25, rf'$V_\mathsf{{DD}}$ = {min_Vdd:.1f} V', fontsize=5, verticalalignment='top', horizontalalignment='center')
         ax.text(-0.5, 5.25, rf'$V_\mathsf{{DD}}$ = {max_Vdd:.1f} V', fontsize=5, verticalalignment='bottom', horizontalalignment='center')
-        plt.savefig(script_dir+"/figures/inverter_gain.png", bbox_inches=None, dpi=600)
+        plt.savefig(script_dir+"/figures/inverter_gain.png", bbox_inches=None, dpi=600, transparent=True)
         plt.close()
     ########## Hysteresis plots ##########
     if 0: # Hysteresis IdVg example

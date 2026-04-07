@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  1 APR 2026 22:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  5 APR 2026 09:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -109,11 +109,11 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(0.0pt, 151.76744pt, 0.0pt)
-* v-part:(T,H,B)=(0.0pt, 144.54pt, 0.0pt)
+* v-part:(T,H,B)=(0.0pt, 126.47249pt, 0.0pt)
 * \paperwidth=151.76744pt
-* \paperheight=144.54pt
+* \paperheight=126.47249pt
 * \textwidth=151.76744pt
-* \textheight=144.54pt
+* \textheight=126.47249pt
 * \oddsidemargin=-72.26999pt
 * \evensidemargin=-72.26999pt
 * \topmargin=-109.26999pt
@@ -141,7 +141,7 @@ pdfTeX warning: pdflatex (file ./exposedMoS2.pdf): PDF inclusion: found PDF vers
 File: exposedMoS2.pdf Graphic file (type pdf)
 <use exposedMoS2.pdf>
 Package pdftex.def Info: exposedMoS2.pdf  used on input line 16.
-(pdftex.def)             Requested size: 126.61296pt x 71.54768pt.
+(pdftex.def)             Requested size: 110.63011pt x 62.51395pt.
 
 
 pdfTeX warning: pdflatex (file ./hBNencapsulatedMoS2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
@@ -149,7 +149,7 @@ pdfTeX warning: pdflatex (file ./hBNencapsulatedMoS2.pdf): PDF inclusion: found 
 File: hBNencapsulatedMoS2.pdf Graphic file (type pdf)
 <use hBNencapsulatedMoS2.pdf>
 Package pdftex.def Info: hBNencapsulatedMoS2.pdf  used on input line 18.
-(pdftex.def)             Requested size: 128.29062pt x 71.54768pt.
+(pdftex.def)             Requested size: 112.096pt x 62.51395pt.
 [1
 
  <./exposedMoS2.pdf> <./hBNencapsulatedMoS2.pdf>] (crossections.aux)

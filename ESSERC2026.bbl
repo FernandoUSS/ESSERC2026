@@ -52,14 +52,11 @@
            given={Xiangfeng},
            giveni={X\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{29ea078a21251b200b46409b652a3ea2}
+      \strng{namehash}{6da461ba26b4e5ab2d9d39b96927d232}
       \strng{fullhash}{8b327eef08c1fe9c4a890f59d0f25e9f}
-      \strng{bibnamehash}{8b327eef08c1fe9c4a890f59d0f25e9f}
-      \strng{authorbibnamehash}{8b327eef08c1fe9c4a890f59d0f25e9f}
-      \strng{authornamehash}{29ea078a21251b200b46409b652a3ea2}
+      \strng{bibnamehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{authorbibnamehash}{6da461ba26b4e5ab2d9d39b96927d232}
+      \strng{authornamehash}{6da461ba26b4e5ab2d9d39b96927d232}
       \strng{authorfullhash}{8b327eef08c1fe9c4a890f59d0f25e9f}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -167,20 +164,17 @@
            given={Rajendra},
            giveni={R\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{ef61fe4d63dbf0a8cdadae69f71df718}
+      \strng{namehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
       \strng{fullhash}{33cc53ab0dba8523332a9a00305859b0}
-      \strng{bibnamehash}{ef61fe4d63dbf0a8cdadae69f71df718}
-      \strng{authorbibnamehash}{ef61fe4d63dbf0a8cdadae69f71df718}
-      \strng{authornamehash}{ef61fe4d63dbf0a8cdadae69f71df718}
+      \strng{bibnamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{authorbibnamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
+      \strng{authornamehash}{4af74fb9eefd5eefd8c9cd7fc2988265}
       \strng{authorfullhash}{33cc53ab0dba8523332a9a00305859b0}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Electronics}
+      \field{journaltitle}{Nat. Electron.}
       \field{month}{11}
       \field{number}{11}
       \field{title}{Transistors based on two-dimensional materials for future integrated circuits}
@@ -227,20 +221,17 @@
            given={Zhihong},
            giveni={Z\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{8d63f425470a8657912166e7f5b10e1b}
+      \strng{namehash}{f66c52c3203f24c423d40c6d055ec44e}
       \strng{fullhash}{be40fad58ea047096b021e74a06f9fb8}
-      \strng{bibnamehash}{8d63f425470a8657912166e7f5b10e1b}
-      \strng{authorbibnamehash}{8d63f425470a8657912166e7f5b10e1b}
-      \strng{authornamehash}{8d63f425470a8657912166e7f5b10e1b}
+      \strng{bibnamehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{authorbibnamehash}{f66c52c3203f24c423d40c6d055ec44e}
+      \strng{authornamehash}{f66c52c3203f24c423d40c6d055ec44e}
       \strng{authorfullhash}{be40fad58ea047096b021e74a06f9fb8}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{npj 2D Materials and Applications}
+      \field{journaltitle}{npj 2D Mater. Appl.}
       \field{month}{1}
       \field{number}{1}
       \field{title}{Reliability of high-performance monolayer {MoS2} transistors on scaled high-k {HfO2}}
@@ -270,21 +261,18 @@
            family={{Ru Huang}},
            familyi={R\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{4fe27db00e0b7b3126c148f35e3fd837}
+      \strng{namehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
       \strng{fullhash}{05d940419c4322124a76711d114a73c8}
-      \strng{bibnamehash}{05d940419c4322124a76711d114a73c8}
-      \strng{authorbibnamehash}{05d940419c4322124a76711d114a73c8}
-      \strng{authornamehash}{4fe27db00e0b7b3126c148f35e3fd837}
+      \strng{bibnamehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
+      \strng{authorbibnamehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
+      \strng{authornamehash}{8d36735f1c99d6f84b4a3f9d9253f9c3}
       \strng{authorfullhash}{05d940419c4322124a76711d114a73c8}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Random telegraph noise (RTN) is one of the important dynamic variation sources in ultrascaled MOSFETs. In this paper, the recently focused ac trap effects of RTN in digital circuits and their impacts on circuit performance are systematically investigated. Instead of trap occupancy probability under dc bias condition ( pdc), which is traditionally used for RTN characterization, ac trap occupancy probability ( pac), i.e., the effective percentage of time trap being occupied under ac bias condition, is proposed and evaluated analytically to investigate the dynamic trapping/detrapping behavior of RTN. A simulation approach that fully integrates the dynamic properties of ac trap effects is presented for accurate simulation of RTN in digital circuits. The impacts of RTN on digital circuit performances, e.g., failure probabilities of SRAM cells and jitters of ring oscillators, are then evaluated by the simulations and veriﬁed against predictions based on pac. The results show that degradations are highly workload dependent and that pac is critical in accurately evaluating the RTN-induced performance degradation and variability. The results are helpful for robust and resilient circuit design.}
-      \field{journaltitle}{IEEE Transactions on Electron Devices}
+      \field{journaltitle}{IEEE Trans. Electron Devices}
       \field{month}{6}
       \field{number}{6}
       \field{title}{Impacts of {Random} {Telegraph} {Noise} ({RTN}) on {Digital} {Circuits}}
@@ -306,14 +294,11 @@
            given={I.\bibnamedelimi V.},
            giveni={I\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{namehash}{5e75de541e3574ea859e5e5998781e96}
       \strng{fullhash}{5ab4e57d4738a23288dc97aa47c145cd}
-      \strng{bibnamehash}{5ab4e57d4738a23288dc97aa47c145cd}
-      \strng{authorbibnamehash}{5ab4e57d4738a23288dc97aa47c145cd}
-      \strng{authornamehash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \strng{bibnamehash}{5e75de541e3574ea859e5e5998781e96}
+      \strng{authorbibnamehash}{5e75de541e3574ea859e5e5998781e96}
+      \strng{authornamehash}{5e75de541e3574ea859e5e5998781e96}
       \strng{authorfullhash}{5ab4e57d4738a23288dc97aa47c145cd}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
@@ -396,20 +381,17 @@
            given={Tibor},
            giveni={T\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{6cb2a32c57cd617b92816c2b75893ad1}
+      \strng{namehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
       \strng{fullhash}{c76946896fae2feac3fe87a46c0781eb}
-      \strng{bibnamehash}{6cb2a32c57cd617b92816c2b75893ad1}
-      \strng{authorbibnamehash}{6cb2a32c57cd617b92816c2b75893ad1}
-      \strng{authornamehash}{6cb2a32c57cd617b92816c2b75893ad1}
+      \strng{bibnamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{authorbibnamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
+      \strng{authornamehash}{f9f8b4e6a176419005fa25a0b8ba3c57}
       \strng{authorfullhash}{c76946896fae2feac3fe87a46c0781eb}
       \field{sortinit}{6}
       \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Electronics}
+      \field{journaltitle}{Nat. Electron.}
       \field{month}{2}
       \field{number}{2}
       \field{title}{The performance limits of hexagonal boron nitride as an insulator for scaled {CMOS} devices based on two-dimensional materials}
@@ -481,21 +463,18 @@
            given={Daniel},
            giveni={D\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{323e39d603e57aaa5eacadb8b1dbecce}
+      \strng{namehash}{f6ea867da2524e95896a873ca5a99614}
       \strng{fullhash}{ab0478c5d05c02b18e605a25c36ae30b}
-      \strng{bibnamehash}{323e39d603e57aaa5eacadb8b1dbecce}
-      \strng{authorbibnamehash}{323e39d603e57aaa5eacadb8b1dbecce}
-      \strng{authornamehash}{323e39d603e57aaa5eacadb8b1dbecce}
+      \strng{bibnamehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{authorbibnamehash}{f6ea867da2524e95896a873ca5a99614}
+      \strng{authornamehash}{f6ea867da2524e95896a873ca5a99614}
       \strng{authorfullhash}{ab0478c5d05c02b18e605a25c36ae30b}
       \field{sortinit}{7}
       \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Molybdenum disulfide (MoS2) has great potential as a two-dimensional semiconductor for electronic and optoelectronic application, but its high sensitivity to environmental adsorbents and charge transfer from neighboring dielectrics can lead to device variability and instability. Aluminum oxide (Al2O3) is widely used as an encapsulation layer in (opto)-electronics, but it leads to detrimental charge transfer n-doping to MoS2. Here, this work reports a scalable encapsulation approach for MoS2 field-effect transistors (FETs) where hexagonal boron nitride (h-BN) monolayers are employed as a barrier layer in-between each of the Al2O3 and MoS2 interfaces. These devices exhibit a significant reduction of charge transfer, when compared to structures without h-BN. This benefit of h-BN in the gate stack is confirmed by ab initio density functional theory calculations. In addition, the devices with h-BN layers show very low hysteresis even under ambient operating conditions.}
-      \field{journaltitle}{Advanced Electronic Materials}
+      \field{journaltitle}{Adv. Electron. Mater.}
       \field{number}{9}
       \field{title}{Stable {Al2O3} {Encapsulation} of {MoS2}-{FETs} {Enabled} by {CVD} {Grown} h-{BN}}
       \field{volume}{8}
@@ -577,20 +556,17 @@
            given={T.},
            giveni={T\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
       \list{location}{1}{%
         {San Francisco, CA, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
       }
-      \strng{namehash}{65374d5dc8b937de74c75527be6b4228}
+      \strng{namehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
       \strng{fullhash}{7f3f51f19fb8b4ca1216e7426e45e8c0}
-      \strng{bibnamehash}{65374d5dc8b937de74c75527be6b4228}
-      \strng{authorbibnamehash}{65374d5dc8b937de74c75527be6b4228}
-      \strng{authornamehash}{65374d5dc8b937de74c75527be6b4228}
+      \strng{bibnamehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
+      \strng{authorbibnamehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
+      \strng{authornamehash}{c9d6b856bf555eb3d7f1b67ea0e568b5}
       \strng{authorfullhash}{7f3f51f19fb8b4ca1216e7426e45e8c0}
       \field{sortinit}{8}
       \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
@@ -736,20 +712,17 @@
            given={Tibor},
            giveni={T\bibinitperiod}}}%
       }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{aaf36d3d023f59d3b0b9d26917ab37d1}
+      \strng{namehash}{2b652d975d67a83e7538ec1e1a63d46b}
       \strng{fullhash}{492b6cda6a63c084ea251be5d94b8947}
-      \strng{bibnamehash}{aaf36d3d023f59d3b0b9d26917ab37d1}
-      \strng{authorbibnamehash}{aaf36d3d023f59d3b0b9d26917ab37d1}
-      \strng{authornamehash}{aaf36d3d023f59d3b0b9d26917ab37d1}
+      \strng{bibnamehash}{2b652d975d67a83e7538ec1e1a63d46b}
+      \strng{authorbibnamehash}{2b652d975d67a83e7538ec1e1a63d46b}
+      \strng{authornamehash}{2b652d975d67a83e7538ec1e1a63d46b}
       \strng{authorfullhash}{492b6cda6a63c084ea251be5d94b8947}
       \field{sortinit}{9}
       \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Communications}
+      \field{journaltitle}{Nat. Commun.}
       \field{month}{11}
       \field{number}{1}
       \field{title}{A standardized approach to characterize hysteresis in {2D}-materials-based transistors for stability benchmarking and performance projection}
@@ -758,7 +731,80 @@
       \field{pages}{171}
       \range{pages}{1}
     \endentry
+    \entry{polyushkin_analogue_2020}{article}{}
+      \name{author}{10}{}{%
+        {{hash=4c8507b476ef0376d54b3806fce9e820}{%
+           family={Polyushkin},
+           familyi={P\bibinitperiod},
+           given={Dmitry\bibnamedelima K.},
+           giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=923638f6c6c3f93dce6f2b338fee7e44}{%
+           family={Wachter},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cf9ce2d182c4863486ebd2428f4b051c}{%
+           family={Mennel},
+           familyi={M\bibinitperiod},
+           given={Lukas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=6e84a8884eaf3acb1a26e0e9e35d9e6f}{%
+           family={Paur},
+           familyi={P\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1d744e5d4e796aa738998718fe134b59}{%
+           family={Paliy},
+           familyi={P\bibinitperiod},
+           given={Maksym},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2299db3d59432075a7ef0d69bac61c15}{%
+           family={Iannaccone},
+           familyi={I\bibinitperiod},
+           given={Giuseppe},
+           giveni={G\bibinitperiod}}}%
+        {{hash=1465b3f764f8d879c2d2d06b73e98c54}{%
+           family={Fiori},
+           familyi={F\bibinitperiod},
+           given={Gianluca},
+           giveni={G\bibinitperiod}}}%
+        {{hash=067770ce9b997659b75a9dda76212c8c}{%
+           family={Neumaier},
+           familyi={N\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=20ec3a0cfc1d6db250ef967a63136c75}{%
+           family={Canto},
+           familyi={C\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod}}}%
+        {{hash=6040d212722adae7d724a97793df38d1}{%
+           family={Mueller},
+           familyi={M\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9d19c721427347e34ccf5aaee88af5b}
+      \strng{fullhash}{b02ca4e32bb24c8a4a84e0530bad6f90}
+      \strng{bibnamehash}{b9d19c721427347e34ccf5aaee88af5b}
+      \strng{authorbibnamehash}{b9d19c721427347e34ccf5aaee88af5b}
+      \strng{authornamehash}{b9d19c721427347e34ccf5aaee88af5b}
+      \strng{authorfullhash}{b02ca4e32bb24c8a4a84e0530bad6f90}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nat. Electron.}
+      \field{month}{8}
+      \field{number}{8}
+      \field{title}{Analogue two-dimensional semiconductor electronics}
+      \field{volume}{3}
+      \field{year}{2020}
+      \field{pages}{486\bibrangedash 491}
+      \range{pages}{6}
+    \endentry
   \enddatalist
+  \missing{IRDS}
 \endrefsection
 \endinput
 

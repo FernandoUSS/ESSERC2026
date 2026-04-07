@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  1 APR 2026 22:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.2.25)  5 APR 2026 09:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -64,8 +64,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count198
 \l__pdf_internal_box=\box51
-)
-No file OM_FET.aux.
+) (OM_FET.aux)
 \openout1 = `OM_FET.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -82,7 +81,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
-(C:\Users\bysho\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+ (C:\Users\bysho\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count199
 \scratchdimen=\dimen151
@@ -110,11 +109,11 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(0.0pt, 144.54pt, 0.0pt)
-* v-part:(T,H,B)=(7.22743pt, 130.08513pt, 7.22743pt)
+* v-part:(T,H,B)=(7.22743pt, 112.01762pt, 7.22743pt)
 * \paperwidth=144.54pt
-* \paperheight=144.54pt
+* \paperheight=126.47249pt
 * \textwidth=144.54pt
-* \textheight=130.08513pt
+* \textheight=112.01762pt
 * \oddsidemargin=-72.26999pt
 * \evensidemargin=-72.26999pt
 * \topmargin=-102.04256pt
@@ -139,7 +138,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 File: hBN_encap_good/FET_15.png Graphic file (type png)
 <use hBN_encap_good/FET_15.png>
 Package pdftex.def Info: hBN_encap_good/FET_15.png  used on input line 14.
-(pdftex.def)             Requested size: 129.35796pt x 129.36281pt.
+(pdftex.def)             Requested size: 111.2905pt x 111.2953pt.
 [1
 
  <./hBN_encap_good/FET_15.png>] (OM_FET.aux)
@@ -149,15 +148,15 @@ L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1827 strings out of 474486
- 30180 string characters out of 5743755
+ 1830 strings out of 474486
+ 30267 string characters out of 5743755
  1924542 words of memory out of 5000000
- 24149 multiletter control sequences out of 15000+600000
+ 24150 multiletter control sequences out of 15000+600000
  558069 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,5n,65p,239b,119s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on OM_FET.pdf (1 page, 7056842 bytes).
+Output written on OM_FET.pdf (1 page, 7056845 bytes).
 PDF statistics:
  7 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
