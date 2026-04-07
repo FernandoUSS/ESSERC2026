@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  7 APR 2026 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  7 APR 2026 18:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -645,21 +645,21 @@ Package pdftex.def Info: figures/inverter_gain.png  used on input line 100.
 
 
 ]
-<figures/hysteresis_IdVg_example.pdf, id=23, 158.99399pt x 126.4725pt>
+<figures/hysteresis_IdVg_example.pdf, id=23, 166.22101pt x 126.4725pt>
 File: figures/hysteresis_IdVg_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_IdVg_example.pdf>
 Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 115.
-(pdftex.def)             Requested size: 158.99359pt x 126.47218pt.
-<figures/hysteresis_time_example.pdf, id=24, 158.99399pt x 126.4725pt>
+(pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
+<figures/hysteresis_time_example.pdf, id=24, 166.22101pt x 126.4725pt>
 File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_time_example.pdf>
 Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 116.
-(pdftex.def)             Requested size: 158.99359pt x 126.47218pt.
-<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=25, 187.902pt x 126.4725pt>
+(pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
+<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=25, 166.22101pt x 126.4725pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
 Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 118.
-(pdftex.def)             Requested size: 187.90154pt x 126.47218pt.
+(pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
 <figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=26, 289.08pt x 126.4725pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf>
@@ -674,32 +674,32 @@ Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf  use
 Underfull \vbox (badness 1762) has occurred while \output is active []
 
  [2 <./figures/crossections.pdf> <./figures/OM_FET.pdf> <./figures/IdVg_encapsulated_1.pdf> <./figures/inverter_VTC_schematic.pdf> <./figures/OM_INV.pdf> <./figures/inverter_gain.png>]
-<figures/BTI_stress_time.pdf, id=134, 166.22101pt x 126.4725pt>
+<figures/BTI_stress_time.pdf, id=132, 166.22101pt x 126.4725pt>
 File: figures/BTI_stress_time.pdf Graphic file (type pdf)
 <use figures/BTI_stress_time.pdf>
 Package pdftex.def Info: figures/BTI_stress_time.pdf  used on input line 140.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/BTI_IdVg_stressrelax.pdf, id=135, 166.22101pt x 126.4725pt>
+<figures/BTI_IdVg_stressrelax.pdf, id=133, 166.22101pt x 126.4725pt>
 File: figures/BTI_IdVg_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_IdVg_stressrelax.pdf>
 Package pdftex.def Info: figures/BTI_IdVg_stressrelax.pdf  used on input line 142.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=136, 166.22101pt x 126.4725pt>
+<figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=134, 166.22101pt x 126.4725pt>
 File: figures/OTF_DeltaVth_strrec_differentVstr.pdf Graphic file (type pdf)
 <use figures/OTF_DeltaVth_strrec_differentVstr.pdf>
 Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 144.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/MSM_DeltaVth_duts.pdf, id=137, 166.22101pt x 126.4725pt>
+<figures/MSM_DeltaVth_duts.pdf, id=135, 166.22101pt x 126.4725pt>
 File: figures/MSM_DeltaVth_duts.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_duts.pdf>
 Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 146.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/MSM_DeltaVth_comparison.pdf, id=138, 166.22101pt x 126.4725pt>
+<figures/MSM_DeltaVth_comparison.pdf, id=136, 166.22101pt x 126.4725pt>
 File: figures/MSM_DeltaVth_comparison.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_comparison.pdf>
 Package pdftex.def Info: figures/MSM_DeltaVth_comparison.pdf  used on input line 148.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/BTI_inv_stressrelax.pdf, id=139, 166.22101pt x 126.4725pt>
+<figures/BTI_inv_stressrelax.pdf, id=137, 166.22101pt x 126.4725pt>
 File: figures/BTI_inv_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_inv_stressrelax.pdf>
 Package pdftex.def Info: figures/BTI_inv_stressrelax.pdf  used on input line 150.
@@ -739,9 +739,9 @@ Here is how much of TeX's memory you used:
  309 hyphenation exceptions out of 8191
  66i,14n,81p,1783b,1162s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ESSERC2026.pdf (5 pages, 14956521 bytes).
+Output written on ESSERC2026.pdf (5 pages, 14957833 bytes).
 PDF statistics:
- 835 PDF objects out of 1000 (max. 8388607)
+ 833 PDF objects out of 1000 (max. 8388607)
  203 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
