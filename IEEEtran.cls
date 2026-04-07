@@ -2702,7 +2702,7 @@
 \setlength\belowcaptionskip{0pt}
 % V1.6 create hooks in case the caption spacing ever needs to be
 % overridden by a user
-\def\@IEEEfigurecaptionsepspace{\vskip\abovecaptionskip\relax}%
+\def\@IEEEfigurecaptionsepspace{\vskip 2pt}% Modified
 \def\@IEEEtablecaptionsepspace{\vskip\abovecaptionskip\relax}%
 
 
