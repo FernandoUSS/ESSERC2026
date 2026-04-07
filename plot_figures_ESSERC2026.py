@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
     ########## Performance and variability ##########
 
-    if 1: # IdVg curves for encapsulated devices
+    if 0: # IdVg curves for encapsulated devices
 
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated',"IdVg_TUWien_planar_hbn-encapsulated.csv"))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
@@ -376,7 +376,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/IdVg_duts.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 1: # Plot inverter VTC and schematic
+    if 0: # Plot inverter VTC and schematic
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['temp'] == '300K') & (df['sample'] == 4) & (df['Vdd'] == 3.0)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
@@ -464,7 +464,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/inverter_VTC.pdf", bbox_inches=None, transparent=True)
         plt.close()
 
-    if 1: # Plot inverter gain for different Vdd
+    if 0: # Plot inverter gain for different Vdd
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
@@ -565,6 +565,7 @@ if __name__ == "__main__":
         ax.text(-0.5, 5.25, rf'$V_\mathsf{{DD}}$ = {max_Vdd:.1f} V', fontsize=5, verticalalignment='bottom', horizontalalignment='center')
         plt.savefig(script_dir+"/figures/inverter_gain.png", bbox_inches=None, dpi=600, transparent=True)
         plt.close()
+    
     ########## Hysteresis plots ##########
     if 0: # Hysteresis IdVg example
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
@@ -577,7 +578,7 @@ if __name__ == "__main__":
         Vmax = df['Vmax'].iloc[0]
         Vmin = df['Vmin'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.2, 2),constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.2, 1.75),constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.5
         right_in  = 0.05
@@ -680,7 +681,7 @@ if __name__ == "__main__":
                 
         # width = df['width'].iloc[0]
 
-        fig, ax = plt.subplots(figsize=(2.2, 2), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.2, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.2
         right_in  = 0.3
@@ -802,7 +803,7 @@ if __name__ == "__main__":
         Vmin = df['Vmin'].iloc[0]
 
         # Create figure with two stacked axes
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.6, 2.), sharex=True, constrained_layout=False)
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(2.6, 1.75), sharex=True, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.43
         right_in  = 0.05
@@ -1023,7 +1024,7 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(1, 2, figsize=(4, 2), constrained_layout=False, sharey=True, sharex=True)
+        fig, ax = plt.subplots(1, 2, figsize=(4, 1.75), constrained_layout=False, sharey=True, sharex=True)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.5
         right_in  = 0.05
@@ -1287,7 +1288,7 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
         df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(figsize=(3, 2), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(3, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.5
         right_in  = 0.05
@@ -1440,7 +1441,7 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 0: # Plot BTI DeltaVth vs total time
+    if 1: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         df = df[~df['cycle'].isin([0])]
@@ -1468,9 +1469,9 @@ if __name__ == "__main__":
         markers = ['o', '^']
         max_cycles = df_selected['cycle'].max()
         show_precondition = 0
-        fig, ax = plt.subplots(1,max_cycles + show_precondition, figsize=(2.3, 2), sharey=True, constrained_layout=False)
+        fig, ax = plt.subplots(1,max_cycles + show_precondition, figsize=(2.3, 1.75), sharey=True, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        x_left_in   = 0.4
+        x_left_in   = 0.5
         x_right_in  = 0.05
         x_top_in    = 0.2
         x_bottom_in = 0.4
@@ -1662,7 +1663,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_stress_time.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot BTI IdVg (joint plot with recovery)
+    if 1: # Plot BTI IdVg (joint plot with recovery)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 7)]
         for c in ['Id','Vg']:
@@ -1670,9 +1671,9 @@ if __name__ == "__main__":
 
         width = df['width'].iloc[0]
 
-        fig, ax = plt.subplots(1,2,figsize=(2.3, 2),sharey=True, constrained_layout=False)
+        fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75),sharey=True, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        x_left_in   = 0.6
+        x_left_in   = 0.5
         x_right_in  = 0.05
         x_top_in    = 0.2
         x_bottom_in = 0.4
@@ -1773,17 +1774,17 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_IdVg_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot inverter BTI
+    if 1: # Plot inverter BTI
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['cycle'] == 1)]
         for c in ['Vinput','Voutput']:
             df[c] = df[c].map(json5.loads)
 
-        fig, ax = plt.subplots(1,2,figsize=(2.3, 2),sharey=True, constrained_layout=False)
+        fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75),sharey=True, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        x_left_in   = 0.4
+        x_left_in   = 0.5
         x_right_in  = 0.05
-        x_top_in    = 0.2
+        x_top_in    = 0.05
         x_bottom_in = 0.4
         #plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.9, left=0.21, right=0.98)
         plt.subplots_adjust(
@@ -1893,16 +1894,16 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_inv_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot BTI OTF DeltaVth vs different VgStress
+    if 1: # Plot BTI OTF DeltaVth vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
-        fig, ax = plt.subplots(1,2,figsize=(2.3, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        xlabel_space = 0.4
+        xlabel_space = 0.5
         ylabel_space = 0.5
         right_space = 0.05
-        top_space = 0.05
+        top_space = 0.2
         plt.subplots_adjust(
             wspace = 0.0/fig_width,
             left   = ylabel_space / fig_width,
@@ -1926,13 +1927,14 @@ if __name__ == "__main__":
         # xlim = ax[0].get_xlim()
         # ylim = ax[0].get_ylim()
         ax[0].set_ylim(-0.2, 1.4)
-
+        ax[0].set_xlim(0.3, 2e4)
         ax[0].set_xlabel(r'$t_{\mathsf{str}}$ [s]', fontsize=8)
         ax[0].set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
         ax[0].set_xscale('log')
         ax[0].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
         ax[0].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([1,3])))
         ax[0].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
+        ax[0].axvspan(0.1, 1e5, color=color_stress, alpha=0.05)
 
         
         # Add device info
@@ -1950,7 +1952,7 @@ if __name__ == "__main__":
                 color=colors[i], alpha=0.7)
         
         ax[1].text(0.95, 0.95, 'Relax', transform=ax[1].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='right')
-        ax[1].text(0.95, 0.89, r'$V_\mathsf{{G,relax}}$ = 0 V', transform=ax[1].transAxes, fontsize=6, verticalalignment='top',horizontalalignment='right')
+        ax[1].text(0.95, 0.87, r'$V_\mathsf{{G,relax}}$ = 0 V', transform=ax[1].transAxes, fontsize=5, verticalalignment='top',horizontalalignment='right')
 
         # ax[1].text(0.05, 0.25,r'$V_\mathsf{{G,rec}}$ = 0 V', transform=ax[1].transAxes, fontsize=7, verticalalignment='top',horizontalalignment='left')
                    
@@ -1958,32 +1960,34 @@ if __name__ == "__main__":
         ax[1].tick_params(axis='both', which='major', left=False, labelleft=False)
         ax[1].axhline(0, linestyle='--', color = 'k')
         ax[1].set_ylim(-0.2, 1.4)
+        ax[1].set_xlim(0.3, 2e4)
         ax[1].set_xlabel(r'$t_{\mathsf{relax}}$ [s]', fontsize=8)
         ax[1].set_xscale('log')
         ax[1].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
         ax[1].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([1,3])))
         ax[1].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
+        ax[1].axvspan(0.1, 1e5, color=color_relax, alpha=0.05)
         
 
         plt.savefig(script_dir+"/figures/OTF_DeltaVth_strrec_differentVstr.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot BTI MSM DeltaVth all duts vs different VgStress
+    if 1: # Plot BTI MSM DeltaVth all duts vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
-        fig, ax = plt.subplots(figsize=(2.3, 2.0), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.3, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        xlabel_space = 0.4
-        ylabel_space = 0.5
-        right_space = 0.05
-        top_space = 0.05
+        x_bottom_in = 0.4
+        x_left_in = 0.5
+        x_right_in = 0.05
+        x_top_in = 0.05
         plt.subplots_adjust(
             wspace = 0.0/fig_width,
-            left   = ylabel_space / fig_width,
-            right  = 1 - right_space / fig_width,
-            bottom = xlabel_space / fig_height,
-            top    = 1 - top_space / fig_height,
+            left   = x_left_in / fig_width,
+            right  = 1 - x_right_in / fig_width,
+            bottom = x_bottom_in / fig_height,
+            top    = 1 - x_top_in / fig_height,
         )
 
         VgStress_array = [3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
@@ -2074,7 +2078,9 @@ if __name__ == "__main__":
         ax.set_xlabel(r'$t_{\mathsf{relax}}$ [s]', fontsize=8)
         ax.set_ylabel(r'Threshold Shift, $\Delta V_{\mathsf{th}}$ [V]', fontsize=8)
         ax.set_ylim(-0.2, 1.4)
+        ax.set_xlim(0.3, 2e4)
         ax.set_xscale('log')
+        ax.axvspan(0.1, 1e5, color=color_relax, alpha=0.05)
 
         legend_handles = []
         legend_labels = []
@@ -2116,12 +2122,12 @@ if __name__ == "__main__":
         plt.savefig(script_dir+f"/figures/MSM_DeltaVth_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
+    if 1: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
 
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','BTI_hbn-encapsulated_vs_non-encapsulated_MSM.csv'))
         df = df[(df['tStress']==100) & (df['temp'] == '300K') & (df['VgRemain'] == 0.0)]
         
-        fig, ax = plt.subplots(2,2,figsize=(2.3, 2.0), constrained_layout=False, sharex=True, sharey=True)
+        fig, ax = plt.subplots(2,2,figsize=(2.3, 1.75), constrained_layout=False, sharex=True, sharey=True)
         fig_width, fig_height = fig.get_size_inches()
         xlabel_space = 0.4
         ylabel_space = 0.5
@@ -2219,11 +2225,13 @@ if __name__ == "__main__":
                 ax[i].plot(time_fit, DeltaVth_fit, linestyle='-', color=batch_colors[batch], alpha=1)
 
             ax[i].set_xscale('log')
+            ax[i].set_xlim(0.3, 2e4)
             ax[i].xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
             ax[i].xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
             ax[i].xaxis.set_major_formatter(FuncFormatter(make_log_formatter([1,3])))
             ax[i].axhline(0, linestyle='--', color = 'k')
             device_text = f'$T$ = {df["temp"].iloc[0]}\n$V_{{G,str}}$ = {VgStress:.1f} V\n $t_{{str}}$ = {df["tStress"].iloc[0]} s\n$V_{{G,rec}}$ = {df["VgRemain"].iloc[0]} V'
+            ax[i].axvspan(0.1, 1e5, color=color_relax, alpha=0.05)
             # ax[i].text(0.05, 0.95, device_text, transform=ax[i].transAxes, 
             #     fontsize=6, verticalalignment='top',
             #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
