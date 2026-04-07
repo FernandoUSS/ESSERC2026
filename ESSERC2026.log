@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  7 APR 2026 10:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.26)  7 APR 2026 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -261,17 +261,6 @@ Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEtab
 \c@lotdepth=\count291
 \sf@top=\skip59
 \sf@bottom=\skip60
-) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
-
-Package caption Warning: Unknown document class (or package),
-(caption)                standard defaults will be used.
-See the caption package documentation for explanation.
-
-\c@caption@flags=\count292
-\c@continuedfloat=\count293
-Package caption Info: float package is loaded.
 ) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 ) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
@@ -290,63 +279,63 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count294
+\etb@tempcnta=\count292
 ) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )) (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count295
+\lrq@indent=\count293
  (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 )) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count296
-\c@listtotal=\count297
-\c@listcount=\count298
-\c@liststart=\count299
-\c@liststop=\count300
-\c@citecount=\count301
-\c@citetotal=\count302
-\c@multicitecount=\count303
-\c@multicitetotal=\count304
-\c@instcount=\count305
-\c@maxnames=\count306
-\c@minnames=\count307
-\c@maxitems=\count308
-\c@minitems=\count309
-\c@citecounter=\count310
-\c@maxcitecounter=\count311
-\c@savedcitecounter=\count312
-\c@uniquelist=\count313
-\c@uniquename=\count314
-\c@refsection=\count315
-\c@refsegment=\count316
-\c@maxextratitle=\count317
-\c@maxextratitleyear=\count318
-\c@maxextraname=\count319
-\c@maxextradate=\count320
-\c@maxextraalpha=\count321
-\c@abbrvpenalty=\count322
-\c@highnamepenalty=\count323
-\c@lownamepenalty=\count324
-\c@maxparens=\count325
-\c@parenlevel=\count326
-\blx@tempcnta=\count327
-\blx@tempcntb=\count328
-\blx@tempcntc=\count329
-\c@blx@maxsection=\count330
-\blx@maxsegment@0=\count331
-\blx@notetype=\count332
-\blx@parenlevel@text=\count333
-\blx@parenlevel@foot=\count334
-\blx@sectionciteorder@0=\count335
-\blx@sectionciteorderinternal@0=\count336
-\blx@entrysetcounter=\count337
-\blx@biblioinstance=\count338
+\c@tabx@nest=\count294
+\c@listtotal=\count295
+\c@listcount=\count296
+\c@liststart=\count297
+\c@liststop=\count298
+\c@citecount=\count299
+\c@citetotal=\count300
+\c@multicitecount=\count301
+\c@multicitetotal=\count302
+\c@instcount=\count303
+\c@maxnames=\count304
+\c@minnames=\count305
+\c@maxitems=\count306
+\c@minitems=\count307
+\c@citecounter=\count308
+\c@maxcitecounter=\count309
+\c@savedcitecounter=\count310
+\c@uniquelist=\count311
+\c@uniquename=\count312
+\c@refsection=\count313
+\c@refsegment=\count314
+\c@maxextratitle=\count315
+\c@maxextratitleyear=\count316
+\c@maxextraname=\count317
+\c@maxextradate=\count318
+\c@maxextraalpha=\count319
+\c@abbrvpenalty=\count320
+\c@highnamepenalty=\count321
+\c@lownamepenalty=\count322
+\c@maxparens=\count323
+\c@parenlevel=\count324
+\blx@tempcnta=\count325
+\blx@tempcntb=\count326
+\blx@tempcntc=\count327
+\c@blx@maxsection=\count328
+\blx@maxsegment@0=\count329
+\blx@notetype=\count330
+\blx@parenlevel@text=\count331
+\blx@parenlevel@foot=\count332
+\blx@sectionciteorder@0=\count333
+\blx@sectionciteorderinternal@0=\count334
+\blx@entrysetcounter=\count335
+\blx@biblioinstance=\count336
 \labelnumberwidth=\skip61
 \labelalphawidth=\skip62
 \biblabelsep=\skip63
@@ -358,9 +347,9 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read2
 \blx@bcfout=\write3
 \blx@langwohyphens=\language32
-\c@mincomprange=\count339
-\c@maxcomprange=\count340
-\c@mincompwidth=\count341
+\c@mincomprange=\count337
+\c@maxcomprange=\count338
+\c@mincompwidth=\count339
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
@@ -370,74 +359,74 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'ieee.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count342
-\c@savedafterword=\count343
-\c@annotator=\count344
-\c@savedannotator=\count345
-\c@author=\count346
-\c@savedauthor=\count347
-\c@bookauthor=\count348
-\c@savedbookauthor=\count349
-\c@commentator=\count350
-\c@savedcommentator=\count351
-\c@editor=\count352
-\c@savededitor=\count353
-\c@editora=\count354
-\c@savededitora=\count355
-\c@editorb=\count356
-\c@savededitorb=\count357
-\c@editorc=\count358
-\c@savededitorc=\count359
-\c@foreword=\count360
-\c@savedforeword=\count361
-\c@holder=\count362
-\c@savedholder=\count363
-\c@introduction=\count364
-\c@savedintroduction=\count365
-\c@namea=\count366
-\c@savednamea=\count367
-\c@nameb=\count368
-\c@savednameb=\count369
-\c@namec=\count370
-\c@savednamec=\count371
-\c@translator=\count372
-\c@savedtranslator=\count373
-\c@shortauthor=\count374
-\c@savedshortauthor=\count375
-\c@shorteditor=\count376
-\c@savedshorteditor=\count377
-\c@labelname=\count378
-\c@savedlabelname=\count379
-\c@institution=\count380
-\c@savedinstitution=\count381
-\c@lista=\count382
-\c@savedlista=\count383
-\c@listb=\count384
-\c@savedlistb=\count385
-\c@listc=\count386
-\c@savedlistc=\count387
-\c@listd=\count388
-\c@savedlistd=\count389
-\c@liste=\count390
-\c@savedliste=\count391
-\c@listf=\count392
-\c@savedlistf=\count393
-\c@location=\count394
-\c@savedlocation=\count395
-\c@organization=\count396
-\c@savedorganization=\count397
-\c@origlocation=\count398
-\c@savedoriglocation=\count399
-\c@origpublisher=\count400
-\c@savedorigpublisher=\count401
-\c@publisher=\count402
-\c@savedpublisher=\count403
-\c@language=\count404
-\c@savedlanguage=\count405
-\c@origlanguage=\count406
-\c@savedoriglanguage=\count407
-\c@pageref=\count408
-\c@savedpageref=\count409
+\c@afterword=\count340
+\c@savedafterword=\count341
+\c@annotator=\count342
+\c@savedannotator=\count343
+\c@author=\count344
+\c@savedauthor=\count345
+\c@bookauthor=\count346
+\c@savedbookauthor=\count347
+\c@commentator=\count348
+\c@savedcommentator=\count349
+\c@editor=\count350
+\c@savededitor=\count351
+\c@editora=\count352
+\c@savededitora=\count353
+\c@editorb=\count354
+\c@savededitorb=\count355
+\c@editorc=\count356
+\c@savededitorc=\count357
+\c@foreword=\count358
+\c@savedforeword=\count359
+\c@holder=\count360
+\c@savedholder=\count361
+\c@introduction=\count362
+\c@savedintroduction=\count363
+\c@namea=\count364
+\c@savednamea=\count365
+\c@nameb=\count366
+\c@savednameb=\count367
+\c@namec=\count368
+\c@savednamec=\count369
+\c@translator=\count370
+\c@savedtranslator=\count371
+\c@shortauthor=\count372
+\c@savedshortauthor=\count373
+\c@shorteditor=\count374
+\c@savedshorteditor=\count375
+\c@labelname=\count376
+\c@savedlabelname=\count377
+\c@institution=\count378
+\c@savedinstitution=\count379
+\c@lista=\count380
+\c@savedlista=\count381
+\c@listb=\count382
+\c@savedlistb=\count383
+\c@listc=\count384
+\c@savedlistc=\count385
+\c@listd=\count386
+\c@savedlistd=\count387
+\c@liste=\count388
+\c@savedliste=\count389
+\c@listf=\count390
+\c@savedlistf=\count391
+\c@location=\count392
+\c@savedlocation=\count393
+\c@organization=\count394
+\c@savedorganization=\count395
+\c@origlocation=\count396
+\c@savedoriglocation=\count397
+\c@origpublisher=\count398
+\c@savedorigpublisher=\count399
+\c@publisher=\count400
+\c@savedpublisher=\count401
+\c@language=\count402
+\c@savedlanguage=\count403
+\c@origlanguage=\count404
+\c@savedoriglanguage=\count405
+\c@pageref=\count406
+\c@savedpageref=\count407
 \shorthandwidth=\skip69
 \shortjournalwidth=\skip70
 \shortserieswidth=\skip71
@@ -461,19 +450,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count410
-\c@textcitetotal=\count411
-\c@textcitemaxnames=\count412
-\c@biburlbigbreakpenalty=\count413
-\c@biburlbreakpenalty=\count414
-\c@biburlnumpenalty=\count415
-\c@biburlucpenalty=\count416
-\c@biburllcpenalty=\count417
+\c@textcitecount=\count408
+\c@textcitetotal=\count409
+\c@textcitemaxnames=\count410
+\c@biburlbigbreakpenalty=\count411
+\c@biburlbreakpenalty=\count412
+\c@biburlnumpenalty=\count413
+\c@biburlucpenalty=\count414
+\c@biburllcpenalty=\count415
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count418
+\c@smartand=\count416
 )
 Package biblatex Info: Trying to load bibliography style 'ieee'...
 Package biblatex Info: ... file 'ieee.bbx' found.
@@ -491,8 +480,8 @@ Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count419
-\c@bbx:relatedtotal=\count420
+\c@bbx:relatedcount=\count417
+\c@bbx:relatedtotal=\count418
 ))))
 Package biblatex Info: Trying to load citation style 'ieee'...
 Package biblatex Info: ... file 'ieee.cbx' found.
@@ -502,10 +491,10 @@ Package biblatex Info: Trying to load citation style 'numeric-comp'...
 Package biblatex Info: ... file 'numeric-comp.cbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
 File: numeric-comp.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
-\c@cbx@tempcnta=\count421
-\c@cbx@tempcntb=\count422
-\c@cbx@tempcntc=\count423
-\c@cbx@tempcntd=\count424
+\c@cbx@tempcnta=\count419
+\c@cbx@tempcntb=\count420
+\c@cbx@tempcntc=\count421
+\c@cbx@tempcntd=\count422
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -533,7 +522,7 @@ Package biblatex Info: Document encoding is UTF8 ....
 Package: expl3 2024-01-22 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count425
+\l__color_backend_stack_int=\count423
 \l__pdf_internal_box=\box57
 ))
 Package biblatex Info: ... and expl3
@@ -545,43 +534,9 @@ Package: xparse 2023-10-10 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 )) (./journal_abrev.tex)
-\@quotelevel=\count426
-\@quotereset=\count427
-
-
-/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex:37: Package biblatex Error: Conflicting options (maxbibnames/minbibnames).
-
-See the biblatex package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     
-'maxbibnames' must be greater than or equal to 'minbibnames'.
-
-
-/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex:37: Package biblatex Error: Conflicting options (maxcitenames/mincitenames).
-
-See the biblatex package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     
-'maxcitenames' must be greater than or equal to 'mincitenames'.
-
-
-/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex:37: Package biblatex Error: Conflicting options (maxsortnames/minsortnames).
-
-See the biblatex package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     
-'maxsortnames' must be greater than or equal to 'minsortnames'.
-
-(./ESSERC2026.aux)
+\@quotelevel=\count424
+\@quotereset=\count425
+ (./ESSERC2026.aux)
 \openout1 = `ESSERC2026.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
@@ -602,16 +557,16 @@ LaTeX Font Info:    ... okay on input line 37.
 -- Lines per column: 58 (approximate, difference = 10.20209pt).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count428
+\scratchcounter=\count426
 \scratchdimen=\dimen184
 \scratchbox=\box58
-\nofMPsegments=\count429
-\nofMParguments=\count430
+\nofMPsegments=\count427
+\nofMParguments=\count428
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count431
+\MPscratchCnt=\count429
 \MPscratchDim=\dimen185
-\MPnumerator=\count432
-\makeMPintoPDFobject=\count433
+\MPnumerator=\count430
+\makeMPintoPDFobject=\count431
 \everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -634,203 +589,125 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'ESSERC2026.bbl' found.
- (./ESSERC2026.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                IRDS
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
+ (./ESSERC2026.bbl)
 Package biblatex Info: Reference section=0 on input line 37.
 Package biblatex Info: Reference segment=0 on input line 37.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 70.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 66.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 66.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 70.
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 66.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 70.
-
-
-LaTeX Warning: Reference `sec:device' on page 1 undefined on input line 92.
-
-
-LaTeX Warning: Reference `sec:hysteresis' on page 1 undefined on input line 92.
-
-
-LaTeX Warning: Reference `sec:BTI' on page 1 undefined on input line 92.
-
-
-LaTeX Warning: Reference `sec:conclusions' on page 1 undefined on input line 92.
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 66.
 <figures/crossections.pdf, id=1, 151.767pt x 126.4725pt>
 File: figures/crossections.pdf Graphic file (type pdf)
 <use figures/crossections.pdf>
-Package pdftex.def Info: figures/crossections.pdf  used on input line 98.
+Package pdftex.def Info: figures/crossections.pdf  used on input line 91.
 (pdftex.def)             Requested size: 151.76662pt x 126.47218pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 98.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 91.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
 <figures/OM_FET.pdf, id=2, 144.54pt x 126.4725pt>
 File: figures/OM_FET.pdf Graphic file (type pdf)
 <use figures/OM_FET.pdf>
-Package pdftex.def Info: figures/OM_FET.pdf  used on input line 100.
+Package pdftex.def Info: figures/OM_FET.pdf  used on input line 93.
 (pdftex.def)             Requested size: 144.53963pt x 126.47218pt.
 <figures/IdVg_encapsulated_1.pdf, id=3, 195.129pt x 126.4725pt>
 File: figures/IdVg_encapsulated_1.pdf Graphic file (type pdf)
 <use figures/IdVg_encapsulated_1.pdf>
-Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 102.
+Package pdftex.def Info: figures/IdVg_encapsulated_1.pdf  used on input line 95.
 (pdftex.def)             Requested size: 195.12851pt x 126.47218pt.
-<figures/inverter_VTC.pdf, id=4, 151.767pt x 126.4725pt>
-File: figures/inverter_VTC.pdf Graphic file (type pdf)
-<use figures/inverter_VTC.pdf>
-Package pdftex.def Info: figures/inverter_VTC.pdf  used on input line 103.
+<figures/inverter_VTC_schematic.pdf, id=4, 151.767pt x 126.4725pt>
+File: figures/inverter_VTC_schematic.pdf Graphic file (type pdf)
+<use figures/inverter_VTC_schematic.pdf>
+Package pdftex.def Info: figures/inverter_VTC_schematic.pdf  used on input line 96.
 (pdftex.def)             Requested size: 151.76662pt x 126.47218pt.
 <figures/OM_INV.pdf, id=5, 144.54pt x 126.4725pt>
 File: figures/OM_INV.pdf Graphic file (type pdf)
 <use figures/OM_INV.pdf>
-Package pdftex.def Info: figures/OM_INV.pdf  used on input line 105.
+Package pdftex.def Info: figures/OM_INV.pdf  used on input line 98.
 (pdftex.def)             Requested size: 144.53963pt x 126.47218pt.
 <figures/inverter_gain.png, id=6, 195.129pt x 126.4725pt>
 File: figures/inverter_gain.png Graphic file (type png)
 <use figures/inverter_gain.png>
-Package pdftex.def Info: figures/inverter_gain.png  used on input line 107.
+Package pdftex.def Info: figures/inverter_gain.png  used on input line 100.
 (pdftex.def)             Requested size: 195.12851pt x 126.47218pt.
-
-
-LaTeX Warning: Reference `fig:crosssection_exposed' on page 1 undefined on input line 112.
-
-
-LaTeX Warning: Reference `fig:OM_hBN_FET' on page 1 undefined on input line 112.
-
-
-LaTeX Warning: Reference `fig:OM_hBN_INV' on page 1 undefined on input line 112.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-
-LaTeX Warning: Reference `fig:performance_hbn_FET' on page 2 undefined on input line 114.
-
-
-LaTeX Warning: Citation 'IRDS' on page 2 undefined on input line 114.
-
-
-LaTeX Warning: Reference `fig:inverter_schematic' on page 2 undefined on input line 114.
-
-
-LaTeX Warning: Reference `fig:inverter_gain' on page 2 undefined on input line 114.
-
-<figures/hysteresis_IdVg_example.pdf, id=20, 158.99399pt x 126.4725pt>
+<figures/hysteresis_IdVg_example.pdf, id=23, 158.99399pt x 126.4725pt>
 File: figures/hysteresis_IdVg_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_IdVg_example.pdf>
-Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 120.
+Package pdftex.def Info: figures/hysteresis_IdVg_example.pdf  used on input line 115.
 (pdftex.def)             Requested size: 158.99359pt x 126.47218pt.
-<figures/hysteresis_time_example.pdf, id=21, 158.99399pt x 126.4725pt>
+<figures/hysteresis_time_example.pdf, id=24, 158.99399pt x 126.4725pt>
 File: figures/hysteresis_time_example.pdf Graphic file (type pdf)
 <use figures/hysteresis_time_example.pdf>
-Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 121.
+Package pdftex.def Info: figures/hysteresis_time_example.pdf  used on input line 116.
 (pdftex.def)             Requested size: 158.99359pt x 126.47218pt.
-<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=22, 187.902pt x 126.4725pt>
+<figures/hysteresis_Vth_DeltaVth_vs_freq.pdf, id=25, 187.902pt x 126.4725pt>
 File: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf Graphic file (type pdf)
 <use figures/hysteresis_Vth_DeltaVth_vs_freq.pdf>
-Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 123.
+Package pdftex.def Info: figures/hysteresis_Vth_DeltaVth_vs_freq.pdf  used on input line 118.
 (pdftex.def)             Requested size: 187.90154pt x 126.47218pt.
-<figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=23, 289.08pt x 126.4725pt>
+<figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf, id=26, 289.08pt x 126.4725pt>
 File: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 124.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf  used on input line 119.
 (pdftex.def)             Requested size: 289.07928pt x 126.47218pt.
-<figures/hysteresis_DeltaVth_vs_freq_comparison.pdf, id=24, 216.81pt x 126.4725pt>
+<figures/hysteresis_DeltaVth_vs_freq_comparison.pdf, id=27, 216.81pt x 126.4725pt>
 File: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf Graphic file (type pdf)
 <use figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>
-Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf  used on input line 126.
+Package pdftex.def Info: figures/hysteresis_DeltaVth_vs_freq_comparison.pdf  used on input line 121.
 (pdftex.def)             Requested size: 216.80946pt x 126.47218pt.
 
-LaTeX Warning: Reference `fig:example_hyst_IdVg' on page 2 undefined on input line 131.
+Underfull \vbox (badness 1762) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Warning: Reference `fig:hysteresis_vs_time' on page 2 undefined on input line 133.
-
-
-LaTeX Warning: Reference `fig:hysteresis_vs_freq' on page 2 undefined on input line 133.
-
-[2 <./figures/crossections.pdf> <./figures/OM_FET.pdf> <./figures/IdVg_encapsulated_1.pdf> <./figures/inverter_VTC.pdf> <./figures/OM_INV.pdf> <./figures/inverter_gain.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Warning: Reference `fig:hyst_differentVd' on page 3 undefined on input line 137.
-
-
-LaTeX Warning: Reference `fig:hyst_comparison' on page 3 undefined on input line 139.
-
-<figures/BTI_stress_time.pdf, id=145, 166.22101pt x 126.4725pt>
+ [2 <./figures/crossections.pdf> <./figures/OM_FET.pdf> <./figures/IdVg_encapsulated_1.pdf> <./figures/inverter_VTC_schematic.pdf> <./figures/OM_INV.pdf> <./figures/inverter_gain.png>]
+<figures/BTI_stress_time.pdf, id=134, 166.22101pt x 126.4725pt>
 File: figures/BTI_stress_time.pdf Graphic file (type pdf)
 <use figures/BTI_stress_time.pdf>
-Package pdftex.def Info: figures/BTI_stress_time.pdf  used on input line 145.
+Package pdftex.def Info: figures/BTI_stress_time.pdf  used on input line 140.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/BTI_IdVg_stressrelax.pdf, id=146, 166.22101pt x 126.4725pt>
+<figures/BTI_IdVg_stressrelax.pdf, id=135, 166.22101pt x 126.4725pt>
 File: figures/BTI_IdVg_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_IdVg_stressrelax.pdf>
-Package pdftex.def Info: figures/BTI_IdVg_stressrelax.pdf  used on input line 147.
+Package pdftex.def Info: figures/BTI_IdVg_stressrelax.pdf  used on input line 142.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=147, 166.22101pt x 126.4725pt>
+<figures/OTF_DeltaVth_strrec_differentVstr.pdf, id=136, 166.22101pt x 126.4725pt>
 File: figures/OTF_DeltaVth_strrec_differentVstr.pdf Graphic file (type pdf)
 <use figures/OTF_DeltaVth_strrec_differentVstr.pdf>
-Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 149.
+Package pdftex.def Info: figures/OTF_DeltaVth_strrec_differentVstr.pdf  used on input line 144.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/MSM_DeltaVth_duts.pdf, id=148, 166.22101pt x 126.4725pt>
+<figures/MSM_DeltaVth_duts.pdf, id=137, 166.22101pt x 126.4725pt>
 File: figures/MSM_DeltaVth_duts.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_duts.pdf>
-Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 151.
+Package pdftex.def Info: figures/MSM_DeltaVth_duts.pdf  used on input line 146.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/MSM_DeltaVth_comparison.pdf, id=149, 166.22101pt x 126.4725pt>
+<figures/MSM_DeltaVth_comparison.pdf, id=138, 166.22101pt x 126.4725pt>
 File: figures/MSM_DeltaVth_comparison.pdf Graphic file (type pdf)
 <use figures/MSM_DeltaVth_comparison.pdf>
-Package pdftex.def Info: figures/MSM_DeltaVth_comparison.pdf  used on input line 153.
+Package pdftex.def Info: figures/MSM_DeltaVth_comparison.pdf  used on input line 148.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
-<figures/BTI_inv_stressrelax.pdf, id=150, 166.22101pt x 126.4725pt>
+<figures/BTI_inv_stressrelax.pdf, id=139, 166.22101pt x 126.4725pt>
 File: figures/BTI_inv_stressrelax.pdf Graphic file (type pdf)
 <use figures/BTI_inv_stressrelax.pdf>
-Package pdftex.def Info: figures/BTI_inv_stressrelax.pdf  used on input line 155.
+Package pdftex.def Info: figures/BTI_inv_stressrelax.pdf  used on input line 150.
 (pdftex.def)             Requested size: 166.22058pt x 126.47218pt.
 
-LaTeX Warning: Reference `fig:OTF_MSM_time' on page 3 undefined on input line 160.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: Reference `fig:BTI_IdVg' on page 3 undefined on input line 160.
-
-[3 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>]
-
-LaTeX Warning: Reference `fig:OTF_differentVstr' on page 4 undefined on input line 162.
-
-
-LaTeX Warning: Reference `fig:MSM_duts' on page 4 undefined on input line 162.
-
-
-LaTeX Warning: Reference `fig:MSM_comparison' on page 4 undefined on input line 164.
-
-
-LaTeX Warning: Reference `fig:OM_hBN_INV' on page 4 undefined on input line 164.
-
-[4 <./figures/BTI_stress_time.pdf> <./figures/BTI_IdVg_stressrelax.pdf> <./figures/OTF_DeltaVth_strrec_differentVstr.pdf> <./figures/MSM_DeltaVth_duts.pdf> <./figures/MSM_DeltaVth_comparison.pdf> <./figures/BTI_inv_stressrelax.pdf>]
+ [3 <./figures/hysteresis_IdVg_example.pdf> <./figures/hysteresis_time_example.pdf> <./figures/hysteresis_Vth_DeltaVth_vs_freq.pdf> <./figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf> <./figures/hysteresis_DeltaVth_vs_freq_comparison.pdf>] [4 <./figures/BTI_stress_time.pdf> <./figures/BTI_IdVg_stressrelax.pdf> <./figures/OTF_DeltaVth_strrec_differentVstr.pdf> <./figures/MSM_DeltaVth_duts.pdf> <./figures/MSM_DeltaVth_comparison.pdf> <./figures/BTI_inv_stressrelax.pdf>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -849,35 +726,23 @@ Before submitting the final camera ready copy, remember to:
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                ESSERC2026
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'ESSERC2026.run.xml'.
 \openout1 = `ESSERC2026.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14130 strings out of 475597
- 263865 string characters out of 5783338
- 1944975 words of memory out of 5000000
- 36124 multiletter control sequences out of 15000+600000
- 610034 words of font info for 141 fonts, out of 8000000 for 9000
+ 13644 strings out of 475597
+ 255420 string characters out of 5783338
+ 1947975 words of memory out of 5000000
+ 35642 multiletter control sequences out of 15000+600000
+ 607301 words of font info for 138 fonts, out of 8000000 for 9000
  309 hyphenation exceptions out of 8191
- 66i,14n,81p,1922b,1162s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 66i,14n,81p,1783b,1162s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ESSERC2026.pdf (5 pages, 14944303 bytes).
+Output written on ESSERC2026.pdf (5 pages, 14956521 bytes).
 PDF statistics:
- 846 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
+ 835 PDF objects out of 1000 (max. 8388607)
+ 203 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

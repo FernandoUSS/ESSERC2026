@@ -281,37 +281,123 @@
       \field{pages}{1725\bibrangedash 1732}
       \range{pages}{8}
     \endentry
-    \entry{geim_van_2013}{article}{}
-      \name{author}{2}{}{%
-        {{hash=40f0ba5816a970378fff1e96ae8538f7}{%
-           family={Geim},
-           familyi={G\bibinitperiod},
-           given={A.\bibnamedelimi K.},
-           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=95e5b1f7631e44941e31f4157a125fe8}{%
-           family={Grigorieva},
-           familyi={G\bibinitperiod},
-           given={I.\bibnamedelimi V.},
-           giveni={I\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+    \entry{Cui2015}{article}{}
+      \name{author}{18}{}{%
+        {{hash=46f43313ed6c93b93f6a94fc03199efa}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Xu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=639a61c1d37388d8b52fac71b719101b}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Gwan-Hyoung},
+           giveni={G\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=4348edbc00fc8a7d2de4a3db849648aa}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Young\bibnamedelima Duck},
+           giveni={Y\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=95a3bde10d08b66d31acc44039d8e353}{%
+           family={Arefe},
+           familyi={A\bibinitperiod},
+           given={Ghidewon},
+           giveni={G\bibinitperiod}}}%
+        {{hash=7b933e67c5519f8e6ff9371478d02d36}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Pinshane\bibnamedelima Y},
+           giveni={P\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=597073cfc1b45f46f90895e6ee13cf07}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Chul-ho},
+           giveni={C\bibinithyphendelim h\bibinitperiod}}}%
+        {{hash=430a6dd0287acf1f42913b245dd2d753}{%
+           family={Chenet},
+           familyi={C\bibinitperiod},
+           given={Daniel\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=14965f6d4ea10e6654fac59edf0decb4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xian},
+           giveni={X\bibinitperiod}}}%
+        {{hash=1f647bb6da8304b7be380ec58eb6373a}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c11bd128b690cf48da17ef8779fc89dd}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Fan},
+           giveni={F\bibinitperiod}}}%
+        {{hash=5725782afe6c7e7174fc8e859d207056}{%
+           family={Pizzocchero},
+           familyi={P\bibinitperiod},
+           given={Filippo},
+           giveni={F\bibinitperiod}}}%
+        {{hash=9f8ab808f3171d89bbd6905198fcb6e7}{%
+           family={Jessen},
+           familyi={J\bibinitperiod},
+           given={Bjarke\bibnamedelima S},
+           giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=ec13cda2cbfddcda8775a94455efdce0}{%
+           family={Watanabe},
+           familyi={W\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5a856342313a0ed8d5c7c0315c53a88f}{%
+           family={Taniguchi},
+           familyi={T\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3f9410a153ffa5ccba18d0e041f5c1b9}{%
+           family={Muller},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=0664c78983285f058a12d7a4eaf49955}{%
+           family={Low},
+           familyi={L\bibinitperiod},
+           given={Tony},
+           giveni={T\bibinitperiod}}}%
+        {{hash=7940934ee2fdd46ec4a3e00a6230f881}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=00c1651925040335862417178201693b}{%
+           family={Hone},
+           familyi={H\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
       }
-      \strng{namehash}{5e75de541e3574ea859e5e5998781e96}
-      \strng{fullhash}{5ab4e57d4738a23288dc97aa47c145cd}
-      \strng{bibnamehash}{5e75de541e3574ea859e5e5998781e96}
-      \strng{authorbibnamehash}{5e75de541e3574ea859e5e5998781e96}
-      \strng{authornamehash}{5e75de541e3574ea859e5e5998781e96}
-      \strng{authorfullhash}{5ab4e57d4738a23288dc97aa47c145cd}
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{af608956de18c787e1dc2ee33d6c00c2}
+      \strng{fullhash}{91d17dd4667c8154c2cad753bc7310b1}
+      \strng{bibnamehash}{af608956de18c787e1dc2ee33d6c00c2}
+      \strng{authorbibnamehash}{af608956de18c787e1dc2ee33d6c00c2}
+      \strng{authornamehash}{af608956de18c787e1dc2ee33d6c00c2}
+      \strng{authorfullhash}{91d17dd4667c8154c2cad753bc7310b1}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature}
-      \field{month}{7}
-      \field{number}{7459}
-      \field{title}{Van der {Waals} heterostructures}
-      \field{volume}{499}
-      \field{year}{2013}
-      \field{pages}{419\bibrangedash 425}
+      \field{issn}{1748-3387}
+      \field{journaltitle}{Nat. Nanotechnol.}
+      \field{number}{6}
+      \field{title}{{Multi-Terminal Transport Measurements of MoS\textsubscript{2} using a Van der Waals Heterostructure Device Platform}}
+      \field{volume}{10}
+      \field{year}{2015}
+      \field{pages}{534\bibrangedash 540}
       \range{pages}{7}
+      \verb{doi}
+      \verb 10.1038/nnano.2015.70
+      \endverb
     \endentry
     \entry{knobloch_performance_2021}{article}{}
       \name{author}{13}{}{%
@@ -803,8 +889,38 @@
       \field{pages}{486\bibrangedash 491}
       \range{pages}{6}
     \endentry
+    \entry{IRDS2024}{report}{}
+      \name{author}{1}{}{%
+        {{hash=472abfae8142fdb6f39d081303e8af85}{%
+           family={{IEEE}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{fullhash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{bibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorbibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authornamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorfullhash}{472abfae8142fdb6f39d081303e8af85}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{IRDS More Moore}}
+      \field{type}{techreport}
+      \field{year}{2024}
+      \field{pages}{1\bibrangedash 33}
+      \range{pages}{33}
+      \verb{urlraw}
+      \verb https://irds.ieee.org/editions/2024
+      \endverb
+      \verb{url}
+      \verb https://irds.ieee.org/editions/2024
+      \endverb
+    \endentry
   \enddatalist
-  \missing{IRDS}
 \endrefsection
 \endinput
 

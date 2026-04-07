@@ -96,15 +96,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxitems</bcf:key>
@@ -116,15 +116,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minitems</bcf:key>
@@ -331,15 +331,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxitems</bcf:key>
@@ -351,15 +351,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>mincitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>minitems</bcf:key>
@@ -2380,14 +2380,14 @@
     <bcf:citekey order="2" intorder="1">das_transistors_2021</bcf:citekey>
     <bcf:citekey order="3" intorder="1">lan_reliability_2025</bcf:citekey>
     <bcf:citekey order="4" intorder="1">mulong_luo_impacts_2015</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">geim_van_2013</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Cui2015</bcf:citekey>
     <bcf:citekey order="6" intorder="1">knobloch_performance_2021</bcf:citekey>
     <bcf:citekey order="7" intorder="1">piacentini_stable_2022</bcf:citekey>
     <bcf:citekey order="8" intorder="1">provias_reliability_2023</bcf:citekey>
     <bcf:citekey order="9" intorder="1">karl_standardized_2025</bcf:citekey>
     <bcf:citekey order="10" intorder="1">polyushkin_analogue_2020</bcf:citekey>
     <bcf:citekey order="11" intorder="1">piacentini_stable_2022</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">IRDS</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">IRDS2024</bcf:citekey>
     <bcf:citekey order="13" intorder="1">karl_standardized_2025</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->

@@ -376,7 +376,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/IdVg_duts.pdf", bbox_inches="tight", transparent=True)
         plt.close()
 
-    if 0: # Plot inverter VTC and schematic
+    if 1: # Plot inverter VTC and schematic
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','inv-transfer_TUWien_planar_hbn-encapsulated.csv'))
         df = df[(df['temp'] == '300K') & (df['sample'] == 4) & (df['Vdd'] == 3.0)]
         for c in ['Voutput','Vinput','Voutput_fit','Vinput_fit','dVoutdVin','dVoutdVin_fit']:
@@ -461,7 +461,7 @@ if __name__ == "__main__":
         #     fontsize=6, verticalalignment='top',
         #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.0))
 
-        plt.savefig(script_dir+"/figures/inverter_VTC.pdf", bbox_inches=None, transparent=True)
+        plt.savefig(script_dir+"/figures/inverter_VTC.svg", bbox_inches=None, transparent=True)
         plt.close()
 
     if 0: # Plot inverter gain for different Vdd
