@@ -1447,7 +1447,7 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 1: # Plot BTI DeltaVth vs total time
+    if 0: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         df = df[~df['cycle'].isin([0])]
@@ -1479,7 +1479,7 @@ if __name__ == "__main__":
         fig_width, fig_height = fig.get_size_inches()
         x_left_in   = 0.5
         x_right_in  = 0.05
-        x_top_in    = 0.2
+        x_top_in    = 0.12
         x_bottom_in = 0.4
         # plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.90, left=0.12, right=0.98)
         plt.subplots_adjust(
@@ -1527,7 +1527,7 @@ if __name__ == "__main__":
                     if meas_type == 'OTF':
                         ax[i].text(t[len(t)//2], np.max(Vth)+0.1, f'{df_cycle["meas_type"].iloc[0]}', fontsize=6, verticalalignment='bottom',horizontalalignment='center')
                     else:
-                        ax[i].text(t[len(t)//2], np.min(Vth)-0.15, f'{df_cycle["meas_type"].iloc[0]}', fontsize=6, verticalalignment='top',horizontalalignment='center')
+                        ax[i].text(t[len(t)//2], np.max(Vth)+0.1, f'{df_cycle["meas_type"].iloc[0]}', fontsize=6, verticalalignment='bottom',horizontalalignment='center')
 
                         ax[i].axhline(Vth_initial, linestyle='--', color=color_precondition, alpha=0.7)
 
@@ -1541,8 +1541,10 @@ if __name__ == "__main__":
 
                     if meas_type == 'MSM':
                         ax[i].axhline(Vth_initial, linestyle='--', color=color_stress if (i - (1 - show_precondition)) % 2  == 1 else color_relax, alpha=1)
+                        ax[i-1].axhline(Vth_initial, linestyle='--', color=color_stress, alpha=1)
                     elif meas_type == 'OTF' and (i - (1 - show_precondition)) % 2  == 1:
                         ax[i].axhline(Vth_initial, linestyle='--', color=color_stress, alpha=1)
+                        ax[i+1].axhline(Vth_initial, linestyle='--', color=color_relax, alpha=1)
 
 
         stress_ind = 1
@@ -1555,57 +1557,57 @@ if __name__ == "__main__":
                 ax[i].axvspan(t.min(), t.max(), color=color_precondition, alpha=0.05)
                 ax[i].annotate(
                         '',
-                        xy=(1, -0.05),
+                        xy=(0.5, -0.05),
                         xytext=(1e4, -0.05),
                         xycoords=('data', 'axes fraction'),
                         arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
                     )
                 ax[i].text(
                     1e2,
-                    -0.06,
+                    -0.075,
                     rf'$t_\mathsf{{precond}}$',
                     transform=ax[i].get_xaxis_transform(),
                     ha='center',
                     va='top',
-                    fontsize=7
+                    fontsize=6
                 )
             else:
                 if (i - (1 - show_precondition)) % 2  == 1: # Stress
                     ax[i].text(0.5, 0.95, f'Stress\n #{stress_ind}', transform=ax[i].transAxes, fontsize=6, verticalalignment='top',horizontalalignment='center')
                     ax[i].annotate(
                         '',
-                        xy=(1, -0.1),
+                        xy=(0.5, -0.1),
                         xytext=(1e4, -0.1),
                         xycoords=('data', 'axes fraction'),
                         arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
                     )
                     ax[i].text(
                         1e2,
-                        -0.11,
+                        -0.125,
                         rf'$t_\mathsf{{str,{stress_ind}}}$',
                         transform=ax[i].get_xaxis_transform(),
                         ha='center',
                         va='top',
-                        fontsize=7
+                        fontsize=6
                     )
                     stress_ind += 1
                 else: # Relax
                     ax[i].text(0.5, 0.9, f'Relax\n #{relax_ind}', transform=ax[i].transAxes, fontsize=6, verticalalignment='top',horizontalalignment='center')
                     ax[i].annotate(
                         '',
-                        xy=(1, -0.05),
+                        xy=(0.5, -0.05),
                         xytext=(1e4, -0.05),
                         xycoords=('data', 'axes fraction'),
                         arrowprops=dict(arrowstyle='<|-|>', color='k', linewidth=1, shrinkA=0, shrinkB=0),
                     )
                     ax[i].text(
                         1e2,
-                        -0.06,
+                        -0.075,
                         rf'$t_\mathsf{{relax,{relax_ind}}}$',
                         transform=ax[i].get_xaxis_transform(),
                         ha='center',
                         va='top',
-                        fontsize=7
+                        fontsize=6
                     )
                     relax_ind += 1
 
@@ -1615,6 +1617,7 @@ if __name__ == "__main__":
 
             ax[i].set_xscale('log')
             ax[i].set_ylim(-0.25, 4.5)
+            ax[i].set_xlim(0.5, 1e4)
 
             # Hide right spine except last plot
             if i != max_cycles + show_precondition - 1:
@@ -1641,7 +1644,7 @@ if __name__ == "__main__":
 
         # Set axis labels
         fig.text(0.55, 0.03, r'Time [a.u]', ha='center', fontsize=8)
-        ax[0].set_ylabel(r'Threshold Voltage, $V_\mathsf{th}$ [a.u.]', fontsize=8)
+        ax[0].set_ylabel(r'Threshold Voltage, $V_\mathsf{th}$ [a.u.]', y=0.45, fontsize=8)
         
         legend_elements = [
             Line2D([0], [0], marker='^',markerfacecolor='none', linestyle='none', label='MSM meas.'),
@@ -1657,7 +1660,7 @@ if __name__ == "__main__":
             framealpha=0.0,
             columnspacing=1,   # ↓ space between columns (default ~2.0)
             handletextpad=0.4,
-            bbox_to_anchor=(0.57, 1.00)
+            bbox_to_anchor=(0.57, 1.04)
         )
 
         # Add device info
@@ -1674,17 +1677,17 @@ if __name__ == "__main__":
 
     if 0: # Plot BTI IdVg (joint plot with recovery)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
-        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 7)]
+        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 5)]
         for c in ['Id','Vg']:
             df[c] = df[c].map(json5.loads)
 
         width = df['width'].iloc[0]
 
-        fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75),sharey=True, constrained_layout=False)
+        fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75),sharey=False, constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
         x_left_in   = 0.5
         x_right_in  = 0.05
-        x_top_in    = 0.2
+        x_top_in    = 0.12
         x_bottom_in = 0.4
         #plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.9, left=0.21, right=0.98)
         plt.subplots_adjust(
@@ -1708,28 +1711,31 @@ if __name__ == "__main__":
             ax[0].plot(vg, np.array(id_vals)/width*1e6, '-',label=f'$t_{{stress}}$ = {stress_time} s', color=cmap_stress(idx / len(stress_times)))
             
         ax[0].axhline(df_stress['Ith'].iloc[0]/width*1e6, linestyle='--', color='k', alpha=0.5)
-        ax[0].text(-0.95, df_stress['Ith'].iloc[0]/width*1e6 - 0.5*1e-4, r'$I_\mathsf{th}$-criterion', fontsize=5, verticalalignment='top', horizontalalignment='left')
+        ax[0].text(-1.2, df_stress['Ith'].iloc[0]/width*1e6, r'$I_\mathsf{th}$', fontsize=5, verticalalignment='center', horizontalalignment='right')
 
         # Set axis labels
         ax[0].spines['right'].set_linestyle('-')
         ax[0].spines['right'].set_alpha(0.5)
         ax[0].set_yscale('log')
         ax[0].set_ylim(4e-9, 1e-2)
+        ax[0].yaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        ax[0].yaxis.set_major_formatter(FuncFormatter(make_log_formatter([-7,-5,-3])))
+        ax[0].yaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
         ax[0].set_xlim(-1.15, 2.7)
         ax[0].axvspan(-1.15, 2.7, color=color_stress, alpha=0.05)
-        ax[0].text(0.05, 0.95, 'Stress #4', transform=ax[0].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
+        ax[0].text(0.05, 0.95, 'Stress #3', transform=ax[0].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
         ax[0].set_ylabel(r'Drain Current, $I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=8)
         
        # annotate with the time of the first and last stress points
         first_time = sorted(stress_times)[0]
         last_time = sorted(stress_times)[-1]
         ax[0].annotate('', xy=(0.65, 4e-4), xytext=(1.55, 4e-5), arrowprops=dict(arrowstyle='<|-', color='black',shrinkA=0, shrinkB=0))
-        ax[0].text(1.1, 2e-5, rf'$t_\mathsf{{str}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=5, va='bottom', ha='left')
+        ax[0].text(1.3, 1.5e-5, rf'$10^{{ {int(np.log10(last_time))} }}$ s', fontsize=5, va='bottom', ha='left')
         ax[0].text(0.65, 4e-4, rf'$t_\mathsf{{str}}$ = {first_time} s', fontsize=5, va='center', ha='right')
 
         # Plot BTI IdVg Recovery
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
-        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 8)]
+        df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 6)]
         for c in ['Id','Vg']:
             df[c] = df[c].map(json5.loads)
 
@@ -1757,16 +1763,16 @@ if __name__ == "__main__":
         ax[1].set_ylim(4e-9, 1e-2)
         ax[1].set_xlim(-1.15, 2.7)
         ax[1].axvspan(-1.15, 2.7, color=color_relax, alpha=0.05)
-        ax[1].text(0.05, 0.95, 'Relax #4', transform=ax[1].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
+        ax[1].text(0.05, 0.95, 'Relax #3', transform=ax[1].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
         fig.text(0.6, 0.03, r'Gate Voltage, $V_\mathsf{G}$ [V]', ha='center', fontsize=8)
         # ax[1].set_ylabel(r'$I_\mathsf{D}$ [$\mu$A/$\mu$m]', fontsize=8)
         
         # annotate with the time of the first and last stress points
         first_time = sorted(stress_times)[0]
         last_time = sorted(stress_times)[-1]
-        ax[1].annotate('', xy=(0.65, 4e-4), xytext=(1.55, 4e-5), arrowprops=dict(arrowstyle='-|>', color='black',shrinkA=0, shrinkB=0))
-        ax[1].text(0.65, 4e-4, rf'$t_\mathsf{{relax}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=5, va='bottom', ha='right')
-        ax[1].text(1.1, 2e-5, rf'$t_\mathsf{{relax}}$ = {first_time} s', fontsize=5, va='center', ha='left')
+        ax[1].annotate('', xy=(0.6, 5e-4), xytext=(1.55, 4e-5), arrowprops=dict(arrowstyle='-|>', color='black',shrinkA=0, shrinkB=0))
+        ax[1].text(0.85, 4e-4, rf'$t_\mathsf{{relax}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=5, va='bottom', ha='right')
+        ax[1].text(1.4, 2e-5, rf'{first_time} s', fontsize=5, va='center', ha='left')
 
         
         # Add device info
@@ -1783,7 +1789,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_IdVg_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot inverter BTI
+    if 1: # Plot inverter BTI
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['cycle'] == 1)]
         for c in ['Vinput','Voutput']:
@@ -1804,7 +1810,7 @@ if __name__ == "__main__":
             wspace = 0.00
         )
         
-        axinset_0 = ax[0].inset_axes([0.6, 0.5, 0.4, 0.4])
+        axinset_0 = ax[0].inset_axes([0.6, 0.49, 0.4, 0.4])
         axinset_0.set_xlabel(r'$t_\mathsf{stress}$ [s]', fontsize=5, labelpad=0.75)
         # axinset_0.set_title(r'$V_\mathsf{M}$ [V]', fontsize=5, pad=1.2, x=1)
         axinset_0.set_xscale('log')
@@ -1813,7 +1819,7 @@ if __name__ == "__main__":
         axinset_0.xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
         axinset_0.xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
         axinset_0.xaxis.set_major_formatter(FuncFormatter(make_log_formatter([2,3])))
-        fig.text(0.56, 0.88, r'$V_\mathsf{M} [V]$', fontsize=6, va='top', ha='center')
+        fig.text(0.59, 0.95, r'$V_\mathsf{M} [V]$', fontsize=6, va='top', ha='center')
 
         # Get unique stress times and assign colors
         stress_times = df[(df['initial'] != True) &
@@ -1827,11 +1833,13 @@ if __name__ == "__main__":
             Vm = df_stress['Vm'].values[0]
             ax[0].plot(Vin[5:], np.array(Vout[5:]), '-',label=f'$t_{{stress}}$ = {stress_time} s', color=cmap_stress(idx / len(stress_times)))
             axinset_0.plot(stress_time, Vm, 'o', color=color_stress)
+        
+        axinset_0.plot(df['tStress'], df['Vm_fit'], '-', color=color_stress, alpha=0.5)
 
         limits_inset = axinset_0.get_ylim()
             
-        # ax[0].axhline(df_stress['Ith'].iloc[0]/width*1e6, linestyle='--', color='k', alpha=0.5)
-        # ax[0].text(-0.95, df_stress['Ith'].iloc[0]/width*1e6 - 0.5*1e-4, r'$I_\mathsf{th}$-criterion', fontsize=5, verticalalignment='top', horizontalalignment='left')
+        ax[0].axhline(df_stress['Vdd'].iloc[0]/2, linestyle='--', color='k', alpha=0.5)
+        ax[0].text(-0.7, df_stress['Vdd'].iloc[0]/2-0.1, r'$V_\mathsf{dd}/2$', fontsize=5, verticalalignment='top', horizontalalignment='left')
 
         # Set axis labels
         ax[0].spines['right'].set_linestyle('-')
@@ -1846,9 +1854,9 @@ if __name__ == "__main__":
        # annotate with the time of the first and last stress points
         first_time = sorted(stress_times)[0]
         last_time = sorted(stress_times)[-1]
-        ax[0].annotate('', xy=(0.9, 1), xytext=(2.2, 1), arrowprops=dict(arrowstyle='<|-', color='black',shrinkA=0, shrinkB=0))
-        ax[0].text(2.2, 1, rf'$t_\mathsf{{str}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=4, va='center', ha='left')
-        ax[0].text(0.9, 1, rf'$t_\mathsf{{str}}$=$10^{{ {int(np.log10(first_time))} }}$ s', fontsize=4, va='center', ha='right')
+        ax[0].annotate('', xy=(0.65, 1), xytext=(2.3, 1), arrowprops=dict(arrowstyle='<|-', color='black',shrinkA=0, shrinkB=0))
+        ax[0].text(2.3, 1, rf'$t_\mathsf{{str}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=4.5, va='center', ha='left')
+        ax[0].text(0.60, 1, rf'$10^{{ {int(np.log10(first_time))} }}$ s', fontsize=4.5, va='center', ha='right')
 
         # Plot BTI IdVg Recovery
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
@@ -1861,7 +1869,7 @@ if __name__ == "__main__":
                 (df['extra'] != True) &
                 (df['end'] != True)]['tStress'].unique()
         
-        ax_inset_1 = ax[1].inset_axes([0.0, 0.5, 0.4, 0.4])
+        ax_inset_1 = ax[1].inset_axes([0.0, 0.49, 0.4, 0.4])
         ax_inset_1.set_xlabel(r'$t_\mathsf{relax}$ [s]', fontsize=5, labelpad=0.75)
         ax_inset_1.set_xscale('log')
         ax_inset_1.yaxis.set_visible(False)
@@ -1878,8 +1886,9 @@ if __name__ == "__main__":
             Vm = df_stress['Vm'].values[0]
             ax[1].plot(Vin[5:], np.array(Vout[5:]), '-',label=f'$t_{{stress}}$ = {stress_time} s', color=cmap_relax(idx / len(stress_times)))
             ax_inset_1.plot(stress_time, Vm, 'o', color=color_relax)
-            
-        # ax[1].axhline(df_stress['Ith'].iloc[0]/width*1e6, linestyle='--', color='k', alpha=0.5)
+        
+        ax_inset_1.plot(df['tStress'], df['Vm_fit'], '-', color=color_relax, alpha=0.5)
+        ax[1].axhline(df_stress['Vdd'].iloc[0]/2, linestyle='--', color='k', alpha=0.5)
 
         # Set axis labels
         ax[1].spines['left'].set_linestyle('-')
@@ -1896,9 +1905,9 @@ if __name__ == "__main__":
         # annotate with the time of the first and last stress points
         first_time = sorted(stress_times)[0]
         last_time = sorted(stress_times)[-1]
-        ax[1].annotate('', xy=(0.55, 1), xytext=(1.5, 1), arrowprops=dict(arrowstyle='-|>', color='black',shrinkA=0, shrinkB=0))
-        ax[1].text(0.55, 1, rf'$t_\mathsf{{relax}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=4, va='center', ha='right')
-        ax[1].text(1.6, 1, rf'$t_\mathsf{{relax}}$ = $10^{{ {int(np.log10(first_time))} }}$ s', fontsize=4, va='center', ha='left')
+        ax[1].annotate('', xy=(0.54, 1), xytext=(1.6, 1), arrowprops=dict(arrowstyle='-|>', color='black',shrinkA=0, shrinkB=0))
+        ax[1].text(0.54, 1, rf'$t_\mathsf{{relax}}$ = $10^{{ {int(np.log10(last_time))} }}$ s', fontsize=4.5, va='center', ha='right')
+        ax[1].text(1.7, 1, rf'$10^{{ {int(np.log10(first_time))} }}$ s', fontsize=4.5, va='center', ha='left')
         
         plt.savefig(script_dir+"/figures/BTI_inv_stressrelax.pdf", bbox_inches=None)
         plt.close()
@@ -1909,10 +1918,10 @@ if __name__ == "__main__":
         
         fig, ax = plt.subplots(1,2,figsize=(2.3, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        xlabel_space = 0.5
+        xlabel_space = 0.4
         ylabel_space = 0.5
         right_space = 0.05
-        top_space = 0.2
+        top_space = 0.12
         plt.subplots_adjust(
             wspace = 0.0/fig_width,
             left   = ylabel_space / fig_width,
@@ -2054,7 +2063,8 @@ if __name__ == "__main__":
                                 marker=marker,
                                 linestyle='None',
                                 markerfacecolor='none',
-                                markeredgecolor='#13073A'
+                                markeredgecolor='#13073A',
+                                markeredgewidth=0.45
                                 )
                         )
                         used_labels.add(key)
@@ -2106,7 +2116,7 @@ if __name__ == "__main__":
             legend_labels,
             handler_map={tuple: HandlerTuple(ndivide=None)},
             ncol=2,
-            handlelength=1.2,      # shorter line
+            handlelength=1.4,      # shorter line
             handletextpad=0.3,     # space between line and text
             columnspacing=0.6,     # space between columns
             labelspacing=0.2,      # vertical spacing
@@ -2195,7 +2205,7 @@ if __name__ == "__main__":
                 })
                 .reset_index()
             )
-            ax[i].text(0.95, 0.95, rf'$V_\mathsf{{G,str}}$ = {VgStress:.1f} V', transform=ax[i].transAxes, fontsize=5, verticalalignment='top',horizontalalignment='right')
+            ax[i].text(0.99, 0.95, rf'$V_\mathsf{{G,str}}$ = {VgStress:.1f} V', transform=ax[i].transAxes, fontsize=5, verticalalignment='top',horizontalalignment='right')
             for idx, key in enumerate(all_keys):
                 if key in df_dict:
                     marker = markers_keys[key]
@@ -2252,11 +2262,11 @@ if __name__ == "__main__":
         
         leg_batch = ax[0].legend(
             handles=batch_elements,
-            fontsize=6,
+            fontsize=5.5,
             loc='upper left',
             frameon=False,
-            handlelength=0.6,
-            bbox_to_anchor=(0, 0.95)
+            handlelength=0.45,
+            bbox_to_anchor=(-0.025, 0.94)
         )
 
         fig.supylabel(r'$\Delta V_{\mathsf{th}}/t_{\mathsf{ox}}$ [MV/cm]', fontsize=8,y=0.57,x=0.02)
