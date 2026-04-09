@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber ESSERC2026"] 1775639202.04706 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1775723547.61774 0
-  "ESSERC2026.bcf" 1775723547.49702 109062 98da2b548c2f96e15be89850f7d262af "pdflatex"
+["biber ESSERC2026"] 1775639202.04706 "ESSERC2026.bcf" "ESSERC2026.bbl" "ESSERC2026" 1775748240.04703 0
+  "ESSERC2026.bcf" 1775748239.90226 109062 98da2b548c2f96e15be89850f7d262af "pdflatex"
   "references.bib" 1775639195.51045 14138 28d796e06e9ae82fe3daf54e7cb0ebf1 ""
   (generated)
   "ESSERC2026.bbl"
   "ESSERC2026.blg"
   (rewritten before read)
-["pdflatex"] 1775723545.7816 "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1775723547.61807 0
+["pdflatex"] 1775748238.31837 "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" "ESSERC2026.pdf" "ESSERC2026" 1775748240.04737 0
   "/etc/texmf/web2c/texmf.cnf" 1763374453.26846 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" 1775723543.87785 24931 ac6fcfc8c90e5ad935680f33fffa18b3 ""
+  "/home/delossa/Nextcloud/ESSERC2026/ESSERC2026.tex" 1775748238.10526 25562 8da7a7b83e77646086d22b2199b84950 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvr7t.tfm" 1136768653 2520 53e01eef820ca829e42c1333c3fd02b9 ""
@@ -132,10 +132,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1764145359.02932 5399163 1d63915be91df504719dfec6da5ec43e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1764145398 6927419 b91f006974c701e58abf10c5d3734f92 ""
-  "ESSERC2026.aux" 1775723547.49502 10375 c0cfba06cc19a40cddc6bb143ae36554 "pdflatex"
-  "ESSERC2026.bbl" 1775723501.10869 38274 00806da8af79d5018b6f321beeac8925 "biber ESSERC2026"
-  "ESSERC2026.run.xml" 1775723547.49839 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
-  "ESSERC2026.tex" 1775723543.87785 24931 ac6fcfc8c90e5ad935680f33fffa18b3 ""
+  "ESSERC2026.aux" 1775748239.89926 10335 5e1c5eff5856cd48a22b15a46dc327c8 "pdflatex"
+  "ESSERC2026.bbl" 1775744689.84977 38274 00806da8af79d5018b6f321beeac8925 "biber ESSERC2026"
+  "ESSERC2026.run.xml" 1775748239.9032 2444 5b396065047eeaa76565f07c5a46e0de "pdflatex"
+  "ESSERC2026.tex" 1775748238.10526 25562 8da7a7b83e77646086d22b2199b84950 ""
   "IEEEtran.cls" 1775639195.50945 281947 441f6c40c4349ee7a8941872b704ce22 ""
   "figures/BTI_IdVg_stressrelax.pdf" 1775635715.47942 28542 4a92624366718a8784212e8b13b500ec ""
   "figures/BTI_inv_stressrelax.pdf" 1775638930.05311 29406 8e536e4d58b0ea30318a79cf5d1d2928 ""
@@ -147,9 +147,9 @@
   "figures/OM_INV.pdf" 1775374937 7175346 a093c236efdd093511c5916e7f105bac ""
   "figures/OTF_DeltaVth_strrec_differentVstr.pdf" 1775635843.58116 21167 9c5576cc3c8d01de3e2f37693637152f ""
   "figures/crossections.pdf" 1775374802 178285 1f27482c914a72df967584b840179936 ""
-  "figures/hyst_inv_stressrelax.pdf" 1775723494.20419 62917 fb43104a00f241461f49c90767961e7c ""
-  "figures/hysteresis_DeltaVth_vs_freq_comparison.pdf" 1775723486.94793 25612 e6dcf90cf1acbc0d10a7464521ea9dbd ""
-  "figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf" 1775723486.46232 32161 741e9a8b75a8adbc3d333f90b58eb0bc ""
+  "figures/hyst_inv_stressrelax.pdf" 1775748208.7326 62802 09613e93dd04a5e0951b16281bc16d6f ""
+  "figures/hysteresis_DeltaVth_vs_freq_comparison.pdf" 1775748202.14478 28784 d911fc1602b483861fbe051d65607382 ""
+  "figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf" 1775748201.60824 32161 9f91434d38ad6c760a60d4b154c34d25 ""
   "figures/hysteresis_IdVg_example.pdf" 1775578731.44623 18791 f258cdb00182eb82f8c45156564b8695 ""
   "figures/hysteresis_Vth_DeltaVth_vs_freq.pdf" 1775578733.29101 21203 8e93d52cdad64f70e03b70260cf485be ""
   "figures/inverter_VTC_schematic.pdf" 1775554859.19147 24666 dedd25974ba037187662ff378c9df48e ""

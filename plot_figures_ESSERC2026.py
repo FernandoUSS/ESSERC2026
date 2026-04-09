@@ -1309,10 +1309,12 @@ if __name__ == "__main__":
         
         df_dict = {
             k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
-            #if np.isclose(g['nom_freq'].min(), 1e-)
+            #if np.isclose(g['nom_freq'].min(), 1e-2)
         }
         removed_keys = [
             ('TUWien_planar_hbn-encapsulated', '1A13t1', 1),
+            #('TUWien_planar_hbn_bad', '1A1t1', 1),
+            ('TUWien_planar_hbn_bad', 'sin1A5t1', 1),
             #('TUWien_planar_hbn-encapsulated', '1A13t1', 3),
             #('TUWien_planar_hbn-encapsulated', '1A13t1', 4),
             #('TUWien_planar_hbn-encapsulated', '1A15t1', 5),
@@ -1320,12 +1322,14 @@ if __name__ == "__main__":
         all_keys = sorted(set(list(df_dict.keys())) - set(removed_keys))
         n_keys = len(all_keys)
 
-        df_groups = pd.concat(df_dict.values())
+        df_groups = pd.concat(
+            [g for k, g in df_dict.items() if k not in removed_keys]
+        )
 
         # Average DeltaVth for each batch and frequency
         df_avg = df_groups.groupby(['batch', 'nom_freq']).mean(numeric_only=True).reset_index()
 
-        markers = ['o', 'v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
+        markers = ['v', '^', 's', 'D', 'p', '*', 'h', '<', '>']
         batch_colors = {
             'TUWien_planar_hbn-encapsulated': '#2E8B57',  # SeaGreen
             'TUWien_planar_20nm': '#1E90FF',  # DodgerBlue
@@ -1334,7 +1338,7 @@ if __name__ == "__main__":
         batch_labels = {
             'TUWien_planar_hbn-encapsulated': 'hBN-enc.',
             'TUWien_planar_20nm': 'non-enc.',
-            'TUWien_planar_hbn_bad': 'non-enc.*',
+            'TUWien_planar_hbn_bad': 'non-enc.',
         }
         batch_linestyle = {
             'TUWien_planar_hbn-encapsulated': '-',
@@ -1369,10 +1373,11 @@ if __name__ == "__main__":
                 subset = subset.iloc[:-4]  
                 freq = subset['freq']
                 DeltaVth = subset['DeltaVth']/tox*1e-6 # Convert to MV/cm
-                line_dut, = ax.plot(freq, DeltaVth,
+                ax.plot(freq, DeltaVth,
                     marker=marker, linestyle=' ',
                     markeredgecolor="#13073A",
-                    markerfacecolor=batch_colors[batch], alpha=0.7) # label=rf'$W/L$ = {subset['width'].iloc[0]:.0f}/{subset['length'].iloc[0]:.0f};') #+f' Array {subset["array"].iloc[0]}; '+ f'Meas {subset["sample"].iloc[0]}' )
+                    markerfacecolor=batch_colors[batch], alpha=0.25)
+                line_dut = Line2D([0], [0], marker=marker, linestyle=' ', markeredgecolor="#13073A", markerfacecolor=batch_colors[batch], markersize=4, markeredgewidth=0.5, alpha=1)
                 key_wl = width + '/' + length
                 if key_wl not in batch_handles[batch]:
                     batch_handles[batch][key_wl] = []
@@ -1395,21 +1400,22 @@ if __name__ == "__main__":
             )
             freq_fit = np.logspace(np.log10(df_avg['nom_freq'].min()), np.log10(df_avg['nom_freq'].max()), 100)
             df_avg_batch = df_avg[df_avg['batch'] == batch].sort_values(by='nom_freq')
-            if batch == 'TUWien_planar_hbn-encapsulated':
-                df_avg_batch = df_avg_batch.iloc[:-4]  
-            freq = df_avg_batch['nom_freq']
+            df_avg_batch = df_avg_batch.iloc[:-4]  
+            freq = df_avg_batch['freq']
             DeltaVth = df_avg_batch['DeltaVth']/tox*1e-6
+            ax.plot(freq, DeltaVth, marker='o',linestyle='None', color=batch_colors[batch], alpha=1)
             DeltaVth_fit,_ = ProcessingLibrary.fit_data_freq(freq, DeltaVth, freq_fit=freq_fit, fit='spline')
             ax.plot(freq_fit, DeltaVth_fit, linestyle=batch_linestyle[batch], color=batch_colors[batch], alpha=1)
         
-        ax.axhline(0, linestyle='--', color = 'k', alpha=0.5)
+        ax.axhline(0, linestyle='--', color = 'k', alpha=1)
         # First legend for batch
         leg_batch = ax.legend(
             handles=batch_elements,
             fontsize=7,
             loc='upper right',
             frameon=False,
-            handlelength=0.8
+            handlelength=0.8,
+            bbox_to_anchor=(0.55, 1.05)
         )
         # ax.add_artist(legend1)
         
@@ -1445,12 +1451,15 @@ if __name__ == "__main__":
             legend_handles,
             legend_labels,
             handler_map={tuple: HandlerTuple(ndivide=None)},
-            handlelength=3.5,
+            ncol=2,
+            columnspacing=0.2,
+            handlelength=1.5,
+            handletextpad=0.2,
             fontsize=5,
             frameon=False,
             markerscale=0.5,
             loc='upper center',
-            bbox_to_anchor=(0.475, 0.925)
+            bbox_to_anchor=(0.725, 0.8)
         )
 
         ax.add_artist(leg_batch)
