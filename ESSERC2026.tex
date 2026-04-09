@@ -37,8 +37,6 @@
 \begin{document}
 
 \title{Reliability Assessment of hBN-Encapsulated \\ TMD Devices: from FETs to Inverters\\
-%A Comprehensive Reliability Assessment of hBN-encapsulated TMD FETs and Inverters\\
-%Hysteresis and Reliability of \\ hBN-encapsulated MoS$_2$ FETs\\
 \thanks{We gratefully acknowledge funding from the European Innovation Council under project number 101223249.}
 }
 
@@ -104,7 +102,7 @@ In this work, a comprehensive reliability assessment of hBN-encapsulated molybde
     \label{fig:devices_fabrication_performance}
 \end{figure*}
 
-The locally back-gated devices use a Ti/Au–Al$_2$O$_3$–(hBN)-MoS$_2$ gate stack and were fabricated following the approach in~\cite{polyushkin_analogue_2020}, with additional steps to enable hBN encapsulation for the encapsulated devices following the approach in~\cite{piacentini_stable_2022}. Schematics of the cross-section for both devices are shown in Fig.~\ref{fig:crosssection_exposed}. FETs with different aspect ratios ($W:L$) and depletion-load inverters with varying driver-to-load ratios ($W_d:W_l$) were designed, as shown in the optical microscopy~(OM) images in Fig.~\ref{fig:OM_hBN_FET} and Fig.~\ref{fig:OM_hBN_INV}, respectively.
+The locally back-gated devices use a Ti/Au–Al$_2$O$_3$–(hBN)-MoS$_2$ gate stack and were fabricated following the approach in~\cite{polyushkin_analogue_2020}, with additional steps to enable hBN encapsulation for the encapsulated devices following the approach in~\cite{piacentini_stable_2022}. Schematics of the cross-section for both devices are shown in Fig.~\ref{fig:crosssection_exposed}. FETs with different aspect ratios ($W/L$) and depletion-load inverters with varying driver-to-load ratios ($W_d/W_l$) were designed, as shown in the optical microscopy~(OM) images in Fig.~\ref{fig:OM_hBN_FET} and Fig.~\ref{fig:OM_hBN_INV}, respectively.
 
 The performance of the hBN-encapsulated FETs is summarized in Fig.~\ref{fig:performance_hbn_FET}. The devices exhibit an excellent $I_\mathsf{on}/I_\mathsf{off}$ ratio and low gate leakage ($I_\mathsf{G}/A$), with both metrics limited by the measurement resolution, making them well suited for low-power 2D electronics. Performance metrics such as the averaged subthreshold slope, $SS$, and the maximum current, $I_\mathsf{max}$, show non-ideal values~\cite{IRDS2024}, with the latter likely diminished by the contact resistances. All FET metrics were extracted at a drain voltage of 1.5 V. The schematic of a depletion-load inverter is shown in Fig.~\ref{fig:inverter_schematic}, along with an experimental voltage transfer characteristic~(VTC). As expected for a depletion-load design, the output high level, $V_\mathsf{out,high}$, is equal to $V_\mathrm{DD}$, whereas the output low level, $V_\mathsf{out,low}$, may deviate from the ideal value of 0 V depending on the driver-to-load ratio and the threshold voltages of the transistors. The transition point between the high and low output levels, $V_\mathrm{M}$, is defined for convenience as the input voltage at which the output equals half of the supply voltage, $V_\mathrm{DD}/2$. In Fig.~\ref{fig:inverter_gain}, the performance of an inverter with a 1:1 driver-to-load ratio is shown for different $V_\mathsf{DD}$. The inverter gain, defined as the magnitude of $dV_\mathrm{out}/dV_\mathrm{in}$ and reflecting the steepness of the transition between high and low output levels, is plotted in the inset of this figure for higher $V_\mathrm{DD}$, showing values approaching and even exceeding 100 depending on $V_\mathrm{DD}$. 
 
