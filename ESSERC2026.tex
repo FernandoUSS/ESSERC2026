@@ -113,12 +113,17 @@ The performance of the hBN-encapsulated FETs is summarized in Fig.~\ref{fig:perf
 \begin{figure*}[ht]
     \centering
     \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_IdVg_example.pdf}\label{fig:example_hyst_IdVg}}
-    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_vs_time}}
+    % \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_time_example.pdf}\label{fig:hysteresis_vs_time}}
     \hfill
-    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:hysteresis_vs_freq}} \\[-1.2em]
+    \subfloat[\small FET A]{\includegraphics[]{figures/hysteresis_Vth_DeltaVth_vs_freq.pdf}\label{fig:hysteresis_vs_freq}} 
+    \hfill
+    \setcounter{subfigure}{3} % next will be (d)
+    \subfloat[\small FETs D, E(enc.), $\alpha, \beta, \gamma, \delta$(non-enc.)]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} \\[-0.4em]
+    \setcounter{subfigure}{2} % next will be (c) 
     \subfloat[\small FETs B, C]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf}\label{fig:hyst_differentVd}}
     \hfill
-    \subfloat[\small FETs D, E(enc.), $\alpha, \beta, \gamma, \delta$(non-enc.)]{\includegraphics[]{figures/hysteresis_DeltaVth_vs_freq_comparison.pdf}\label{fig:hyst_comparison}} 
+    \setcounter{subfigure}{4} % next will be (e) 
+    \subfloat[\small Inverter B]{\includegraphics[]{figures/hyst_inv_stressrelax.pdf}\label{fig:hysteresis_inv}}
     \caption{(a) \textbf{Hysteresis curve}: the hysteresis width, $V_\mathsf{H}$, is defined as $V_{H} = V_\mathsf{th,down} - V_\mathsf{th,up}$ evaluated at a CC criterion $I_\mathsf{th}$. (b) \textbf{Hysteresis dependence on the sweep rate}: $\log(I_{D})$ and $V_\mathsf{G}$ are shown as a function of the normalized sweep time, $t/t_\mathsf{sw}$, for varying $t_\mathsf{sw}$. (c) \textbf{Hysteresis-$1/t_\mathsf{sw}$ curves}: $V_\mathsf{th,up}$, $V_\mathsf{th,down}$, and $V_\mathsf{H}$, are shown as a function of the sweep frequency, $1/t_\mathsf{sw}$. (d) \textbf{Hysteresis for varying $V_\mathsf{D}$}: The hysteresis is independent of the applied $V_\mathsf{D}$. More consistent hysteresis results are obtained when using an adaptive scheme that targets the same overdrive (right), as compared to a fixed gate-voltage range (left). (e) \textbf{Hysteresis in encapsulated vs. non-encapsulated devices}: The hysteresis width in encapsulated devices is negative (counter-clockwise, CCW), whereas in non-encapsulated devices it was of a similar magnitude but positive (clockwise, CW) evaluated at $V_\mathsf{D}$= 0.1 V.}
     \label{fig:hysteresis}
     \vspace{-12pt}

@@ -1026,11 +1026,11 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd_adjusted_range.pdf", bbox_inches=None, transparent=True)
         plt.close()
 
-    if 0: # Plot hysteresis DeltaVth vs freq different Vd (one figure version)
+    if 1: # Plot hysteresis DeltaVth vs freq different Vd (one figure version)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_nMOS.csv'))
         df = df[(df['dut']=='2A9t1') & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(1, 2, figsize=(4, 1.75), constrained_layout=False, sharey=True, sharex=True)
+        fig, ax = plt.subplots(1, 2, figsize=(4.3, 1.75), constrained_layout=False, sharey=True, sharex=True)
         fig_width, fig_height = fig.get_size_inches()
         left_in   = 0.5
         right_in  = 0.05
@@ -1198,7 +1198,7 @@ if __name__ == "__main__":
             borderpad=0.4
         )
         Vd_leg.set_zorder(10)
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None)
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_differentVd.pdf", bbox_inches=None, transparent=True)
         plt.close()
         
     if 0: # Plot hysteresis DeltaVth vs freq duts variability
@@ -1290,13 +1290,13 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_duts.pdf", bbox_inches=None)
         plt.close()
 
-    if 0: # Plot hysteresis DeltaVth vs freq comparison
+    if 1: # Plot hysteresis DeltaVth vs freq comparison
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','hyst_hbn-encapsulated_vs_non-encapsulated.csv'))
-        df = df[(df['Vd']==0.1) & (df['precondition'] == False)]
+        df = df[(df['batch'].isin(['TUWien_planar_hbn-encapsulated','TUWien_planar_20nm', 'TUWien_planar_hbn_bad'])) & (df['Vd'].isin([1.0])) & (df['precondition'] == False)]
 
-        fig, ax = plt.subplots(figsize=(3, 1.75), constrained_layout=False)
+        fig, ax = plt.subplots(figsize=(2.3, 1.75), constrained_layout=False)
         fig_width, fig_height = fig.get_size_inches()
-        left_in   = 0.5
+        left_in   = 0.4
         right_in  = 0.05
         top_in    = 0.1
         bottom_in = 0.4
@@ -1309,9 +1309,15 @@ if __name__ == "__main__":
         
         df_dict = {
             k: g for k, g in df.groupby(['batch', 'dut', 'sample'])
-            if np.isclose(g['nom_freq'].min(), 1e-1)
+            #if np.isclose(g['nom_freq'].min(), 1e-)
         }
-        all_keys = sorted(set(list(df_dict.keys())))
+        removed_keys = [
+            ('TUWien_planar_hbn-encapsulated', '1A13t1', 1),
+            #('TUWien_planar_hbn-encapsulated', '1A13t1', 3),
+            #('TUWien_planar_hbn-encapsulated', '1A13t1', 4),
+            #('TUWien_planar_hbn-encapsulated', '1A15t1', 5),
+        ]
+        all_keys = sorted(set(list(df_dict.keys())) - set(removed_keys))
         n_keys = len(all_keys)
 
         df_groups = pd.concat(df_dict.values())
@@ -1323,18 +1329,22 @@ if __name__ == "__main__":
         batch_colors = {
             'TUWien_planar_hbn-encapsulated': '#2E8B57',  # SeaGreen
             'TUWien_planar_20nm': '#1E90FF',  # DodgerBlue
+            'TUWien_planar_hbn_bad': '#1E90FF',  # DodgerBlue
         }
         batch_labels = {
             'TUWien_planar_hbn-encapsulated': 'hBN-enc.',
             'TUWien_planar_20nm': 'non-enc.',
+            'TUWien_planar_hbn_bad': 'non-enc.*',
         }
         batch_linestyle = {
             'TUWien_planar_hbn-encapsulated': '-',
             'TUWien_planar_20nm': '-',
+            'TUWien_planar_hbn_bad': '-',
         }
         batch_handles = {
             'TUWien_planar_hbn-encapsulated': {},
             'TUWien_planar_20nm': {},
+            'TUWien_planar_hbn_bad': {},
         }
 
         # Plot each unique (batch, dut, sample) with distinct color & marker
@@ -1355,8 +1365,8 @@ if __name__ == "__main__":
                 Vmin = subset['Vmin'].iloc[0]
                 dut = key[1]
                 subset = subset.sort_values(by='freq') 
-                if batch == 'TUWien_planar_hbn-encapsulated':
-                    subset = subset.iloc[:-4]  
+                #if batch == 'TUWien_planar_hbn-encapsulated':
+                subset = subset.iloc[:-4]  
                 freq = subset['freq']
                 DeltaVth = subset['DeltaVth']/tox*1e-6 # Convert to MV/cm
                 line_dut, = ax.plot(freq, DeltaVth,
@@ -1408,9 +1418,10 @@ if __name__ == "__main__":
         #       loc='upper right', framealpha=1,bbox_to_anchor=(1.75, 1))
                 
         ax.set_ylabel(r'$V_\mathsf{H}/t_\mathsf{ox}$ [MV/cm]', fontsize=8)
+        ax.yaxis.set_label_coords(-0.125, 0.5)
         ax.set_xscale('log')
         #ax.set_xlim(1e-3,200)
-        ax.set_ylim(-1, 1.5)
+        #ax.set_ylim(-1, 1.5)
         #ax.grid(True, which='both', alpha=0.3)
         ax.set_xlabel(r'Frequency, $1/t_\mathsf{sw}$ [Hz]', fontsize=8)
         
@@ -1443,7 +1454,101 @@ if __name__ == "__main__":
         )
 
         ax.add_artist(leg_batch)
-        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_comparison.pdf", bbox_inches=None)
+        plt.savefig(script_dir+"/figures/hysteresis_DeltaVth_vs_freq_comparison.pdf", bbox_inches=None, transparent=True)
+        plt.close()
+
+    if 1: # Plot hysteresis inverter
+        df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','hyst_TUWien_planar_hbn-encapsulated_inv.csv'))
+        df = df[(df['dut']=='INV4A1t1') & (df['sample']==5) & (df['temp'] == '300K') & (df['precondition'] == False)]
+        for c in ['time','Vinput','Voutput']:
+            df[c] = df[c].map(json5.loads)
+
+        fig, ax = plt.subplots(1,1,figsize=(2.5, 1.75),sharey=True, constrained_layout=False)
+        fig_width, fig_height = fig.get_size_inches()
+        x_left_in   = 0.4
+        x_right_in  = 0.1
+        x_top_in    = 0.1
+        x_bottom_in = 0.4
+        #plt.subplots_adjust(wspace=0.00, bottom=0.2, top=0.9, left=0.21, right=0.98)
+        plt.subplots_adjust(
+            left   = x_left_in / fig_width,
+            right  = 1 - x_right_in / fig_width,
+            bottom = x_bottom_in / fig_height,
+            top    = 1 - x_top_in / fig_height,
+            wspace = 0.00
+        )
+        
+        # Add rectangles to indicate sweep direction
+        #ax.add_patch(Rectangle((0, 0), 0.5, 4, facecolor=color_up, alpha=0.1))
+        #ax.add_patch(Rectangle((0.5, 0), 0.5, 4, facecolor=color_down, alpha=0.1))
+        ax.text(0.25, 0.975, r'up sweep', fontsize=6, va='top', ha='center', color=color_up, transform=ax.transAxes)
+        ax.text(0.75, 0.975, r'down sweep', fontsize=6, va='top', ha='center', color=color_down, transform=ax.transAxes)
+        ax.axvline(0.5, linestyle='-', color='k', alpha=0.25)
+        
+        axinset_Vh = ax.inset_axes([0.3, 0.3, 0.4, 0.25])
+        axinset_Vh.set_xlabel(r'$1/t_\mathsf{sw}$ [s]', fontsize=5, labelpad=0.75)
+        axinset_Vh.set_xscale('log')
+        axinset_Vh.tick_params(axis='both', labelsize=5)
+        axinset_Vh.text(0.95, 0.95, r'$V_\mathsf{H}$ [V]', fontsize=5, va='top', ha='right', transform=axinset_Vh.transAxes)
+        # axinset_0.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+        # axinset_0.xaxis.set_major_locator(LogLocator(base=10.0, subs=(1.0,), numticks=15))
+        # axinset_0.xaxis.set_minor_locator(LogLocator(base=10.0, subs=(2,3,4,5,6,7,8,9), numticks=100))
+        # axinset_0.xaxis.set_major_formatter(FuncFormatter(make_log_formatter([2,3])))
+        #fig.text(0.59, 0.95, r'$V_\mathsf{M} [V]$', fontsize=6, va='top', ha='center')
+
+        axinset_Vm = ax.inset_axes([0.3, 0.6, 0.4, 0.25])
+        axinset_Vm.set_xscale('log')
+        axinset_Vm.tick_params(axis='x', labelbottom=False)
+        axinset_Vm.tick_params(axis='y', labelsize=5)
+        axinset_Vm.text(0.95, 0.05, r'$V_\mathsf{M}$ [V]', fontsize=5, va='bottom', ha='right', transform=axinset_Vm.transAxes)
+
+        # Get unique frequencies and assign colors
+        df = df[df['Vm_up'].notna()].sort_values(by='freq')
+        freqs = df['freq'].unique()
+        colors = plasma(np.linspace(0, 1, len(freqs)))
+        freq_to_color = {freq: colors[idx] for idx, freq in enumerate(sorted(freqs))}
+        
+
+        for idx, freq in enumerate(sorted(freqs)):
+            df_freq = df[df['freq'] == freq]
+            Vin = df_freq['Vinput'].values[0]
+            Vout = df_freq['Voutput'].values[0]
+            Vm_up = df_freq['Vm_up'].values[0]
+            Vm_down = df_freq['Vm_down'].values[0]
+            DeltaVm = df_freq['DeltaVm'].values[0]
+            time = df_freq['time'].values[0]
+            sweep_time = np.max(time) - np.min(time)
+            ax.plot((time-np.min(time))/sweep_time, np.array(Vout), '-',label=f'$f$ = {freq} Hz', color=freq_to_color[freq])
+            axinset_Vh.plot(freq, DeltaVm, 'o', color="#2E8B57")
+            axinset_Vm.plot(freq, Vm_up, '^', color=color_up)
+            axinset_Vm.plot(freq, Vm_down, 'v', color=color_down)
+        
+        axinset_Vh.plot(df['freq'], df['DeltaVm_fit'], '-', color="#2E8B57", alpha=0.5)
+        axinset_Vh.axhline(0, linestyle='--', color='k', alpha=0.5)
+        axinset_Vm.plot(df['freq'], df['Vm_up_fit'], '-', color=color_up, alpha=0.5)
+        axinset_Vm.plot(df['freq'], df['Vm_down_fit'], '-', color=color_down, alpha=0.5)
+
+        limits_inset = axinset_Vh.get_ylim()
+            
+        ax.axhline(df_freq['Vdd'].iloc[0]/2, linestyle='--', color='k', alpha=0.5)
+        ax.text(-0.7, df_freq['Vdd'].iloc[0]/2-0.1, r'$V_\mathsf{dd}/2$', fontsize=5, verticalalignment='top', horizontalalignment='left')
+
+        # Set axis labels
+        ax.set_ylim(0, 3.5)
+        ax.set_xlim(0, 1)
+        #ax.set_xticks([0, 2, 4])
+        #ax.text(0.05, 0.95, 'Stress #4', transform=ax[0].transAxes, fontsize=7, verticalalignment='top', horizontalalignment='left')
+        ax.set_ylabel(r'Output Voltage, $V_\mathsf{out}$ [V]', fontsize=8)
+        ax.set_xlabel(r'Normalized Time, $t/t_\mathsf{sw}$', fontsize=8)
+        
+       # annotate with the time of the first and last stress points
+        max_tsw = 1/sorted(freqs)[0]
+        min_tsw = 1/sorted(freqs)[-1]
+        ax.annotate('', xy=(0.08, 0.5), xytext=(0.2, 0.5), arrowprops=dict(arrowstyle='-|>', color='black',shrinkA=0, shrinkB=0))
+        ax.text(0.09, 0.5, r'$t_\mathsf{sw}^{\max}$', fontsize=4.5, va='center', ha='right')
+        ax.text(0.22, 0.5, r'$t_\mathsf{sw}^{\min}$', fontsize=4.5, va='center', ha='left')
+        
+        plt.savefig(script_dir+"/figures/hyst_inv_stressrelax.pdf", bbox_inches=None, transparent=True)
         plt.close()
 
     ######### BTI plots ###################
@@ -1789,7 +1894,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_IdVg_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot inverter BTI
+    if 0: # Plot inverter BTI
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['cycle'] == 1)]
         for c in ['Vinput','Voutput']:

@@ -272,7 +272,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Random telegraph noise (RTN) is one of the important dynamic variation sources in ultrascaled MOSFETs. In this paper, the recently focused ac trap effects of RTN in digital circuits and their impacts on circuit performance are systematically investigated. Instead of trap occupancy probability under dc bias condition ( pdc), which is traditionally used for RTN characterization, ac trap occupancy probability ( pac), i.e., the effective percentage of time trap being occupied under ac bias condition, is proposed and evaluated analytically to investigate the dynamic trapping/detrapping behavior of RTN. A simulation approach that fully integrates the dynamic properties of ac trap effects is presented for accurate simulation of RTN in digital circuits. The impacts of RTN on digital circuit performances, e.g., failure probabilities of SRAM cells and jitters of ring oscillators, are then evaluated by the simulations and veriﬁed against predictions based on pac. The results show that degradations are highly workload dependent and that pac is critical in accurately evaluating the RTN-induced performance degradation and variability. The results are helpful for robust and resilient circuit design.}
-      \field{journaltitle}{IEEE Trans. Electron Devices}
+      \field{journaltitle}{IEEE TED}
       \field{month}{6}
       \field{number}{6}
       \field{title}{Impacts of {Random} {Telegraph} {Noise} ({RTN}) on {Digital} {Circuits}}
@@ -658,7 +658,7 @@
       \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2023 {International} {Electron} {Devices} {Meeting} ({IEDM})}
+      \field{booktitle}{2023 {IEDM}}
       \field{month}{12}
       \field{title}{Reliability {Assessment} of {Double}-{Gated} {Wafer}-{Scale} {MoS}$_{\textrm{2}}$ {Field} {Effect} {Transistors} through {Hysteresis} and {Bias} {Temperature} {Instability} {Analyses}}
       \field{year}{2023}
