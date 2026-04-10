@@ -1561,7 +1561,7 @@ if __name__ == "__main__":
         plt.close()
 
     ######### BTI plots ###################
-    if 1: # Plot BTI DeltaVth vs total time
+    if 0: # Plot BTI DeltaVth vs total time
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_all.csv'))
         # df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         df = df[~df['cycle'].isin([0])]
@@ -1789,7 +1789,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_stress_time.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI IdVg (joint plot with recovery)
+    if 0: # Plot BTI IdVg (joint plot with recovery)
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1) & (df['cycle'] == 5)]
         for c in ['Id','Vg']:
@@ -1903,7 +1903,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_IdVg_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot inverter BTI
+    if 0: # Plot inverter BTI
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_inv.csv'))
         df = df[(df['dut'] == 'INV4A1t1') & (df['temp'] == '300K') & (df['sample'] == 4) & (df['cycle'] == 1)]
         for c in ['Vinput','Voutput']:
@@ -2026,7 +2026,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/BTI_inv_stressrelax.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI OTF DeltaVth vs different VgStress
+    if 0: # Plot BTI OTF DeltaVth vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_OTF_nMOS.csv'))
         df = df[(df['dut'] == '2A13t1') & (df['temp'] == '300K') & (df['sample'] == 1)]
         
@@ -2104,7 +2104,7 @@ if __name__ == "__main__":
         plt.savefig(script_dir+"/figures/OTF_DeltaVth_strrec_differentVstr.pdf", bbox_inches=None)
         plt.close()
 
-    if 1: # Plot BTI MSM DeltaVth all duts vs different VgStress
+    if 0: # Plot BTI MSM DeltaVth all duts vs different VgStress
         df = pd.read_csv(os.path.join(data_folder,'TUWien_planar_hbn-encapsulated','BTI_TUWien_planar_hbn-encapsulated_MSM.csv'))
         df = df[(df['VgRemain'] == 0.0) & (df['tStress']==100)]
         
@@ -2258,7 +2258,7 @@ if __name__ == "__main__":
     if 1: # Plot BTI DeltaVth hbn-encapsulated_vs_non-encapsulated
 
         df = pd.read_csv(os.path.join(data_folder,'hbn-encapsulated_vs_non-encapsulated','BTI_hbn-encapsulated_vs_non-encapsulated_MSM.csv'))
-        df = df[(df['tStress']==100) & (df['temp'] == '300K') & (df['VgRemain'] == 0.0)]
+        df = df[(df['batch'].isin(['TUWien_planar_hbn-encapsulated', 'TUWien_planar_hbn_bad'])) & (df['tStress']==100) & (df['temp'] == '300K') & (df['VgRemain'] == 0.0)]
         
         fig, ax = plt.subplots(2,2,figsize=(2.3, 1.75), constrained_layout=False, sharex=True, sharey=True)
         fig_width, fig_height = fig.get_size_inches()
@@ -2282,10 +2282,12 @@ if __name__ == "__main__":
         batch_colors = {
             'TUWien_planar_hbn-encapsulated': '#2E8B57',  # SeaGreen
             'TUWien_planar_15nm': '#1E90FF',  # DodgerBlue
+            'TUWien_planar_hbn_bad': '#1E90FF',  # DodgerBlue
         }
         batch_labels = {
             'TUWien_planar_hbn-encapsulated': 'hBN-enc.',
             'TUWien_planar_15nm': 'non-enc.',
+            'TUWien_planar_hbn_bad': 'non-enc.',
         }
         markers = ['v', '^', 's', 'D', 'p', '*', 'h', '+', 'x', '<', '>']
 
@@ -2296,6 +2298,7 @@ if __name__ == "__main__":
             ('TUWien_planar_hbn-encapsulated', '1A11t1', 6),
             ('TUWien_planar_hbn-encapsulated', '1A13t1', 2),
             ('TUWien_planar_hbn-encapsulated', '1A13t1', 4),
+            #('TUWien_planar_15nm', 'M15', 3),
         ]
         df_groups = dict(tuple(df.groupby(['batch','dut','sample'])))
         all_keys = [k for k in df_groups.keys() if k not in removed_keys]
@@ -2333,11 +2336,11 @@ if __name__ == "__main__":
                     dut = key[1]
                     DeltaVth = (subset['Vth'] - subset['Vth_initial'])/tox*1e-6 # convert to MV/cm
                     n_meas_batch = df_groups[df_groups['batch'] == batch].groupby(['batch', 'dut', 'sample']).ngroups
-                    if n_meas_batch > 1:
-                        line_dut, = ax[i].plot(subset['tRec'], DeltaVth,
-                        marker=marker, linestyle=' ',
-                        markeredgecolor="#13073A",
-                        markerfacecolor=batch_colors[batch], alpha=0.25)
+                    #if n_meas_batch > 1:
+                    line_dut, = ax[i].plot(subset['tRec'], DeltaVth,
+                    marker=marker, linestyle=' ',
+                    markeredgecolor="#13073A",
+                    markerfacecolor=batch_colors[batch], alpha=0.25)
             batch_elements = []
             for batch in df['batch'].unique():
                 # n_meas_batch = df_groups[df_groups['batch'] == batch].groupby(['batch', 'dut', 'sample']).ngroups
